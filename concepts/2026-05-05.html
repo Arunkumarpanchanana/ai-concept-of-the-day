@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>In-context learning: how models learn at runtime · AI Concept of the Day</title>
+<style>
+  /* ===== Hub-matched design tokens ===== */
+  :root {
+    --bg: #0B1F3A;
+    --surface: #111827;
+    --surface-2: #0F1F36;
+    --border: #1F2937;
+    --border-strong: #2A3548;
+    --text: #E5E7EB;
+    --text-2: #CBD5E1;
+    --muted: #9CA3AF;
+    --muted-2: #6B7280;
+    --white: #FFFFFF;
+    --accent: #2563EB;
+    --accent-hover: #3B82F6;
+    --green: #10B981;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: var(--accent); }
+  a:hover { color: var(--accent-hover); }
+
+  /* ===== Container — matches hub's 900px ===== */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+  /* ===== Top header (matches hub) ===== */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 15px 0;
+    background: var(--bg);
+  }
+  .nav-wrap {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .logo {
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--white); text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+  .logo:hover { color: var(--accent-hover); }
+  .nav a {
+    margin-left: 15px; text-decoration: none; color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .nav a.active, .nav a:hover { color: var(--accent); }
+  .nav a:first-child { margin-left: 0; }
+
+  /* ===== Tool sub-bar (which tool you're in + breadcrumb) ===== */
+  .tool-bar {
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    background: var(--surface-2);
+  }
+  .tool-bar-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+    font-size: 0.85rem;
+  }
+  .tool-name {
+    color: var(--text-2); font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .tool-bar a { color: var(--muted); text-decoration: none; }
+  .tool-bar a:hover { color: var(--accent); }
+
+  /* ===== Page header ===== */
+  main { padding: 56px 0 80px; }
+  .page-header { margin-bottom: 40px; }
+  .page-header h1 {
+    margin: 8px 0 12px;
+    font-size: 32px; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2;
+    color: var(--white);
+  }
+  .page-header p {
+    color: var(--text-2); font-size: 16px; margin: 0;
+    max-width: 600px;
+  }
+  .section-eyebrow {
+    font-size: 12px; font-weight: 600;
+    color: var(--accent); letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ===== News: category nav (chips) ===== */
+  .category-nav {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 0 0 32px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .category-nav a {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    text-decoration: none; color: var(--text-2);
+    font-size: 13px; font-weight: 500;
+    transition: all 0.15s;
+  }
+  .category-nav a:hover {
+    border-color: var(--accent); color: var(--accent);
+    background: rgba(37, 99, 235, 0.08);
+  }
+  .category-nav .cat-count {
+    font-size: 11px; font-weight: 600;
+    background: var(--bg); color: var(--muted);
+    padding: 1px 7px; border-radius: 999px;
+    font-variant-numeric: tabular-nums;
+  }
+  .category-section { margin: 48px 0 0; scroll-margin-top: 24px; }
+  .category-section:first-of-type { margin-top: 24px; }
+  .category-heading {
+    font-size: 20px; font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 0 0 16px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--white);
+  }
+
+  /* ===== News: story list ===== */
+  .stories { list-style: none; padding: 0; margin: 0; counter-reset: story; }
+  .story {
+    counter-increment: story;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    padding-left: 44px;
+  }
+  .story:last-child { border-bottom: 0; }
+  .story::before {
+    content: counter(story);
+    position: absolute; left: 0; top: 26px;
+    font-size: 12px; font-weight: 600; color: var(--muted);
+    width: 24px; height: 24px;
+    border: 1px solid var(--border); border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--surface);
+    font-variant-numeric: tabular-nums;
+  }
+  .story-headline {
+    font-size: 18px; font-weight: 600; line-height: 1.35;
+    letter-spacing: -0.01em; margin: 0 0 8px;
+  }
+  .story-headline a {
+    color: var(--white); text-decoration: none;
+    transition: color 0.15s;
+  }
+  .story-headline a:hover { color: var(--accent-hover); }
+  .story-summary { margin: 0 0 10px; color: var(--text-2); font-size: 15px; }
+  .story-meta { display: flex; gap: 8px; font-size: 13px; color: var(--muted); align-items: center; }
+  .story-meta a { color: var(--muted); text-decoration: none; }
+  .story-meta a:hover { color: var(--accent); }
+  .story-meta .dot { color: var(--muted-2); }
+
+  /* ===== News: per-story detail page ===== */
+  .story-detail h1 {
+    font-size: 32px; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2;
+    margin: 12px 0 24px; color: var(--white);
+  }
+  .story-summary-large {
+    font-size: 18px; color: var(--text-2);
+    line-height: 1.6; margin: 0 0 32px;
+  }
+  .why-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px; margin: 32px 0;
+  }
+  .why-section h2, .why-section h3 {
+    font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--accent); margin: 0 0 8px;
+  }
+  .why-section p { margin: 0; color: var(--text); font-size: 15px; }
+  .read-original {
+    margin-top: 32px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .read-original a {
+    color: var(--accent); text-decoration: none; font-weight: 500;
+    display: inline-block; padding: 10px 16px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.15s;
+  }
+  .read-original a:hover {
+    background: var(--accent); color: var(--white);
+    border-color: var(--accent);
+  }
+
+  /* ===== Prompt of the Day ===== */
+  .prompt-title {
+    font-size: 26px; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.25;
+    margin: 8px 0 6px; color: var(--white);
+  }
+  .prompt-subtitle {
+    color: var(--text-2); font-size: 15px;
+    margin: 0 0 24px;
+  }
+  .prompt-block {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--surface);
+    margin: 24px 0;
+  }
+  .prompt-block-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 18px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .prompt-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .copy-btn {
+    background: var(--accent); color: var(--white);
+    border: none; border-radius: 6px;
+    padding: 7px 16px; font: 500 12px var(--font);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.05s;
+  }
+  .copy-btn:hover { background: var(--accent-hover); }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.copied { background: var(--green); }
+  .prompt-text {
+    margin: 0; padding: 22px 22px 24px;
+    font-family: var(--mono); font-size: 13.5px;
+    line-height: 1.7; color: var(--text);
+    white-space: pre-wrap; word-wrap: break-word;
+    background: transparent;
+  }
+  .example-section {
+    margin: 24px 0; padding: 14px 20px;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 0 8px 8px 0;
+  }
+  .example-section h3 {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 6px;
+  }
+  .example-section p {
+    margin: 0; color: var(--text-2);
+    font-size: 14px; font-style: italic;
+  }
+
+  /* ===== Archive ===== */
+  .archive-section {
+    margin-top: 64px; padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .archive-section h2 {
+    font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin: 0 0 16px;
+  }
+  .archive-list {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+  }
+  .archive-list li { padding: 4px 0; }
+  .archive-list a {
+    color: var(--text-2); text-decoration: none;
+    font-size: 14px;
+  }
+  .archive-list a:hover { color: var(--accent); }
+  .empty { color: var(--muted); font-style: italic; }
+
+  /* ===== Footer (matches hub) ===== */
+  .footer {
+    text-align: center;
+    padding: 24px 20px;
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .footer p { margin: 4px 0; }
+  .footer a { color: var(--text-2); text-decoration: none; }
+  .footer a:hover { color: var(--accent); }
+  .footer .footer-meta {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--muted-2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 600px) {
+    .nav a { margin-left: 12px; font-size: 0.9rem; }
+    .page-header h1, .story-detail h1 { font-size: 26px; }
+    main { padding: 36px 0 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top header — matches hub exactly -->
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="https://arunkumarpanchanana.github.io/" class="logo">Arunkumar Panchanana</a>
+    <nav class="nav">
+      <a href="https://arunkumarpanchanana.github.io/">Home</a>
+      <a href="https://arunkumarpanchanana.github.io/about.html">About</a>
+      <a href="https://arunkumarpanchanana.github.io/tools.html" class="active">Tools</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Tool identifier sub-bar -->
+<div class="tool-bar">
+  <div class="container tool-bar-inner">
+    <span class="tool-name">AI Concept of the Day</span>
+    <span><a href="../index.html">← Back to today</a></span>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    
+<header class="page-header">
+  <div class="section-eyebrow">May 5, 2026</div>
+  <h1>In-context learning: how models learn at runtime</h1>
+</header>
+
+<style>
+  .lesson-title{font-size:28px;font-weight:700;letter-spacing:-0.02em;color:var(--white);margin:8px 0 14px;line-height:1.25}
+  .lesson-meta{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+  .track-tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;letter-spacing:0.04em}
+  .level-tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;
+             background:var(--surface);color:var(--muted);border:1px solid var(--border);letter-spacing:0.08em}
+  .lesson-summary{font-size:18px;color:var(--text);line-height:1.55;margin:0 0 28px;
+                  padding:14px 18px;border-left:3px solid var(--accent);background:var(--surface-2);border-radius:0 6px 6px 0}
+  .lesson-body{color:var(--text);font-size:16px;line-height:1.75;margin:0 0 32px}
+  .lesson-body p{margin:0 0 14px}
+  .lesson-body p:last-child{margin-bottom:0}
+  .why-section,.example-section,.misconception-section{
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin:20px 0}
+  .example-section{border-left:3px solid var(--accent)}
+  .misconception-section{border-left:3px solid #F59E0B}
+  .why-section h3,.example-section h3,.misconception-section h3{
+    font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;
+    margin:0 0 10px;color:var(--accent)}
+  .misconception-section h3{color:#F59E0B}
+  .why-section p,.example-section p,.misconception-section p{margin:0;color:var(--text);line-height:1.65;font-size:15px}
+
+  .quiz{margin:40px 0 0;padding-top:32px;border-top:1px solid var(--border)}
+  .quiz-heading{font-size:20px;font-weight:700;color:var(--white);margin:0 0 6px;letter-spacing:-0.01em}
+  .quiz-intro{color:var(--muted);font-size:14px;margin:0 0 24px}
+  .quiz-item{margin:0 0 28px;padding:0 0 28px;border-bottom:1px solid var(--border)}
+  .quiz-item:last-of-type{border-bottom:0;padding-bottom:0}
+  .quiz-q-num{font-size:11px;font-weight:600;color:var(--muted);
+              text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+  .quiz-question{font-size:17px;font-weight:600;color:var(--white);margin:0 0 16px;line-height:1.4}
+  .quiz-options{display:flex;flex-direction:column;gap:8px}
+  .quiz-option{display:flex;align-items:flex-start;gap:12px;
+               background:var(--surface);border:1px solid var(--border);
+               border-radius:8px;padding:12px 14px;text-align:left;
+               cursor:pointer;color:var(--text);font:400 14.5px var(--font);
+               transition:all 0.15s;width:100%}
+  .quiz-option:hover:not(.locked){border-color:var(--accent);background:rgba(59,130,246,0.06)}
+  .quiz-option.locked{cursor:default}
+  .quiz-option.correct{border-color:#10B981;background:rgba(16,185,129,0.10)}
+  .quiz-option.wrong{border-color:#EF4444;background:rgba(239,68,68,0.10)}
+  .quiz-letter{flex-shrink:0;width:24px;height:24px;border-radius:50%;
+               background:var(--bg);border:1px solid var(--border);
+               display:grid;place-items:center;font-size:12px;font-weight:600;color:var(--muted-2);
+               margin-top:1px}
+  .quiz-option.correct .quiz-letter{background:#10B981;color:#fff;border-color:#10B981}
+  .quiz-option.wrong .quiz-letter{background:#EF4444;color:#fff;border-color:#EF4444}
+  .quiz-option-text{flex:1;line-height:1.45}
+  .quiz-feedback{margin-top:12px}
+  .quiz-feedback .fb-ok,.quiz-feedback .fb-no{padding:10px 14px;border-radius:6px;font-size:14px;line-height:1.5}
+  .quiz-feedback .fb-ok{background:rgba(16,185,129,0.10);color:#A7F3D0;border:1px solid rgba(16,185,129,0.3)}
+  .quiz-feedback .fb-no{background:rgba(239,68,68,0.10);color:#FCA5A5;border:1px solid rgba(239,68,68,0.3)}
+  .quiz-feedback strong{color:#fff}
+  .score-final{margin-top:24px;padding:16px 20px;background:var(--surface);
+               border:1px solid var(--border);border-radius:8px;
+               color:var(--text);font-size:15px;text-align:center}
+  .score-final strong{color:var(--white)}
+</style>
+<section class="lesson">
+  
+  <div class="lesson-meta">
+    <span class="track-tag" style="background:#3B82F61f;color:#3B82F6;border:1px solid #3B82F666">Foundations</span>
+    <span class="level-tag">INTERMEDIATE</span>
+  </div>
+  <p class="lesson-summary">In-context learning allows large language models to adapt their behavior and perform new tasks by processing instructions and examples provided directly within the input prompt, without requiring model weight updates.</p>
+
+  <article class="lesson-body">
+    <p>In-context learning refers to a large language model&#39;s (LLM) ability to learn new tasks or adapt its behavior based solely on the information provided within its input prompt, often including instructions, examples, or specific data. Unlike traditional machine learning, where models learn by updating their internal parameters (weights) through training or fine-tuning, in-context learning happens entirely at inference time. The model leverages its pre-trained knowledge to recognize patterns and relationships presented in the prompt, then applies these patterns to generate a relevant output for a new query. Essentially, the prompt acts as a temporary &quot;working memory&quot; or a set of ad-hoc instructions that guide the model&#39;s response for that specific interaction, without making any permanent changes to its underlying architecture or learned capabilities.</p>
+  </article>
+
+  <section class="why-section">
+    <h3>Why this matters</h3>
+    <p></p>
+  </section>
+
+  <section class="example-section">
+    <h3>Concrete example</h3>
+    <p>Consider using an LLM like `gpt-4` or `Llama-3` for a translation task. Instead of fine-tuning the model on a specific language pair, we can use in-context learning.
+
+**Input Prompt:**
+```
+Translate the following English sentences into French.
+English: Hello -&gt; French: Bonjour
+English: Goodbye -&gt; French: Au revoir
+English: Thank you -&gt; French: Merci
+English: Please -&gt; French: S&#39;il vous plaît
+English: How are you? -&gt; French:
+```
+The model, without any weight updates, learns the translation pattern from the provided examples (&quot;few-shot learning&quot;) and completes the last sentence.
+**Model Output:** `Comment allez-vous ?`
+This demonstrates how the model &quot;learns&quot; the task and format from the context.</p>
+  </section>
+
+  <section class="misconception-section">
+    <h3>Common misconception</h3>
+    <p>A common misconception is that in-context learning permanently alters the model&#39;s weights, similar to fine-tuning. In reality, it does not. The model&#39;s internal parameters remain unchanged; the learning is temporary and applies only to the current inference request, leveraging the model&#39;s pre-trained ability to follow instructions and recognize patterns.</p>
+  </section>
+
+  
+<section class="quiz">
+  <h3 class="quiz-heading">Test yourself</h3>
+  <p class="quiz-intro">5 questions. Click an option — answer reveals immediately.</p>
+  <div class="quiz-item" data-q="0" data-correct="0">
+      <div class="quiz-q-num">Question 1 of 5</div>
+      <h4 class="quiz-question">What is the primary mechanism of in-context learning?</h4>
+      <div class="quiz-options">
+      <button type="button" class="quiz-option" data-q="0" data-i="0">
+        <span class="quiz-letter">A</span>
+        <span class="quiz-option-text">The model adapts its behavior based on patterns and instructions in the input prompt.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="0" data-i="1">
+        <span class="quiz-letter">B</span>
+        <span class="quiz-option-text">The model&#39;s internal weights are temporarily updated during inference.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="0" data-i="2">
+        <span class="quiz-letter">C</span>
+        <span class="quiz-option-text">A small, task-specific neural network is dynamically created for each query.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="0" data-i="3">
+        <span class="quiz-letter">D</span>
+        <span class="quiz-option-text">The model accesses an external knowledge base to retrieve task-specific rules.</span>
+      </button></div>
+      <div class="quiz-feedback" data-q="0"></div>
+    </div><div class="quiz-item" data-q="1" data-correct="1">
+      <div class="quiz-q-num">Question 2 of 5</div>
+      <h4 class="quiz-question">How does in-context learning fundamentally differ from fine-tuning?</h4>
+      <div class="quiz-options">
+      <button type="button" class="quiz-option" data-q="1" data-i="0">
+        <span class="quiz-letter">A</span>
+        <span class="quiz-option-text">In-context learning requires a larger dataset than fine-tuning.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="1" data-i="1">
+        <span class="quiz-letter">B</span>
+        <span class="quiz-option-text">Fine-tuning updates model weights, while in-context learning does not.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="1" data-i="2">
+        <span class="quiz-letter">C</span>
+        <span class="quiz-option-text">In-context learning is only applicable to generative tasks, unlike fine-tuning.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="1" data-i="3">
+        <span class="quiz-letter">D</span>
+        <span class="quiz-option-text">Fine-tuning occurs at runtime, whereas in-context learning is a pre-training step.</span>
+      </button></div>
+      <div class="quiz-feedback" data-q="1"></div>
+    </div><div class="quiz-item" data-q="2" data-correct="2">
+      <div class="quiz-q-num">Question 3 of 5</div>
+      <h4 class="quiz-question">Which scenario best illustrates the practical advantage of in-context learning?</h4>
+      <div class="quiz-options">
+      <button type="button" class="quiz-option" data-q="2" data-i="0">
+        <span class="quiz-letter">A</span>
+        <span class="quiz-option-text">Training a new LLM from scratch on a massive, domain-specific text corpus.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="2" data-i="1">
+        <span class="quiz-letter">B</span>
+        <span class="quiz-option-text">Updating an existing LLM&#39;s core knowledge base to include recent world events.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="2" data-i="2">
+        <span class="quiz-letter">C</span>
+        <span class="quiz-option-text">Rapidly prototyping a new text summarization format by providing examples in the prompt.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="2" data-i="3">
+        <span class="quiz-letter">D</span>
+        <span class="quiz-option-text">Improving an LLM&#39;s performance on a specific downstream task by retraining its final layers.</span>
+      </button></div>
+      <div class="quiz-feedback" data-q="2"></div>
+    </div><div class="quiz-item" data-q="3" data-correct="0">
+      <div class="quiz-q-num">Question 4 of 5</div>
+      <h4 class="quiz-question">A developer wants to make an LLM always respond in a specific JSON format. What is the most efficient way to achieve this using in-context learning?</h4>
+      <div class="quiz-options">
+      <button type="button" class="quiz-option" data-q="3" data-i="0">
+        <span class="quiz-letter">A</span>
+        <span class="quiz-option-text">Provide an instruction in the prompt like &quot;Respond only in valid JSON format, with keys &#39;name&#39; and &#39;age&#39;.&quot;</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="3" data-i="1">
+        <span class="quiz-letter">B</span>
+        <span class="quiz-option-text">Fine-tune the model on a dataset of JSON-formatted responses.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="3" data-i="2">
+        <span class="quiz-letter">C</span>
+        <span class="quiz-option-text">Modify the model&#39;s output layer to enforce JSON schema validation.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="3" data-i="3">
+        <span class="quiz-letter">D</span>
+        <span class="quiz-option-text">Retrain the entire model with a JSON-specific tokenizer.</span>
+      </button></div>
+      <div class="quiz-feedback" data-q="3"></div>
+    </div><div class="quiz-item" data-q="4" data-correct="0">
+      <div class="quiz-q-num">Question 5 of 5</div>
+      <h4 class="quiz-question">If an LLM consistently fails to follow complex, multi-step instructions provided via in-context learning, what is a likely limitation being encountered?</h4>
+      <div class="quiz-options">
+      <button type="button" class="quiz-option" data-q="4" data-i="0">
+        <span class="quiz-letter">A</span>
+        <span class="quiz-option-text">The model&#39;s pre-training was insufficient in general reasoning capabilities.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="4" data-i="1">
+        <span class="quiz-letter">B</span>
+        <span class="quiz-option-text">The prompt length exceeds the model&#39;s maximum token limit, truncating instructions.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="4" data-i="2">
+        <span class="quiz-letter">C</span>
+        <span class="quiz-option-text">The model has permanently &quot;forgotten&quot; how to process instructions due to prior tasks.</span>
+      </button>
+      <button type="button" class="quiz-option" data-q="4" data-i="3">
+        <span class="quiz-letter">D</span>
+        <span class="quiz-option-text">The task requires external tool use, which in-context learning cannot facilitate alone.</span>
+      </button></div>
+      <div class="quiz-feedback" data-q="4"></div>
+    </div>
+  <div class="quiz-score" id="quizScore"></div>
+</section>
+<script>
+(function() {
+  var answers = [{"correct":0,"explanation":"In-context learning relies on the model's ability to interpret and follow instructions and examples provided within the prompt itself."},{"correct":1,"explanation":"The fundamental difference is that fine-tuning permanently modifies model parameters, while in-context learning uses the prompt without changing weights."},{"correct":2,"explanation":"In-context learning excels at rapid adaptation and prototyping for new tasks or formats without needing to retrain the model."},{"correct":0,"explanation":"Providing clear instructions and examples within the prompt is the core mechanism for guiding model output format via in-context learning."},{"correct":0,"explanation":"In-context learning's effectiveness is bounded by the model's foundational pre-trained knowledge and reasoning abilities; if these are weak, complex instructions will be difficult to follow."}];
+  var picked = {};
+  document.querySelectorAll('.quiz-option').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var qIdx = parseInt(btn.dataset.q, 10);
+      var iIdx = parseInt(btn.dataset.i, 10);
+      if (picked[qIdx] !== undefined) return;
+      picked[qIdx] = iIdx;
+      var item = document.querySelector('.quiz-item[data-q="' + qIdx + '"]');
+      var correct = answers[qIdx].correct;
+      // Mark all options
+      item.querySelectorAll('.quiz-option').forEach(function(opt, idx) {
+        opt.classList.add('locked');
+        if (idx === correct) opt.classList.add('correct');
+        else if (idx === iIdx) opt.classList.add('wrong');
+      });
+      var fb = item.querySelector('.quiz-feedback');
+      var ok = (iIdx === correct);
+      fb.innerHTML = '<div class="fb-' + (ok ? 'ok' : 'no') + '">' +
+        '<strong>' + (ok ? 'Correct.' : 'Not quite.') + '</strong> ' +
+        answers[qIdx].explanation + '</div>';
+      updateScore();
+    });
+  });
+  function updateScore() {
+    var keys = Object.keys(picked);
+    if (keys.length < answers.length) return;
+    var right = 0;
+    for (var k in picked) if (picked[k] === answers[k].correct) right++;
+    var msg = right + ' of ' + answers.length;
+    var label;
+    if (right === answers.length) label = 'Perfect score.';
+    else if (right >= 4) label = 'Strong.';
+    else if (right >= 3) label = 'You got the gist.';
+    else label = 'Worth re-reading the explanation.';
+    document.getElementById('quizScore').innerHTML =
+      '<div class="score-final">You scored <strong>' + msg + '</strong>. ' + label + '</div>';
+  }
+})();
+</script>
+</section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>Arunkumar Panchanana &middot; AI tools &middot; Automation &middot; IT Leadership</p>
+    <p>Email: <a href="mailto:arunkumar.panchanana@gmail.com">arunkumar.panchanana@gmail.com</a></p>
+    <div>Generated daily by AI.</div>
+    <div class="footer-meta">Updated <time datetime="2026-05-05T17:25:55Z">2026-05-05T17:25:55Z</time></div>
+  </div>
+</footer>
+
+</body>
+</html>
