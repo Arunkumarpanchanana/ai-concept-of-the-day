@@ -412,10 +412,10 @@
     <span class="track-tag" style="background:#3B82F61f;color:#3B82F6;border:1px solid #3B82F666">Foundations</span>
     <span class="level-tag">INTERMEDIATE</span>
   </div>
-  <p class="lesson-summary">In-context learning allows large language models to adapt their behavior and perform new tasks by processing instructions and examples provided directly within the input prompt, without requiring model weight updates.</p>
+  <p class="lesson-summary">In-context learning enables large language models to adapt their behavior to new tasks or styles by processing examples provided directly within the input prompt, without altering their underlying weights.</p>
 
   <article class="lesson-body">
-    <p>In-context learning refers to a large language model&#39;s (LLM) ability to learn new tasks or adapt its behavior based solely on the information provided within its input prompt, often including instructions, examples, or specific data. Unlike traditional machine learning, where models learn by updating their internal parameters (weights) through training or fine-tuning, in-context learning happens entirely at inference time. The model leverages its pre-trained knowledge to recognize patterns and relationships presented in the prompt, then applies these patterns to generate a relevant output for a new query. Essentially, the prompt acts as a temporary &quot;working memory&quot; or a set of ad-hoc instructions that guide the model&#39;s response for that specific interaction, without making any permanent changes to its underlying architecture or learned capabilities.</p>
+    <p>In-context learning is a powerful capability of large language models (LLMs) where they learn to perform a new task or follow a specific format by analyzing examples embedded within the input prompt itself. Unlike traditional machine learning, which involves updating model weights through training or fine-tuning, in-context learning happens entirely at runtime during inference. The model leverages its vast pre-trained knowledge to identify patterns, relationships, and desired output structures from the provided &#39;few-shot&#39; examples. It then applies this inferred understanding to a new, unseen input within the same prompt. This process does not modify the model&#39;s internal parameters; instead, it&#39;s about conditioning the model&#39;s existing capabilities to respond in a particular way based on the immediate context provided.</p>
   </article>
 
   <section class="why-section">
@@ -425,25 +425,25 @@
 
   <section class="example-section">
     <h3>Concrete example</h3>
-    <p>Consider using an LLM like `gpt-4` or `Llama-3` for a translation task. Instead of fine-tuning the model on a specific language pair, we can use in-context learning.
+    <p>Consider using an LLM like `gpt-4` for sentiment analysis. Instead of fine-tuning, you can use in-context learning:
 
-**Input Prompt:**
-```
-Translate the following English sentences into French.
-English: Hello -&gt; French: Bonjour
-English: Goodbye -&gt; French: Au revoir
-English: Thank you -&gt; French: Merci
-English: Please -&gt; French: S&#39;il vous plaît
-English: How are you? -&gt; French:
-```
-The model, without any weight updates, learns the translation pattern from the provided examples (&quot;few-shot learning&quot;) and completes the last sentence.
-**Model Output:** `Comment allez-vous ?`
-This demonstrates how the model &quot;learns&quot; the task and format from the context.</p>
+`prompt = &quot;&quot;&quot;Analyze the sentiment of the following reviews:
+Review: &#39;This movie was fantastic!&#39;
+Sentiment: Positive
+Review: &#39;The service was terrible.&#39;
+Sentiment: Negative
+Review: &#39;It was okay, nothing special.&#39;
+Sentiment: Neutral
+Review: &#39;Absolutely loved the plot twists!&#39;
+Sentiment: &quot;&quot;&quot;`
+
+The model, when processing this prompt, identifies the pattern of `Review: [text]
+Sentiment: [label]` from the first three examples. It then applies this learned pattern to the final review, inferring the task and completing the prompt with `Positive`, without any changes to its internal weights.</p>
   </section>
 
   <section class="misconception-section">
     <h3>Common misconception</h3>
-    <p>A common misconception is that in-context learning permanently alters the model&#39;s weights, similar to fine-tuning. In reality, it does not. The model&#39;s internal parameters remain unchanged; the learning is temporary and applies only to the current inference request, leveraging the model&#39;s pre-trained ability to follow instructions and recognize patterns.</p>
+    <p>Misconception: In-context learning updates the model&#39;s internal knowledge base or weights, similar to fine-tuning. Correction: It does not. The model&#39;s weights remain static; it merely leverages its existing knowledge to infer patterns from the prompt&#39;s examples and apply them to new inputs.</p>
   </section>
 
   
@@ -452,107 +452,107 @@ This demonstrates how the model &quot;learns&quot; the task and format from the 
   <p class="quiz-intro">5 questions. Click an option — answer reveals immediately.</p>
   <div class="quiz-item" data-q="0" data-correct="0">
       <div class="quiz-q-num">Question 1 of 5</div>
-      <h4 class="quiz-question">What is the primary mechanism of in-context learning?</h4>
+      <h4 class="quiz-question">Which of the following best describes what happens to a large language model&#39;s weights during in-context learning?</h4>
       <div class="quiz-options">
       <button type="button" class="quiz-option" data-q="0" data-i="0">
         <span class="quiz-letter">A</span>
-        <span class="quiz-option-text">The model adapts its behavior based on patterns and instructions in the input prompt.</span>
+        <span class="quiz-option-text">The weights remain static and are not updated.</span>
       </button>
       <button type="button" class="quiz-option" data-q="0" data-i="1">
         <span class="quiz-letter">B</span>
-        <span class="quiz-option-text">The model&#39;s internal weights are temporarily updated during inference.</span>
+        <span class="quiz-option-text">The weights are slightly adjusted based on the prompt examples.</span>
       </button>
       <button type="button" class="quiz-option" data-q="0" data-i="2">
         <span class="quiz-letter">C</span>
-        <span class="quiz-option-text">A small, task-specific neural network is dynamically created for each query.</span>
+        <span class="quiz-option-text">The weights are completely retrained for the new task.</span>
       </button>
       <button type="button" class="quiz-option" data-q="0" data-i="3">
         <span class="quiz-letter">D</span>
-        <span class="quiz-option-text">The model accesses an external knowledge base to retrieve task-specific rules.</span>
+        <span class="quiz-option-text">Only the output layer&#39;s weights are updated.</span>
       </button></div>
       <div class="quiz-feedback" data-q="0"></div>
     </div><div class="quiz-item" data-q="1" data-correct="1">
       <div class="quiz-q-num">Question 2 of 5</div>
-      <h4 class="quiz-question">How does in-context learning fundamentally differ from fine-tuning?</h4>
+      <h4 class="quiz-question">What is the primary mechanism by which a model &#39;learns&#39; in an in-context learning scenario?</h4>
       <div class="quiz-options">
       <button type="button" class="quiz-option" data-q="1" data-i="0">
         <span class="quiz-letter">A</span>
-        <span class="quiz-option-text">In-context learning requires a larger dataset than fine-tuning.</span>
+        <span class="quiz-option-text">By performing gradient descent on the provided examples.</span>
       </button>
       <button type="button" class="quiz-option" data-q="1" data-i="1">
         <span class="quiz-letter">B</span>
-        <span class="quiz-option-text">Fine-tuning updates model weights, while in-context learning does not.</span>
+        <span class="quiz-option-text">By identifying patterns and relationships within the input prompt&#39;s examples.</span>
       </button>
       <button type="button" class="quiz-option" data-q="1" data-i="2">
         <span class="quiz-letter">C</span>
-        <span class="quiz-option-text">In-context learning is only applicable to generative tasks, unlike fine-tuning.</span>
+        <span class="quiz-option-text">By accessing an external database of task-specific knowledge.</span>
       </button>
       <button type="button" class="quiz-option" data-q="1" data-i="3">
         <span class="quiz-letter">D</span>
-        <span class="quiz-option-text">Fine-tuning occurs at runtime, whereas in-context learning is a pre-training step.</span>
+        <span class="quiz-option-text">By dynamically loading new model parameters for the specific task.</span>
       </button></div>
       <div class="quiz-feedback" data-q="1"></div>
-    </div><div class="quiz-item" data-q="2" data-correct="2">
+    </div><div class="quiz-item" data-q="2" data-correct="1">
       <div class="quiz-q-num">Question 3 of 5</div>
-      <h4 class="quiz-question">Which scenario best illustrates the practical advantage of in-context learning?</h4>
+      <h4 class="quiz-question">A key advantage of in-context learning over traditional fine-tuning for adapting an LLM to a new task is:</h4>
       <div class="quiz-options">
       <button type="button" class="quiz-option" data-q="2" data-i="0">
         <span class="quiz-letter">A</span>
-        <span class="quiz-option-text">Training a new LLM from scratch on a massive, domain-specific text corpus.</span>
+        <span class="quiz-option-text">It achieves higher accuracy than fine-tuning for all tasks.</span>
       </button>
       <button type="button" class="quiz-option" data-q="2" data-i="1">
         <span class="quiz-letter">B</span>
-        <span class="quiz-option-text">Updating an existing LLM&#39;s core knowledge base to include recent world events.</span>
+        <span class="quiz-option-text">It requires significantly less computational resources and time for adaptation.</span>
       </button>
       <button type="button" class="quiz-option" data-q="2" data-i="2">
         <span class="quiz-letter">C</span>
-        <span class="quiz-option-text">Rapidly prototyping a new text summarization format by providing examples in the prompt.</span>
+        <span class="quiz-option-text">It allows the model to permanently store new knowledge.</span>
       </button>
       <button type="button" class="quiz-option" data-q="2" data-i="3">
         <span class="quiz-letter">D</span>
-        <span class="quiz-option-text">Improving an LLM&#39;s performance on a specific downstream task by retraining its final layers.</span>
+        <span class="quiz-option-text">It enables the model to generate entirely new types of content not seen during pre-training.</span>
       </button></div>
       <div class="quiz-feedback" data-q="2"></div>
-    </div><div class="quiz-item" data-q="3" data-correct="0">
+    </div><div class="quiz-item" data-q="3" data-correct="1">
       <div class="quiz-q-num">Question 4 of 5</div>
-      <h4 class="quiz-question">A developer wants to make an LLM always respond in a specific JSON format. What is the most efficient way to achieve this using in-context learning?</h4>
+      <h4 class="quiz-question">If a prompt contains several examples of text summarization (input text and desired summary), what type of in-context learning is being demonstrated?</h4>
       <div class="quiz-options">
       <button type="button" class="quiz-option" data-q="3" data-i="0">
         <span class="quiz-letter">A</span>
-        <span class="quiz-option-text">Provide an instruction in the prompt like &quot;Respond only in valid JSON format, with keys &#39;name&#39; and &#39;age&#39;.&quot;</span>
+        <span class="quiz-option-text">Zero-shot learning</span>
       </button>
       <button type="button" class="quiz-option" data-q="3" data-i="1">
         <span class="quiz-letter">B</span>
-        <span class="quiz-option-text">Fine-tune the model on a dataset of JSON-formatted responses.</span>
+        <span class="quiz-option-text">Few-shot learning</span>
       </button>
       <button type="button" class="quiz-option" data-q="3" data-i="2">
         <span class="quiz-letter">C</span>
-        <span class="quiz-option-text">Modify the model&#39;s output layer to enforce JSON schema validation.</span>
+        <span class="quiz-option-text">Full-shot learning</span>
       </button>
       <button type="button" class="quiz-option" data-q="3" data-i="3">
         <span class="quiz-letter">D</span>
-        <span class="quiz-option-text">Retrain the entire model with a JSON-specific tokenizer.</span>
+        <span class="quiz-option-text">Transfer learning</span>
       </button></div>
       <div class="quiz-feedback" data-q="3"></div>
-    </div><div class="quiz-item" data-q="4" data-correct="0">
+    </div><div class="quiz-item" data-q="4" data-correct="1">
       <div class="quiz-q-num">Question 5 of 5</div>
-      <h4 class="quiz-question">If an LLM consistently fails to follow complex, multi-step instructions provided via in-context learning, what is a likely limitation being encountered?</h4>
+      <h4 class="quiz-question">If a large language model consistently fails to perform a new, moderately complex task effectively using in-context learning, what is the most likely initial step to troubleshoot the issue?</h4>
       <div class="quiz-options">
       <button type="button" class="quiz-option" data-q="4" data-i="0">
         <span class="quiz-letter">A</span>
-        <span class="quiz-option-text">The model&#39;s pre-training was insufficient in general reasoning capabilities.</span>
+        <span class="quiz-option-text">Increase the model&#39;s size or switch to a different LLM architecture.</span>
       </button>
       <button type="button" class="quiz-option" data-q="4" data-i="1">
         <span class="quiz-letter">B</span>
-        <span class="quiz-option-text">The prompt length exceeds the model&#39;s maximum token limit, truncating instructions.</span>
+        <span class="quiz-option-text">Provide more varied and high-quality examples within the prompt.</span>
       </button>
       <button type="button" class="quiz-option" data-q="4" data-i="2">
         <span class="quiz-letter">C</span>
-        <span class="quiz-option-text">The model has permanently &quot;forgotten&quot; how to process instructions due to prior tasks.</span>
+        <span class="quiz-option-text">Attempt to fine-tune the model on a large dataset for the specific task.</span>
       </button>
       <button type="button" class="quiz-option" data-q="4" data-i="3">
         <span class="quiz-letter">D</span>
-        <span class="quiz-option-text">The task requires external tool use, which in-context learning cannot facilitate alone.</span>
+        <span class="quiz-option-text">Assume the task is inherently impossible for any LLM.</span>
       </button></div>
       <div class="quiz-feedback" data-q="4"></div>
     </div>
@@ -560,7 +560,7 @@ This demonstrates how the model &quot;learns&quot; the task and format from the 
 </section>
 <script>
 (function() {
-  var answers = [{"correct":0,"explanation":"In-context learning relies on the model's ability to interpret and follow instructions and examples provided within the prompt itself."},{"correct":1,"explanation":"The fundamental difference is that fine-tuning permanently modifies model parameters, while in-context learning uses the prompt without changing weights."},{"correct":2,"explanation":"In-context learning excels at rapid adaptation and prototyping for new tasks or formats without needing to retrain the model."},{"correct":0,"explanation":"Providing clear instructions and examples within the prompt is the core mechanism for guiding model output format via in-context learning."},{"correct":0,"explanation":"In-context learning's effectiveness is bounded by the model's foundational pre-trained knowledge and reasoning abilities; if these are weak, complex instructions will be difficult to follow."}];
+  var answers = [{"correct":0,"explanation":"In-context learning operates by leveraging the model's pre-trained knowledge without any modification to its underlying weights."},{"correct":1,"explanation":"The model learns by inferring patterns, formats, and desired behaviors from the examples embedded directly within the prompt's context."},{"correct":1,"explanation":"In-context learning is much faster and less resource-intensive than fine-tuning because it avoids the need for extensive data collection and model retraining."},{"correct":1,"explanation":"Providing a few examples within the prompt to guide the model's behavior is known as few-shot learning, a common form of in-context learning."},{"correct":1,"explanation":"The most likely reason for failure in in-context learning is insufficient or poorly chosen examples, so improving the prompt's examples is the first troubleshooting step."}];
   var picked = {};
   document.querySelectorAll('.quiz-option').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -611,7 +611,7 @@ This demonstrates how the model &quot;learns&quot; the task and format from the 
     <p>Arunkumar Panchanana &middot; AI tools &middot; Automation &middot; IT Leadership</p>
     <p>Email: <a href="mailto:arunkumar.panchanana@gmail.com">arunkumar.panchanana@gmail.com</a></p>
     <div>Lessons generated daily by AI; structure and curriculum are human-curated.</div>
-    <div class="footer-meta">Updated <time datetime="2026-05-05T17:25:57Z">2026-05-05T17:25:57Z</time></div>
+    <div class="footer-meta">Updated <time datetime="2026-05-05T17:28:07Z">2026-05-05T17:28:07Z</time></div>
   </div>
 </footer>
 
