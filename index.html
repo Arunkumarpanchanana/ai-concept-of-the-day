@@ -5,313 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Concept of the Day</title>
 <style>
-  /* ===== Hub-matched design tokens ===== */
   :root {
-    --bg: #0B1F3A;
-    --surface: #111827;
-    --surface-2: #0F1F36;
-    --border: #1F2937;
-    --border-strong: #2A3548;
-    --text: #E5E7EB;
-    --text-2: #CBD5E1;
-    --muted: #9CA3AF;
-    --muted-2: #6B7280;
-    --white: #FFFFFF;
-    --accent: #2563EB;
-    --accent-hover: #3B82F6;
-    --green: #10B981;
+    --bg: #0B1F3A; --surface: #111827; --surface-2: #0F1F36;
+    --border: #1F2937; --border-strong: #2A3548;
+    --text: #E5E7EB; --text-2: #CBD5E1; --muted: #9CA3AF; --muted-2: #6B7280;
+    --white: #FFFFFF; --accent: #2563EB; --accent-hover: #3B82F6; --green: #10B981;
     --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
     --mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    margin: 0; font-family: var(--font); background: var(--bg); color: var(--text);
+    line-height: 1.6; -webkit-font-smoothing: antialiased;
   }
   a { color: var(--accent); }
   a:hover { color: var(--accent-hover); }
-
-  /* ===== Container — matches hub's 900px ===== */
   .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-
-  /* ===== Top header (matches hub) ===== */
-  .site-header {
-    border-bottom: 1px solid var(--border);
-    padding: 15px 0;
-    background: var(--bg);
-  }
-  .nav-wrap {
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 12px;
-  }
-  .logo {
-    font-size: 1.1rem; font-weight: 700;
-    color: var(--white); text-decoration: none;
-    letter-spacing: 0.3px;
-  }
+  .site-header { border-bottom: 1px solid var(--border); padding: 15px 0; background: var(--bg); }
+  .nav-wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .logo { font-size: 1.1rem; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.3px; }
   .logo:hover { color: var(--accent-hover); }
-  .nav a {
-    margin-left: 15px; text-decoration: none; color: var(--muted);
-    font-size: 0.95rem;
-  }
+  .nav a { margin-left: 15px; text-decoration: none; color: var(--muted); font-size: 0.95rem; }
   .nav a.active, .nav a:hover { color: var(--accent); }
   .nav a:first-child { margin-left: 0; }
-
-  /* ===== Tool sub-bar (which tool you're in + breadcrumb) ===== */
-  .tool-bar {
-    border-bottom: 1px solid var(--border);
-    padding: 12px 0;
-    background: var(--surface-2);
-  }
-  .tool-bar-inner {
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 12px;
-    font-size: 0.85rem;
-  }
-  .tool-name {
-    color: var(--text-2); font-weight: 600;
-    letter-spacing: 0.02em;
-  }
+  .tool-bar { border-bottom: 1px solid var(--border); padding: 12px 0; background: var(--surface-2); }
+  .tool-bar-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.85rem; }
+  .tool-name { color: var(--text-2); font-weight: 600; letter-spacing: 0.02em; }
   .tool-bar a { color: var(--muted); text-decoration: none; }
   .tool-bar a:hover { color: var(--accent); }
-
-  /* ===== Page header ===== */
   main { padding: 56px 0 80px; }
   .page-header { margin-bottom: 40px; }
-  .page-header h1 {
-    margin: 8px 0 12px;
-    font-size: 32px; font-weight: 700;
-    letter-spacing: -0.02em; line-height: 1.2;
-    color: var(--white);
-  }
-  .page-header p {
-    color: var(--text-2); font-size: 16px; margin: 0;
-    max-width: 600px;
-  }
-  .section-eyebrow {
-    font-size: 12px; font-weight: 600;
-    color: var(--accent); letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* ===== News: category nav (chips) ===== */
-  .category-nav {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    margin: 0 0 32px; padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
-  }
-  .category-nav a {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 7px 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    text-decoration: none; color: var(--text-2);
-    font-size: 13px; font-weight: 500;
-    transition: all 0.15s;
-  }
-  .category-nav a:hover {
-    border-color: var(--accent); color: var(--accent);
-    background: rgba(37, 99, 235, 0.08);
-  }
-  .category-nav .cat-count {
-    font-size: 11px; font-weight: 600;
-    background: var(--bg); color: var(--muted);
-    padding: 1px 7px; border-radius: 999px;
-    font-variant-numeric: tabular-nums;
-  }
+  .page-header h1 { margin: 8px 0 12px; font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--white); }
+  .page-header p { color: var(--text-2); font-size: 16px; margin: 0; max-width: 600px; }
+  .section-eyebrow { font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+  .category-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .category-nav a { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; text-decoration: none; color: var(--text-2); font-size: 13px; font-weight: 500; transition: all 0.15s; }
+  .category-nav a:hover { border-color: var(--accent); color: var(--accent); background: rgba(37, 99, 235, 0.08); }
+  .category-nav .cat-count { font-size: 11px; font-weight: 600; background: var(--bg); color: var(--muted); padding: 1px 7px; border-radius: 999px; font-variant-numeric: tabular-nums; }
   .category-section { margin: 48px 0 0; scroll-margin-top: 24px; }
   .category-section:first-of-type { margin-top: 24px; }
-  .category-heading {
-    font-size: 20px; font-weight: 700;
-    letter-spacing: -0.015em;
-    margin: 0 0 16px; padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-    color: var(--white);
-  }
-
-  /* ===== News: story list ===== */
+  .category-heading { font-size: 20px; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); color: var(--white); }
   .stories { list-style: none; padding: 0; margin: 0; counter-reset: story; }
-  .story {
-    counter-increment: story;
-    padding: 24px 0;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    padding-left: 44px;
-  }
+  .story { counter-increment: story; padding: 24px 0; border-bottom: 1px solid var(--border); position: relative; padding-left: 44px; }
   .story:last-child { border-bottom: 0; }
-  .story::before {
-    content: counter(story);
-    position: absolute; left: 0; top: 26px;
-    font-size: 12px; font-weight: 600; color: var(--muted);
-    width: 24px; height: 24px;
-    border: 1px solid var(--border); border-radius: 50%;
-    display: grid; place-items: center;
-    background: var(--surface);
-    font-variant-numeric: tabular-nums;
-  }
-  .story-headline {
-    font-size: 18px; font-weight: 600; line-height: 1.35;
-    letter-spacing: -0.01em; margin: 0 0 8px;
-  }
-  .story-headline a {
-    color: var(--white); text-decoration: none;
-    transition: color 0.15s;
-  }
+  .story::before { content: counter(story); position: absolute; left: 0; top: 26px; font-size: 12px; font-weight: 600; color: var(--muted); width: 24px; height: 24px; border: 1px solid var(--border); border-radius: 50%; display: grid; place-items: center; background: var(--surface); font-variant-numeric: tabular-nums; }
+  .story-headline { font-size: 18px; font-weight: 600; line-height: 1.35; letter-spacing: -0.01em; margin: 0 0 8px; }
+  .story-headline a { color: var(--white); text-decoration: none; transition: color 0.15s; }
   .story-headline a:hover { color: var(--accent-hover); }
   .story-summary { margin: 0 0 10px; color: var(--text-2); font-size: 15px; }
   .story-meta { display: flex; gap: 8px; font-size: 13px; color: var(--muted); align-items: center; }
   .story-meta a { color: var(--muted); text-decoration: none; }
   .story-meta a:hover { color: var(--accent); }
   .story-meta .dot { color: var(--muted-2); }
-
-  /* ===== News: per-story detail page ===== */
-  .story-detail h1 {
-    font-size: 32px; font-weight: 700;
-    letter-spacing: -0.02em; line-height: 1.2;
-    margin: 12px 0 24px; color: var(--white);
-  }
-  .story-summary-large {
-    font-size: 18px; color: var(--text-2);
-    line-height: 1.6; margin: 0 0 32px;
-  }
-  .why-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 24px; margin: 32px 0;
-  }
-  .why-section h2, .why-section h3 {
-    font-size: 12px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--accent); margin: 0 0 8px;
-  }
+  .story-detail h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin: 12px 0 24px; color: var(--white); }
+  .story-summary-large { font-size: 18px; color: var(--text-2); line-height: 1.6; margin: 0 0 32px; }
+  .why-section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin: 32px 0; }
+  .why-section h2, .why-section h3 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin: 0 0 8px; }
   .why-section p { margin: 0; color: var(--text); font-size: 15px; }
-  .read-original {
-    margin-top: 32px; padding-top: 24px;
-    border-top: 1px solid var(--border);
-  }
-  .read-original a {
-    color: var(--accent); text-decoration: none; font-weight: 500;
-    display: inline-block; padding: 10px 16px;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 6px;
-    transition: all 0.15s;
-  }
-  .read-original a:hover {
-    background: var(--accent); color: var(--white);
-    border-color: var(--accent);
-  }
-
-  /* ===== Prompt of the Day ===== */
-  .prompt-title {
-    font-size: 26px; font-weight: 700;
-    letter-spacing: -0.02em; line-height: 1.25;
-    margin: 8px 0 6px; color: var(--white);
-  }
-  .prompt-subtitle {
-    color: var(--text-2); font-size: 15px;
-    margin: 0 0 24px;
-  }
-  .prompt-block {
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    background: var(--surface);
-    margin: 24px 0;
-  }
-  .prompt-block-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 18px;
-    background: var(--surface-2);
-    border-bottom: 1px solid var(--border);
-  }
-  .prompt-label {
-    font-size: 11px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--muted);
-  }
-  .copy-btn {
-    background: var(--accent); color: var(--white);
-    border: none; border-radius: 6px;
-    padding: 7px 16px; font: 500 12px var(--font);
-    cursor: pointer;
-    transition: background 0.15s, transform 0.05s;
-  }
+  .read-original { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .read-original a { color: var(--accent); text-decoration: none; font-weight: 500; display: inline-block; padding: 10px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; transition: all 0.15s; }
+  .read-original a:hover { background: var(--accent); color: var(--white); border-color: var(--accent); }
+  .prompt-title { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; margin: 8px 0 6px; color: var(--white); }
+  .prompt-subtitle { color: var(--text-2); font-size: 15px; margin: 0 0 24px; }
+  .prompt-block { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface); margin: 24px 0; }
+  .prompt-block-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; background: var(--surface-2); border-bottom: 1px solid var(--border); }
+  .prompt-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .copy-btn { background: var(--accent); color: var(--white); border: none; border-radius: 6px; padding: 7px 16px; font: 500 12px var(--font); cursor: pointer; transition: background 0.15s, transform 0.05s; }
   .copy-btn:hover { background: var(--accent-hover); }
   .copy-btn:active { transform: scale(0.97); }
   .copy-btn.copied { background: var(--green); }
-  .prompt-text {
-    margin: 0; padding: 22px 22px 24px;
-    font-family: var(--mono); font-size: 13.5px;
-    line-height: 1.7; color: var(--text);
-    white-space: pre-wrap; word-wrap: break-word;
-    background: transparent;
-  }
-  .example-section {
-    margin: 24px 0; padding: 14px 20px;
-    border-left: 3px solid var(--accent);
-    background: var(--surface);
-    border-radius: 0 8px 8px 0;
-  }
-  .example-section h3 {
-    font-size: 11px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--muted); margin: 0 0 6px;
-  }
-  .example-section p {
-    margin: 0; color: var(--text-2);
-    font-size: 14px; font-style: italic;
-  }
-
-  /* ===== Archive ===== */
-  .archive-section {
-    margin-top: 64px; padding-top: 32px;
-    border-top: 1px solid var(--border);
-  }
-  .archive-section h2 {
-    font-size: 13px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--muted); margin: 0 0 16px;
-  }
-  .archive-list {
-    list-style: none; padding: 0; margin: 0;
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 8px;
-  }
+  .prompt-text { margin: 0; padding: 22px 22px 24px; font-family: var(--mono); font-size: 13.5px; line-height: 1.7; color: var(--text); white-space: pre-wrap; word-wrap: break-word; background: transparent; }
+  .example-section { margin: 24px 0; padding: 14px 20px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0; }
+  .example-section h3 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 0 0 6px; }
+  .example-section p { margin: 0; color: var(--text-2); font-size: 14px; font-style: italic; }
+  .archive-section { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .archive-section h2 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 16px; }
+  .archive-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
   .archive-list li { padding: 4px 0; }
-  .archive-list a {
-    color: var(--text-2); text-decoration: none;
-    font-size: 14px;
-  }
+  .archive-list a { color: var(--text-2); text-decoration: none; font-size: 14px; }
   .archive-list a:hover { color: var(--accent); }
   .empty { color: var(--muted); font-style: italic; }
-
-  /* ===== Footer (matches hub) ===== */
-  .footer {
-    text-align: center;
-    padding: 24px 20px;
-    margin-top: 40px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 13px;
-  }
+  .footer { text-align: center; padding: 24px 20px; margin-top: 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
   .footer p { margin: 4px 0; }
   .footer a { color: var(--text-2); text-decoration: none; }
   .footer a:hover { color: var(--accent); }
-  .footer .footer-meta {
-    margin-top: 8px;
-    font-size: 11px;
-    color: var(--muted-2);
-    font-variant-numeric: tabular-nums;
-  }
-
-  /* ===== Mobile ===== */
+  .footer .footer-meta { margin-top: 8px; font-size: 11px; color: var(--muted-2); font-variant-numeric: tabular-nums; }
   @media (max-width: 600px) {
     .nav a { margin-left: 12px; font-size: 0.9rem; }
     .page-header h1, .story-detail h1 { font-size: 26px; }
@@ -320,8 +98,6 @@
 </style>
 </head>
 <body>
-
-<!-- Top header — matches hub exactly -->
 <header class="site-header">
   <div class="container nav-wrap">
     <a href="https://arunkumarpanchanana.github.io/" class="logo">Arunkumar Panchanana</a>
@@ -332,15 +108,12 @@
     </nav>
   </div>
 </header>
-
-<!-- Tool identifier sub-bar -->
 <div class="tool-bar">
   <div class="container tool-bar-inner">
     <span class="tool-name">AI Concept of the Day</span>
     <span></span>
   </div>
 </div>
-
 <main>
   <div class="container">
     
@@ -355,44 +128,42 @@
     <div class="sb-subtitle">250 topics, 5 tracks</div>
   </div>
   <button type="button" class="sb-mobile-toggle" id="sbToggle">Browse topics</button>
-  <nav class="sb-nav">
-    <details class="sb-track" open data-track="foundations">
+  <nav class="sb-nav"><details class="sb-track"  data-track="foundations">
   <summary>
-    <span class="sb-track-dot" style="background:#3B82F6"></span>
+    <span class="sb-track-dot" style="background:"></span>
     <span class="sb-track-label">Foundations</span>
-    <span class="sb-track-count">1/50</span>
+    <span class="sb-track-count">50/50</span>
   </summary>
-  <ul class="sb-topics"><li class="sb-topic unpublished"><span title="Not yet published">What is a large language model</span></li><li class="sb-topic unpublished"><span title="Not yet published">Tokens and tokenization</span></li><li class="sb-topic unpublished"><span title="Not yet published">The transformer architecture, explained simply</span></li><li class="sb-topic unpublished"><span title="Not yet published">Attention: why it changed everything</span></li><li class="sb-topic unpublished"><span title="Not yet published">Self-attention vs cross-attention</span></li><li class="sb-topic unpublished"><span title="Not yet published">Embeddings: turning words into vectors</span></li><li class="sb-topic unpublished"><span title="Not yet published">Context windows and why they matter</span></li><li class="sb-topic unpublished"><span title="Not yet published">Temperature, top-p, and sampling strategies</span></li><li class="sb-topic unpublished"><span title="Not yet published">Next-token prediction: the simple idea behind LLMs</span></li><li class="sb-topic unpublished"><span title="Not yet published">Logits and probability distributions</span></li><li class="sb-topic unpublished"><span title="Not yet published">Pretraining vs fine-tuning</span></li><li class="sb-topic unpublished"><span title="Not yet published">RLHF: how models learn human preferences</span></li><li class="sb-topic unpublished"><span title="Not yet published">Constitutional AI: a different approach to alignment</span></li><li class="sb-topic unpublished"><span title="Not yet published">What goes into training an LLM</span></li><li class="sb-topic unpublished"><span title="Not yet published">Scaling laws: bigger isn&#39;t always better</span></li><li class="sb-topic unpublished"><span title="Not yet published">Emergent abilities in LLMs</span></li><li class="sb-topic current published"><a href="concepts/2026-05-05.html">In-context learning: how models learn at runtime</a></li><li class="sb-topic unpublished"><span title="Not yet published">Few-shot prompting and why it works</span></li><li class="sb-topic unpublished"><span title="Not yet published">Chain-of-thought reasoning</span></li><li class="sb-topic unpublished"><span title="Not yet published">Model distillation: making models smaller</span></li><li class="sb-topic unpublished"><span title="Not yet published">Quantization: running big models on small hardware</span></li><li class="sb-topic unpublished"><span title="Not yet published">LoRAs and adapters for efficient fine-tuning</span></li><li class="sb-topic unpublished"><span title="Not yet published">Mixture-of-Experts (MoE) models</span></li><li class="sb-topic unpublished"><span title="Not yet published">Encoder, decoder, and encoder-decoder models</span></li><li class="sb-topic unpublished"><span title="Not yet published">Multimodal models: text + image + audio</span></li><li class="sb-topic unpublished"><span title="Not yet published">Vision transformers (ViT) explained</span></li><li class="sb-topic unpublished"><span title="Not yet published">How diffusion models generate images</span></li><li class="sb-topic unpublished"><span title="Not yet published">BPE, WordPiece, SentencePiece — tokenizer types</span></li><li class="sb-topic unpublished"><span title="Not yet published">The KV cache and why inference is fast</span></li><li class="sb-topic unpublished"><span title="Not yet published">Speculative decoding for faster generation</span></li><li class="sb-topic unpublished"><span title="Not yet published">Model cards: what they tell you</span></li><li class="sb-topic unpublished"><span title="Not yet published">Reading AI benchmarks without getting fooled</span></li><li class="sb-topic unpublished"><span title="Not yet published">MMLU, HellaSwag, and what benchmarks measure</span></li><li class="sb-topic unpublished"><span title="Not yet published">Perplexity: the most common LM metric</span></li><li class="sb-topic unpublished"><span title="Not yet published">Gradient descent in one explanation</span></li><li class="sb-topic unpublished"><span title="Not yet published">Backpropagation, intuitively</span></li><li class="sb-topic unpublished"><span title="Not yet published">Activation functions: ReLU, GELU, and others</span></li><li class="sb-topic unpublished"><span title="Not yet published">Neural networks from first principles</span></li><li class="sb-topic unpublished"><span title="Not yet published">Supervised, unsupervised, and self-supervised learning</span></li><li class="sb-topic unpublished"><span title="Not yet published">Transfer learning: standing on giant shoulders</span></li><li class="sb-topic unpublished"><span title="Not yet published">Feature engineering vs deep learning</span></li><li class="sb-topic unpublished"><span title="Not yet published">Overfitting and how to spot it</span></li><li class="sb-topic unpublished"><span title="Not yet published">Regularization techniques explained</span></li><li class="sb-topic unpublished"><span title="Not yet published">Loss functions: how models learn what&#39;s right</span></li><li class="sb-topic unpublished"><span title="Not yet published">The softmax function in plain English</span></li><li class="sb-topic unpublished"><span title="Not yet published">Positional encoding in transformers</span></li><li class="sb-topic unpublished"><span title="Not yet published">Rotary position embeddings (RoPE)</span></li><li class="sb-topic unpublished"><span title="Not yet published">Alignment vs capability — why both matter</span></li><li class="sb-topic unpublished"><span title="Not yet published">Synthetic data in modern training</span></li><li class="sb-topic unpublished"><span title="Not yet published">Compute, FLOPs, and the cost of training</span></li></ul>
+  <ul class="sb-topics"><li class="sb-topic current published"><a href="concepts/2026-05-06.html">What is a Neural Network?</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Supervised vs Unsupervised Learning</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">What is a Large Language Model?</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Tokens and Tokenization</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">The Transformer Architecture</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Attention Mechanism</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Context Window</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Temperature and Sampling</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Top-p and Top-k Sampling</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Pre-training vs Fine-tuning</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">RLHF — Reinforcement Learning from Human Feedback</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Embeddings</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Vector Similarity and Cosine Distance</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Loss Functions</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Gradient Descent</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Backpropagation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Overfitting and Regularization</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Batch Size and Learning Rate</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Model Parameters vs Hyperparameters</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Benchmarks — MMLU, HumanEval, HellaSwag</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Hallucination</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Grounding</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Zero-shot vs Few-shot Learning</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">In-context Learning</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Multimodal Models</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Model Size and Scaling Laws</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Mixture of Experts (MoE)</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Positional Encoding</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Layer Normalization</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Feed-forward Layers in Transformers</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Encoder vs Decoder Models</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Autoregressive Generation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Softmax Function</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Cross-entropy Loss</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Knowledge Cutoff</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Model Weights and Checkpoints</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Inference vs Training</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Quantization</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Distillation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Sparse vs Dense Models</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Logits</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Perplexity</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Chain-of-Thought Reasoning</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Constitutional AI</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Instruction Tuning</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">System Prompt</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Prompt Injection</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Emergent Capabilities</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Alignment</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">The Turing Test</a></li></ul>
 </details><details class="sb-track"  data-track="practitioner">
   <summary>
-    <span class="sb-track-dot" style="background:#10B981"></span>
+    <span class="sb-track-dot" style="background:"></span>
     <span class="sb-track-label">Practitioner</span>
-    <span class="sb-track-count">0/50</span>
+    <span class="sb-track-count">50/50</span>
   </summary>
-  <ul class="sb-topics"><li class="sb-topic unpublished"><span title="Not yet published">What is RAG (Retrieval-Augmented Generation)</span></li><li class="sb-topic unpublished"><span title="Not yet published">RAG vs fine-tuning: when to use which</span></li><li class="sb-topic unpublished"><span title="Not yet published">Vector databases explained</span></li><li class="sb-topic unpublished"><span title="Not yet published">Document chunking strategies for RAG</span></li><li class="sb-topic unpublished"><span title="Not yet published">Choosing the right embedding model</span></li><li class="sb-topic unpublished"><span title="Not yet published">Semantic search vs keyword search</span></li><li class="sb-topic unpublished"><span title="Not yet published">Hybrid retrieval: BM25 + vectors</span></li><li class="sb-topic unpublished"><span title="Not yet published">Rerankers: the second-pass that improves RAG</span></li><li class="sb-topic unpublished"><span title="Not yet published">What is an AI agent, really</span></li><li class="sb-topic unpublished"><span title="Not yet published">Tool use: how LLMs call functions</span></li><li class="sb-topic unpublished"><span title="Not yet published">Function calling APIs in OpenAI and Anthropic</span></li><li class="sb-topic unpublished"><span title="Not yet published">The ReAct pattern: reason + act loops</span></li><li class="sb-topic unpublished"><span title="Not yet published">Multi-agent systems and orchestration</span></li><li class="sb-topic unpublished"><span title="Not yet published">LangChain: when it helps and when it doesn&#39;t</span></li><li class="sb-topic unpublished"><span title="Not yet published">LlamaIndex for data-heavy applications</span></li><li class="sb-topic unpublished"><span title="Not yet published">MCP: the Model Context Protocol</span></li><li class="sb-topic unpublished"><span title="Not yet published">Getting structured output from LLMs</span></li><li class="sb-topic unpublished"><span title="Not yet published">JSON mode and structured generation</span></li><li class="sb-topic unpublished"><span title="Not yet published">System prompts: design for behavior</span></li><li class="sb-topic unpublished"><span title="Not yet published">Prompt injection: the SQL-injection of LLMs</span></li><li class="sb-topic unpublished"><span title="Not yet published">Jailbreaks: how they work and how to defend</span></li><li class="sb-topic unpublished"><span title="Not yet published">Prompt templates and reusability</span></li><li class="sb-topic unpublished"><span title="Not yet published">Prompt chains: breaking down complex tasks</span></li><li class="sb-topic unpublished"><span title="Not yet published">Self-correction loops in LLMs</span></li><li class="sb-topic unpublished"><span title="Not yet published">Memory in AI agents: short-term and long-term</span></li><li class="sb-topic unpublished"><span title="Not yet published">Context stuffing vs RAG</span></li><li class="sb-topic unpublished"><span title="Not yet published">Long context windows: tradeoffs and pitfalls</span></li><li class="sb-topic unpublished"><span title="Not yet published">Lost-in-the-middle: when long context fails</span></li><li class="sb-topic unpublished"><span title="Not yet published">Streaming LLM responses for better UX</span></li><li class="sb-topic unpublished"><span title="Not yet published">Designing effective few-shot examples</span></li><li class="sb-topic unpublished"><span title="Not yet published">Using LLMs as judges (LLM-as-judge)</span></li><li class="sb-topic unpublished"><span title="Not yet published">RAGAS: evaluating RAG systems</span></li><li class="sb-topic unpublished"><span title="Not yet published">Guardrails: input and output validation</span></li><li class="sb-topic unpublished"><span title="Not yet published">Code generation: best practices that work</span></li><li class="sb-topic unpublished"><span title="Not yet published">Prompt caching to cut costs</span></li><li class="sb-topic unpublished"><span title="Not yet published">Using embeddings for clustering and search</span></li><li class="sb-topic unpublished"><span title="Not yet published">Knowledge graphs + LLMs</span></li><li class="sb-topic unpublished"><span title="Not yet published">GraphRAG: when documents aren&#39;t enough</span></li><li class="sb-topic unpublished"><span title="Not yet published">Comparing agent frameworks: CrewAI, AutoGen, LangGraph</span></li><li class="sb-topic unpublished"><span title="Not yet published">ANN vs exact vector search</span></li><li class="sb-topic unpublished"><span title="Not yet published">API differences across major providers</span></li><li class="sb-topic unpublished"><span title="Not yet published">Should you actually fine-tune?</span></li><li class="sb-topic unpublished"><span title="Not yet published">Instruction tuning vs continued pretraining</span></li><li class="sb-topic unpublished"><span title="Not yet published">DPO: a simpler alternative to RLHF</span></li><li class="sb-topic unpublished"><span title="Not yet published">Generating synthetic data for evaluation</span></li><li class="sb-topic unpublished"><span title="Not yet published">Few-shot vs zero-shot: making the choice</span></li><li class="sb-topic unpublished"><span title="Not yet published">Routing requests across multiple models</span></li><li class="sb-topic unpublished"><span title="Not yet published">Using small models as routers</span></li><li class="sb-topic unpublished"><span title="Not yet published">Caching LLM responses safely</span></li><li class="sb-topic unpublished"><span title="Not yet published">Text-to-SQL: what works and what doesn&#39;t</span></li></ul>
-</details><details class="sb-track"  data-track="production">
+  <ul class="sb-topics"><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Prompt Engineering Fundamentals</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">System Prompts in Practice</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Few-shot Prompting Patterns</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Chain-of-Thought Prompting</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Retrieval-Augmented Generation (RAG)</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Chunking Strategies for RAG</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Embedding Models for Retrieval</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Vector Databases in Practice</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Tool Use and Function Calling</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Structured Output with JSON Mode</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LLM APIs — OpenAI, Anthropic, Google</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Building a Chatbot with Memory</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Streaming Responses</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Token Counting and Cost Management</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Prompt Templates and Variables</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Output Parsing and Validation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LangChain Core Concepts</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LlamaIndex for Document Q&amp;A</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Fine-tuning with LoRA</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Dataset Preparation for Fine-tuning</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Evaluation — Building an LLM Test Suite</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Prompt Versioning and Management</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Agentic Loops</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">ReAct Pattern</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Multi-agent Architectures</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Running Local Models with Ollama</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Comparing Models for a Task</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Image Input with Vision Models</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Building a PDF Q&amp;A System</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Web Scraping for LLM Context</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Semantic Search vs Keyword Search</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Hybrid Search</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Re-ranking Retrieved Results</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Summarization Strategies</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Code Generation Best Practices</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LLM Output Caching</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Guardrails and Input Validation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Building a Classifier with an LLM</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Named Entity Recognition with LLMs</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Sentiment Analysis with LLMs</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Translation with LLMs</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Data Extraction from Unstructured Text</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LLM-based Routing</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Fallback and Retry Strategies</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Batch Processing with LLMs</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">System Design for LLM Applications</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Evaluating RAG Systems</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Context Stuffing vs RAG Trade-offs</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Building with the Vercel AI SDK</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Cursor and AI-native Development</a></li></ul>
+</details><details class="sb-track" open data-track="production">
   <summary>
-    <span class="sb-track-dot" style="background:#F59E0B"></span>
+    <span class="sb-track-dot" style="background:"></span>
     <span class="sb-track-label">Production</span>
-    <span class="sb-track-count">0/50</span>
+    <span class="sb-track-count">50/50</span>
   </summary>
-  <ul class="sb-topics"><li class="sb-topic unpublished"><span title="Not yet published">How to evaluate an LLM application</span></li><li class="sb-topic unpublished"><span title="Not yet published">Offline vs online evaluation</span></li><li class="sb-topic unpublished"><span title="Not yet published">A/B testing LLM features in production</span></li><li class="sb-topic unpublished"><span title="Not yet published">Monitoring LLM apps in production</span></li><li class="sb-topic unpublished"><span title="Not yet published">Understanding LLM token economics</span></li><li class="sb-topic unpublished"><span title="Not yet published">Reducing LLM latency: practical tactics</span></li><li class="sb-topic unpublished"><span title="Not yet published">Batch vs real-time inference</span></li><li class="sb-topic unpublished"><span title="Not yet published">When to self-host LLMs</span></li><li class="sb-topic unpublished"><span title="Not yet published">vLLM and TGI for efficient serving</span></li><li class="sb-topic unpublished"><span title="Not yet published">GPU vs CPU inference tradeoffs</span></li><li class="sb-topic unpublished"><span title="Not yet published">Cutting inference costs without quality loss</span></li><li class="sb-topic unpublished"><span title="Not yet published">Rate limiting LLM API calls</span></li><li class="sb-topic unpublished"><span title="Not yet published">Fallback strategies when an LLM fails</span></li><li class="sb-topic unpublished"><span title="Not yet published">Mitigating hallucinations in production</span></li><li class="sb-topic unpublished"><span title="Not yet published">Factuality checking for LLM outputs</span></li><li class="sb-topic unpublished"><span title="Not yet published">Prompt versioning and rollback</span></li><li class="sb-topic unpublished"><span title="Not yet published">Building evaluation pipelines that catch regressions</span></li><li class="sb-topic unpublished"><span title="Not yet published">Evaluating LLMs for bias</span></li><li class="sb-topic unpublished"><span title="Not yet published">Red-teaming AI systems</span></li><li class="sb-topic unpublished"><span title="Not yet published">Data leakage risks in LLM evaluation</span></li><li class="sb-topic unpublished"><span title="Not yet published">Detecting and redacting PII</span></li><li class="sb-topic unpublished"><span title="Not yet published">Building secure LLM applications</span></li><li class="sb-topic unpublished"><span title="Not yet published">OWASP Top 10 for LLM applications</span></li><li class="sb-topic unpublished"><span title="Not yet published">Compliance considerations for LLM deployments</span></li><li class="sb-topic unpublished"><span title="Not yet published">Logging LLM inputs and outputs responsibly</span></li><li class="sb-topic unpublished"><span title="Not yet published">Telemetry for LLM applications</span></li><li class="sb-topic unpublished"><span title="Not yet published">Human-in-the-loop systems</span></li><li class="sb-topic unpublished"><span title="Not yet published">Building feedback loops from users</span></li><li class="sb-topic unpublished"><span title="Not yet published">Detecting model and data drift</span></li><li class="sb-topic unpublished"><span title="Not yet published">Shadow mode: testing without exposure</span></li><li class="sb-topic unpublished"><span title="Not yet published">Canary deployments for AI features</span></li><li class="sb-topic unpublished"><span title="Not yet published">Versioning AI models in production</span></li><li class="sb-topic unpublished"><span title="Not yet published">Retry strategies for LLM API calls</span></li><li class="sb-topic unpublished"><span title="Not yet published">The hidden cost of long context windows</span></li><li class="sb-topic unpublished"><span title="Not yet published">Building data pipelines for RAG</span></li><li class="sb-topic unpublished"><span title="Not yet published">Versioning embeddings without rebuilding</span></li><li class="sb-topic unpublished"><span title="Not yet published">Incremental indexing for vector stores</span></li><li class="sb-topic unpublished"><span title="Not yet published">How to evaluate AI agents</span></li><li class="sb-topic unpublished"><span title="Not yet published">Multi-tenant LLM application design</span></li><li class="sb-topic unpublished"><span title="Not yet published">Data residency and AI workloads</span></li><li class="sb-topic unpublished"><span title="Not yet published">Bring-your-own-key (BYOK) deployments</span></li><li class="sb-topic unpublished"><span title="Not yet published">Writing runbooks for AI incidents</span></li><li class="sb-topic unpublished"><span title="Not yet published">Observability for LLM applications</span></li><li class="sb-topic unpublished"><span title="Not yet published">Bias in your evaluation set</span></li><li class="sb-topic unpublished"><span title="Not yet published">Risks of synthetic evaluation data</span></li><li class="sb-topic unpublished"><span title="Not yet published">Handling LLM provider outages</span></li><li class="sb-topic unpublished"><span title="Not yet published">Multi-provider strategies for resilience</span></li><li class="sb-topic unpublished"><span title="Not yet published">Edge inference: running models on devices</span></li><li class="sb-topic unpublished"><span title="Not yet published">Running LLMs in the browser</span></li><li class="sb-topic unpublished"><span title="Not yet published">SOC 2 considerations for LLM apps</span></li></ul>
+  <ul class="sb-topics"><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Latency Optimization for LLM APIs</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LLM Observability and Tracing</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Rate Limiting and Quota Management</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Prompt Security in Production</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Cost Monitoring and Budgets</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">A/B Testing Prompts</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Model Versioning and Rollback</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Human-in-the-Loop Workflows</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Confidence Scoring and Uncertainty</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LLM Output Moderation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Data Privacy in LLM Applications</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Serving Open-source Models at Scale</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">vLLM and PagedAttention</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Kubernetes for AI Workloads</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Continuous Evaluation in CI/CD</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Feedback Loops and Data Flywheels</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Multi-tenant LLM Architecture</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Edge Inference</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Fallback Model Chains</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">SLAs for AI Features</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Semantic Caching</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Load Testing LLM Applications</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Prompt Injection Defenses</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Compliance and Audit Logging</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">GPU Memory Management</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Speculative Decoding</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Model Routing by Task</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Feature Flags for AI</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Incident Response for AI Systems</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LLM Infrastructure Cost Architecture</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Token Streaming Architecture</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Canary Deployments for Models</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Shadow Mode Testing</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Retrieval Latency Optimization</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Multi-region LLM Deployment</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Input and Output Schema Validation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Async LLM Request Handling</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Cold Start Optimization</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Monitoring Embedding Drift</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LLMOps Platforms Overview</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Dependency Management for AI Stacks</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Graceful Degradation in AI Features</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">API Gateway Patterns for LLMs</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Context Window Overflow Handling</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Evaluating LLM Quality at Scale</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">GDPR and AI Data Handling</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Prompt Length vs Quality Trade-offs</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Model Card Reading</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Feature Rollout Checklist</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Post-mortems for AI Incidents</a></li></ul>
 </details><details class="sb-track"  data-track="frontier">
   <summary>
-    <span class="sb-track-dot" style="background:#8B5CF6"></span>
+    <span class="sb-track-dot" style="background:"></span>
     <span class="sb-track-label">Frontier</span>
-    <span class="sb-track-count">0/50</span>
+    <span class="sb-track-count">50/50</span>
   </summary>
-  <ul class="sb-topics"><li class="sb-topic unpublished"><span title="Not yet published">Agentic AI: the new frontier</span></li><li class="sb-topic unpublished"><span title="Not yet published">Computer-use agents: how they work</span></li><li class="sb-topic unpublished"><span title="Not yet published">Long-horizon planning in agents</span></li><li class="sb-topic unpublished"><span title="Not yet published">Test-time compute: a new scaling axis</span></li><li class="sb-topic unpublished"><span title="Not yet published">Reasoning models: o1, o3, and the family</span></li><li class="sb-topic unpublished"><span title="Not yet published">Self-improving model loops</span></li><li class="sb-topic unpublished"><span title="Not yet published">Mechanistic interpretability explained</span></li><li class="sb-topic unpublished"><span title="Not yet published">Circuits inside transformers</span></li><li class="sb-topic unpublished"><span title="Not yet published">Sparse autoencoders for interpretability</span></li><li class="sb-topic unpublished"><span title="Not yet published">Superposition in neural networks</span></li><li class="sb-topic unpublished"><span title="Not yet published">What 100x compute is buying us</span></li><li class="sb-topic unpublished"><span title="Not yet published">Synthetic data and the model collapse debate</span></li><li class="sb-topic unpublished"><span title="Not yet published">AI safety: the active research areas</span></li><li class="sb-topic unpublished"><span title="Not yet published">What alignment research actually does</span></li><li class="sb-topic unpublished"><span title="Not yet published">Scalable oversight: the core problem</span></li><li class="sb-topic unpublished"><span title="Not yet published">Where RLHF stops working</span></li><li class="sb-topic unpublished"><span title="Not yet published">Deceptive alignment: the worry</span></li><li class="sb-topic unpublished"><span title="Not yet published">Sleeper agents in LLMs</span></li><li class="sb-topic unpublished"><span title="Not yet published">World models in modern AI</span></li><li class="sb-topic unpublished"><span title="Not yet published">State of video generation models</span></li><li class="sb-topic unpublished"><span title="Not yet published">LLMs in robotics: VLA models</span></li><li class="sb-topic unpublished"><span title="Not yet published">Embodied AI and physical reasoning</span></li><li class="sb-topic unpublished"><span title="Not yet published">Million-token context: real or hype?</span></li><li class="sb-topic unpublished"><span title="Not yet published">Native multimodal models</span></li><li class="sb-topic unpublished"><span title="Not yet published">Frontier audio models and voice agents</span></li><li class="sb-topic unpublished"><span title="Not yet published">Diffusion-based language models</span></li><li class="sb-topic unpublished"><span title="Not yet published">Mamba and state-space models</span></li><li class="sb-topic unpublished"><span title="Not yet published">Alternatives to the transformer</span></li><li class="sb-topic unpublished"><span title="Not yet published">AI for science: AlphaFold and beyond</span></li><li class="sb-topic unpublished"><span title="Not yet published">Mathematical reasoning in LLMs</span></li><li class="sb-topic unpublished"><span title="Not yet published">Frontier code generation models</span></li><li class="sb-topic unpublished"><span title="Not yet published">SWE-bench and the software engineering frontier</span></li><li class="sb-topic unpublished"><span title="Not yet published">Frontier tool-use capabilities</span></li><li class="sb-topic unpublished"><span title="Not yet published">Benchmark saturation: what comes next</span></li><li class="sb-topic unpublished"><span title="Not yet published">ARC-AGI: a benchmark that&#39;s still hard</span></li><li class="sb-topic unpublished"><span title="Not yet published">Context engineering: the new prompt engineering</span></li><li class="sb-topic unpublished"><span title="Not yet published">Agent handoffs and multi-agent coordination</span></li><li class="sb-topic unpublished"><span title="Not yet published">Open vs closed models: where the gap is going</span></li><li class="sb-topic unpublished"><span title="Not yet published">Compute as competitive strategy</span></li><li class="sb-topic unpublished"><span title="Not yet published">Research on AI moral status</span></li><li class="sb-topic unpublished"><span title="Not yet published">Do models have emotions? The research view</span></li><li class="sb-topic unpublished"><span title="Not yet published">Constitutional classifiers: post-training safety</span></li><li class="sb-topic unpublished"><span title="Not yet published">Building evaluations for frontier capabilities</span></li><li class="sb-topic unpublished"><span title="Not yet published">Weak-to-strong generalization</span></li><li class="sb-topic unpublished"><span title="Not yet published">Model organisms: studying AI by example</span></li><li class="sb-topic unpublished"><span title="Not yet published">AI in physics simulation and discovery</span></li><li class="sb-topic unpublished"><span title="Not yet published">AI in biology and drug discovery</span></li><li class="sb-topic unpublished"><span title="Not yet published">Neuro-symbolic approaches</span></li><li class="sb-topic unpublished"><span title="Not yet published">Energy use and the cost of frontier AI</span></li><li class="sb-topic unpublished"><span title="Not yet published">What people mean by &#39;AGI&#39;</span></li></ul>
+  <ul class="sb-topics"><li class="sb-topic current published"><a href="concepts/2026-05-06.html">GPT-4o and Omni Models</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Claude&#39;s Extended Thinking</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">OpenAI o1 and Reasoning Models</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Gemini 1.5 and Long Context</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Mixture of Experts at Frontier Scale</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Multimodal Understanding vs Generation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Agents in the Wild</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Computer Use and GUI Agents</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Text-to-Video: Sora and Beyond</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AlphaFold and Scientific AI</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LLM-based Theorem Proving</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Reinforcement Learning for Reasoning</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Self-improvement and Recursive AI</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">World Models</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Sparse Autoencoders and Interpretability</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Mechanistic Interpretability</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Superposition in Neural Networks</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Constitutional AI and RLAIF</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Frontier Model Safety Evaluations</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Diplomacy and Strategy Games</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Scaling Hypothesis Debate</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Test-Time Compute Scaling</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Synthetic Data Generation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Long-horizon Task Completion</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Memory Architectures for Agents</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Foundation Models for Robotics</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI-generated Code at Scale</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Neurosymbolic AI</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Latent Space Geometry</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI-to-AI Communication</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Diffusion Models for Text</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">State Space Models — Mamba</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Flash Attention</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Frontier AI Governance</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Drug Discovery</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Autonomous Research Agents</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Emergent Reasoning in Small Models</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Video Understanding at Scale</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Companions and Long-term Memory</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Debate as an Alignment Technique</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Activation Steering</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">LLM Planning and Tree Search</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Cross-modal Grounding</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Frontier Model Evaluations — ARC-AGI</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI and Chip Design</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">In-context Reinforcement Learning</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Towards AGI — Definitions and Milestones</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Model Merging</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Continual Learning</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Safety via Debate</a></li></ul>
 </details><details class="sb-track"  data-track="industry">
   <summary>
-    <span class="sb-track-dot" style="background:#EC4899"></span>
-    <span class="sb-track-label">Industry &amp; Business</span>
-    <span class="sb-track-count">0/50</span>
+    <span class="sb-track-dot" style="background:"></span>
+    <span class="sb-track-label">Industry</span>
+    <span class="sb-track-count">50/50</span>
   </summary>
-  <ul class="sb-topics"><li class="sb-topic unpublished"><span title="Not yet published">AI strategy for technology leaders</span></li><li class="sb-topic unpublished"><span title="Not yet published">Build vs buy: AI capability decisions</span></li><li class="sb-topic unpublished"><span title="Not yet published">Measuring ROI on AI initiatives</span></li><li class="sb-topic unpublished"><span title="Not yet published">Why most AI pilots fail to scale</span></li><li class="sb-topic unpublished"><span title="Not yet published">What separates AI wins from AI flops</span></li><li class="sb-topic unpublished"><span title="Not yet published">Data readiness for AI projects</span></li><li class="sb-topic unpublished"><span title="Not yet published">AI governance frameworks</span></li><li class="sb-topic unpublished"><span title="Not yet published">The EU AI Act: practical impact</span></li><li class="sb-topic unpublished"><span title="Not yet published">US AI policy landscape</span></li><li class="sb-topic unpublished"><span title="Not yet published">Avoiding AI vendor lock-in</span></li><li class="sb-topic unpublished"><span title="Not yet published">Budgeting for an AI initiative</span></li><li class="sb-topic unpublished"><span title="Not yet published">Hiring for AI roles in 2026</span></li><li class="sb-topic unpublished"><span title="Not yet published">Structuring AI/ML teams</span></li><li class="sb-topic unpublished"><span title="Not yet published">Product management for AI features</span></li><li class="sb-topic unpublished"><span title="Not yet published">Prioritizing AI features that matter</span></li><li class="sb-topic unpublished"><span title="Not yet published">Building customer trust around AI features</span></li><li class="sb-topic unpublished"><span title="Not yet published">UX patterns for AI products</span></li><li class="sb-topic unpublished"><span title="Not yet published">Designing for explainability</span></li><li class="sb-topic unpublished"><span title="Not yet published">Giving users agency over AI features</span></li><li class="sb-topic unpublished"><span title="Not yet published">Pricing AI-powered products</span></li><li class="sb-topic unpublished"><span title="Not yet published">Enterprise AI adoption patterns</span></li><li class="sb-topic unpublished"><span title="Not yet published">Change management for AI rollouts</span></li><li class="sb-topic unpublished"><span title="Not yet published">Integrating AI with legacy systems</span></li><li class="sb-topic unpublished"><span title="Not yet published">Shadow AI: when employees use unsanctioned tools</span></li><li class="sb-topic unpublished"><span title="Not yet published">Writing an internal AI use policy</span></li><li class="sb-topic unpublished"><span title="Not yet published">Third-party AI vendor risk assessment</span></li><li class="sb-topic unpublished"><span title="Not yet published">Intellectual property in the age of LLMs</span></li><li class="sb-topic unpublished"><span title="Not yet published">Training data rights: the legal landscape</span></li><li class="sb-topic unpublished"><span title="Not yet published">Using customer data for AI features</span></li><li class="sb-topic unpublished"><span title="Not yet published">Disclosing AI use to customers</span></li><li class="sb-topic unpublished"><span title="Not yet published">Where AI creates competitive moats</span></li><li class="sb-topic unpublished"><span title="Not yet published">AI startups vs incumbents: who wins where</span></li><li class="sb-topic unpublished"><span title="Not yet published">How to think about AI investment</span></li><li class="sb-topic unpublished"><span title="Not yet published">Which industries are most disrupted</span></li><li class="sb-topic unpublished"><span title="Not yet published">AI and the future of work</span></li><li class="sb-topic unpublished"><span title="Not yet published">Real productivity gains from AI</span></li><li class="sb-topic unpublished"><span title="Not yet published">Skilling up your team for AI</span></li><li class="sb-topic unpublished"><span title="Not yet published">Building internal AI tools that get used</span></li><li class="sb-topic unpublished"><span title="Not yet published">AI procurement done right</span></li><li class="sb-topic unpublished"><span title="Not yet published">Total cost of ownership for AI systems</span></li><li class="sb-topic unpublished"><span title="Not yet published">Lessons from public AI failures</span></li><li class="sb-topic unpublished"><span title="Not yet published">Incident response for AI failures</span></li><li class="sb-topic unpublished"><span title="Not yet published">Communicating AI plans to stakeholders</span></li><li class="sb-topic unpublished"><span title="Not yet published">AI literacy for executives</span></li><li class="sb-topic unpublished"><span title="Not yet published">Board-level AI conversations</span></li><li class="sb-topic unpublished"><span title="Not yet published">Risk appetite frameworks for AI</span></li><li class="sb-topic unpublished"><span title="Not yet published">An AI vendor evaluation checklist</span></li><li class="sb-topic unpublished"><span title="Not yet published">Building an enterprise AI roadmap</span></li><li class="sb-topic unpublished"><span title="Not yet published">Trust &amp; safety for AI products</span></li><li class="sb-topic unpublished"><span title="Not yet published">AI in customer support: state of play</span></li></ul>
-</details>
-  </nav>
+  <ul class="sb-topics"><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Software Development</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Customer Support</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Healthcare — Clinical Decision Support</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Legal — Contract Analysis</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Finance — Fraud Detection</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in HR — Resume Screening</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Marketing — Content Generation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Education — Personalized Tutoring</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Manufacturing — Predictive Maintenance</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Retail — Recommendation Engines</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Supply Chain</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Cybersecurity</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Insurance — Underwriting</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Real Estate</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Media — Content Moderation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Logistics — Route Optimization</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Agriculture</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Energy — Grid Optimization</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Autonomous Vehicles</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Financial Trading</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Government and Public Sector</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Journalism</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Gaming</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Architecture and Design</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Pharma — Clinical Trials</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI for Accessibility</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Translation and Localization</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Accounting and Audit</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Talent Development</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Regulation — EU AI Act</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Ethics in Practice</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI and the Future of Work</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Build vs Buy AI Decisions</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI ROI Measurement</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">IT Operations and AIOps</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI for ITSM — ServiceNow and Beyond</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Enterprise AI Governance</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Procurement and Vendor Evaluation</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Shadow AI in the Enterprise</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Change Management</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Sales — Lead Scoring</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI for Business Intelligence</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Mental Health</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Sports Analytics</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Copyright and IP Issues</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI and Climate Change</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Conversational AI for Enterprise</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI in Product Management</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">AI Strategy for IT Managers</a></li><li class="sb-topic current published"><a href="concepts/2026-05-06.html">Measuring AI Maturity</a></li></ul>
+</details></nav>
 </aside>
 <script>
 (function() {
@@ -409,105 +180,66 @@
     
 <style>
   .lesson-title{font-size:28px;font-weight:700;letter-spacing:-0.02em;color:var(--white);margin:8px 0 14px;line-height:1.25}
-  /* ===== Sidebar layout ===== */
   .concept-layout{display:grid;grid-template-columns:260px 1fr;gap:36px;align-items:start}
-  .concept-sidebar{position:sticky;top:24px;max-height:calc(100vh - 48px);
-                   overflow-y:auto;font-size:13.5px}
+  .concept-sidebar{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow-y:auto;font-size:13.5px}
   .concept-sidebar::-webkit-scrollbar{width:4px}
   .concept-sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
   .sb-header{padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid var(--border)}
-  .sb-title{font-size:11px;font-weight:600;text-transform:uppercase;
-            letter-spacing:0.1em;color:var(--accent)}
+  .sb-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent)}
   .sb-subtitle{font-size:11px;color:var(--muted-2);margin-top:4px}
   .sb-mobile-toggle{display:none}
   .sb-track{margin:4px 0}
-  .sb-track summary{cursor:pointer;padding:8px 4px;list-style:none;
-                    display:flex;align-items:center;gap:8px;
-                    border-radius:6px;font-weight:500;color:var(--text-2);
-                    transition:background 0.12s}
+  .sb-track summary{cursor:pointer;padding:8px 4px;list-style:none;display:flex;align-items:center;gap:8px;border-radius:6px;font-weight:500;color:var(--text-2);transition:background 0.12s}
   .sb-track summary:hover{background:rgba(59,130,246,0.06);color:var(--white)}
   .sb-track summary::-webkit-details-marker{display:none}
-  .sb-track summary::before{content:"›";display:inline-block;width:10px;
-                             color:var(--muted-2);font-weight:600;
-                             transition:transform 0.15s;flex-shrink:0;font-size:14px}
+  .sb-track summary::before{content:"›";display:inline-block;width:10px;color:var(--muted-2);font-weight:600;transition:transform 0.15s;flex-shrink:0;font-size:14px}
   .sb-track[open] summary::before{transform:rotate(90deg)}
   .sb-track-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
   .sb-track-label{flex:1;font-size:13.5px}
-  .sb-track-count{font-size:11px;color:var(--muted-2);font-variant-numeric:tabular-nums;
-                  background:var(--surface);border:1px solid var(--border);
-                  border-radius:999px;padding:1px 8px;font-weight:500}
-  .sb-topics{list-style:none;padding:0;margin:2px 0 8px 16px;
-             border-left:1px solid var(--border)}
+  .sb-track-count{font-size:11px;color:var(--muted-2);font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:1px 8px;font-weight:500}
+  .sb-topics{list-style:none;padding:0;margin:2px 0 8px 16px;border-left:1px solid var(--border)}
   .sb-topic{padding:0}
-  .sb-topic a, .sb-topic span{display:block;padding:6px 12px;
-                              text-decoration:none;font-size:13px;line-height:1.4;
-                              border-left:2px solid transparent;margin-left:-1px;
-                              transition:all 0.12s}
+  .sb-topic a, .sb-topic span{display:block;padding:6px 12px;text-decoration:none;font-size:13px;line-height:1.4;border-left:2px solid transparent;margin-left:-1px;transition:all 0.12s}
   .sb-topic a{color:var(--text-2);cursor:pointer}
-  .sb-topic a:hover{color:var(--white);background:rgba(59,130,246,0.06);
-                    border-left-color:var(--accent)}
+  .sb-topic a:hover{color:var(--white);background:rgba(59,130,246,0.06);border-left-color:var(--accent)}
   .sb-topic.unpublished span{color:var(--muted-2);cursor:default}
-  .sb-topic.current a, .sb-topic.current span{color:var(--accent);font-weight:600;
-                                                background:rgba(59,130,246,0.1);
-                                                border-left-color:var(--accent)}
+  .sb-topic.current a, .sb-topic.current span{color:var(--accent);font-weight:600;background:rgba(59,130,246,0.1);border-left-color:var(--accent)}
   .concept-main{min-width:0}
-
-  /* Mobile: stack sidebar above content */
   @media (max-width: 880px) {
     .concept-layout{grid-template-columns:1fr;gap:0}
-    .concept-sidebar{position:static;max-height:none;
-                      border:1px solid var(--border);border-radius:8px;
-                      padding:14px;margin-bottom:24px;background:var(--surface)}
-    .sb-mobile-toggle{display:block;width:100%;background:transparent;
-                       border:1px solid var(--border);border-radius:6px;
-                       color:var(--text);padding:10px;font:500 14px var(--font);
-                       cursor:pointer;margin-top:8px}
+    .concept-sidebar{position:static;max-height:none;border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:24px;background:var(--surface)}
+    .sb-mobile-toggle{display:block;width:100%;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text);padding:10px;font:500 14px var(--font);cursor:pointer;margin-top:8px}
     .sb-mobile-toggle:hover{border-color:var(--accent);color:var(--accent)}
     .concept-sidebar .sb-nav{display:none;margin-top:12px}
     .concept-sidebar .sb-nav.mobile-open{display:block}
   }
-
   .lesson-meta{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
   .track-tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;letter-spacing:0.04em}
-  .level-tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;
-             background:var(--surface);color:var(--muted);border:1px solid var(--border);letter-spacing:0.08em}
-  .lesson-summary{font-size:18px;color:var(--text);line-height:1.55;margin:0 0 28px;
-                  padding:14px 18px;border-left:3px solid var(--accent);background:var(--surface-2);border-radius:0 6px 6px 0}
+  .level-tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--surface);color:var(--muted);border:1px solid var(--border);letter-spacing:0.08em}
+  .lesson-summary{font-size:18px;color:var(--text);line-height:1.55;margin:0 0 28px;padding:14px 18px;border-left:3px solid var(--accent);background:var(--surface-2);border-radius:0 6px 6px 0}
   .lesson-body{color:var(--text);font-size:16px;line-height:1.75;margin:0 0 32px}
   .lesson-body p{margin:0 0 14px}
   .lesson-body p:last-child{margin-bottom:0}
-  .why-section,.example-section,.misconception-section{
-    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin:20px 0}
+  .why-section,.example-section,.misconception-section{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin:20px 0}
   .example-section{border-left:3px solid var(--accent)}
   .misconception-section{border-left:3px solid #F59E0B}
-  .why-section h3,.example-section h3,.misconception-section h3{
-    font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;
-    margin:0 0 10px;color:var(--accent)}
+  .why-section h3,.example-section h3,.misconception-section h3{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 10px;color:var(--accent)}
   .misconception-section h3{color:#F59E0B}
   .why-section p,.example-section p,.misconception-section p{margin:0;color:var(--text);line-height:1.65;font-size:15px}
-
   .quiz{margin:40px 0 0;padding-top:32px;border-top:1px solid var(--border)}
   .quiz-heading{font-size:20px;font-weight:700;color:var(--white);margin:0 0 6px;letter-spacing:-0.01em}
   .quiz-intro{color:var(--muted);font-size:14px;margin:0 0 24px}
   .quiz-item{margin:0 0 28px;padding:0 0 28px;border-bottom:1px solid var(--border)}
   .quiz-item:last-of-type{border-bottom:0;padding-bottom:0}
-  .quiz-q-num{font-size:11px;font-weight:600;color:var(--muted);
-              text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+  .quiz-q-num{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
   .quiz-question{font-size:17px;font-weight:600;color:var(--white);margin:0 0 16px;line-height:1.4}
   .quiz-options{display:flex;flex-direction:column;gap:8px}
-  .quiz-option{display:flex;align-items:flex-start;gap:12px;
-               background:var(--surface);border:1px solid var(--border);
-               border-radius:8px;padding:12px 14px;text-align:left;
-               cursor:pointer;color:var(--text);font:400 14.5px var(--font);
-               transition:all 0.15s;width:100%}
+  .quiz-option{display:flex;align-items:flex-start;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;text-align:left;cursor:pointer;color:var(--text);font:400 14.5px var(--font);transition:all 0.15s;width:100%}
   .quiz-option:hover:not(.locked){border-color:var(--accent);background:rgba(59,130,246,0.06)}
   .quiz-option.locked{cursor:default}
   .quiz-option.correct{border-color:#10B981;background:rgba(16,185,129,0.10)}
   .quiz-option.wrong{border-color:#EF4444;background:rgba(239,68,68,0.10)}
-  .quiz-letter{flex-shrink:0;width:24px;height:24px;border-radius:50%;
-               background:var(--bg);border:1px solid var(--border);
-               display:grid;place-items:center;font-size:12px;font-weight:600;color:var(--muted-2);
-               margin-top:1px}
+  .quiz-letter{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:grid;place-items:center;font-size:12px;font-weight:600;color:var(--muted-2);margin-top:1px}
   .quiz-option.correct .quiz-letter{background:#10B981;color:#fff;border-color:#10B981}
   .quiz-option.wrong .quiz-letter{background:#EF4444;color:#fff;border-color:#EF4444}
   .quiz-option-text{flex:1;line-height:1.45}
@@ -516,146 +248,141 @@
   .quiz-feedback .fb-ok{background:rgba(16,185,129,0.10);color:#A7F3D0;border:1px solid rgba(16,185,129,0.3)}
   .quiz-feedback .fb-no{background:rgba(239,68,68,0.10);color:#FCA5A5;border:1px solid rgba(239,68,68,0.3)}
   .quiz-feedback strong{color:#fff}
-  .score-final{margin-top:24px;padding:16px 20px;background:var(--surface);
-               border:1px solid var(--border);border-radius:8px;
-               color:var(--text);font-size:15px;text-align:center}
+  .score-final{margin-top:24px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:15px;text-align:center}
   .score-final strong{color:var(--white)}
+  .read-original a{color:var(--accent);text-decoration:none;font-weight:500;display:inline-block;padding:10px 16px;background:var(--surface);border:1px solid var(--border);border-radius:6px;transition:all 0.15s}
+  .read-original a:hover{background:var(--accent);color:var(--white);border-color:var(--accent)}
 </style>
 <section class="lesson">
-  <div class="section-eyebrow">May 5, 2026</div>
-       <h2 class="lesson-title">In-context learning: how models learn at runtime</h2>
+  <div class="section-eyebrow">May 6, 2026</div>
+       <h2 class="lesson-title">Edge Inference</h2>
   <div class="lesson-meta">
-    <span class="track-tag" style="background:#3B82F61f;color:#3B82F6;border:1px solid #3B82F666">Foundations</span>
-    <span class="level-tag">INTERMEDIATE</span>
+    <span class="track-tag" style="background:undefined1f;color:undefined;border:1px solid undefined66">Production</span>
+    <span class="level-tag"></span>
   </div>
-  <p class="lesson-summary">In-context learning is a large language model&#39;s ability to adapt its behavior and generate desired outputs based solely on the examples and instructions provided within the input prompt, without any updates to its internal parameters.</p>
-
+  <p class="lesson-summary">Edge inference deploys machine learning models directly onto devices, enabling faster, more private, and offline processing.</p>
   <article class="lesson-body">
-    <p>In-context learning describes how powerful pre-trained models, especially large language models, can perform new tasks or adapt their output style simply by observing examples and instructions within the input prompt itself. This is distinct from traditional machine learning where a model&#39;s parameters, or weights, are updated through training on a dataset. Instead, during in-context learning, the model leverages its vast pre-trained knowledge to recognize patterns, infer rules, and apply them to new inputs presented in the same prompt. It&#39;s like giving a highly knowledgeable expert a few examples of a task and asking them to continue, rather than teaching them from scratch. The model conditions its generation on the entire prompt, treating the examples as demonstrations of the desired input-output mapping for the current inference pass.</p>
+    <p>Edge inference refers to the process of running machine learning models on local devices, such as smartphones, sensors, or embedded systems, rather than sending data to a remote server for processing. This approach, also known as edge computing for AI, brings computation closer to the data source. It allows for real-time decision-making and analysis without the latency associated with network communication. Models are often optimized for size and efficiency to run on resource-constrained hardware. This is crucial for applications requiring immediate responses or operating in environments with limited or no internet connectivity. Examples include autonomous vehicles, smart cameras, and industrial monitoring systems.</p>
   </article>
-
   <section class="why-section">
     <h3>Why this matters</h3>
-    <p>In-context learning is fundamental for prompt engineering and unlocks immense flexibility in how large language models are used. It allows practitioners to rapidly adapt a single model to countless specific tasks—from text summarization to code generation—without needing to fine-tune or retrain it. This significantly reduces development time and computational costs, making models highly versatile and accessible for a wide range of applications, enabling few-shot learning where only a handful of examples are sufficient.</p>
+    <p>Edge inference is vital for real-time applications like autonomous driving where split-second decisions are critical. It also enhances user privacy by processing sensitive data locally. Furthermore, it reduces operational costs by minimizing cloud data transfer and processing needs, making AI solutions more scalable and accessible.</p>
   </section>
-
   <section class="example-section">
     <h3>Concrete example</h3>
-    <p>Consider a large language model like gpt-3.5 being used for sentiment classification. Instead of fine-tuning it, you can provide in-context examples in the prompt. For instance: &quot;Classify the sentiment of the following reviews as &#39;Positive&#39;, &#39;Negative&#39;, or &#39;Neutral&#39;. Example 1: &#39;The movie was fantastic!&#39; -&gt; Positive. Example 2: &#39;I found the plot quite dull.&#39; -&gt; Negative. Example 3: &#39;It was an average experience.&#39; -&gt; Neutral. Now, classify: &#39;The customer service was surprisingly helpful.&#39; -&gt;&quot;. The model, using its in-context learning ability, will likely output &quot;Positive&quot; by recognizing the pattern established by the preceding examples and applying it to the new review.</p>
+    <p>Consider a smart security camera system. Instead of streaming video to the cloud for analysis, an edge inference model running on the camera itself can detect motion or identify specific objects like people or vehicles in real-time. This allows the camera to trigger an alert instantly, even if the internet connection is down, and only sends relevant event data, not continuous video streams, saving bandwidth.</p>
   </section>
-
   <section class="misconception-section">
     <h3>Common misconception</h3>
-    <p>A common misconception is that in-context learning involves the model actually &#39;learning&#39; in the sense of updating its internal weights or parameters. In reality, in-context learning does not modify the model&#39;s underlying architecture or weights; it is an emergent capability of large models to condition their output based on the prompt during a single forward pass.</p>
+    <p>A common mistake is believing edge inference requires powerful, dedicated hardware. In reality, many edge devices use specialized, low-power processors or even optimized standard processors to run lightweight, efficient AI models.</p>
   </section>
-
   
 <section class="quiz">
   <h3 class="quiz-heading">Test yourself</h3>
   <p class="quiz-intro">5 questions. Click an option — answer reveals immediately.</p>
   <div class="quiz-item" data-q="0" data-correct="0">
       <div class="quiz-q-num">Question 1 of 5</div>
-      <h4 class="quiz-question">What is the primary mechanism by which a large language model performs in-context learning?</h4>
+      <h4 class="quiz-question">What is the primary benefit of edge inference compared to cloud inference?</h4>
       <div class="quiz-options">
       <button type="button" class="quiz-option" data-q="0" data-i="0">
         <span class="quiz-letter">A</span>
-        <span class="quiz-option-text">By conditioning its output on patterns and examples within the input prompt during inference.</span>
+        <span class="quiz-option-text">Reduced latency and faster response times.</span>
       </button>
       <button type="button" class="quiz-option" data-q="0" data-i="1">
         <span class="quiz-letter">B</span>
-        <span class="quiz-option-text">By updating its internal weights based on the examples provided in the prompt.</span>
+        <span class="quiz-option-text">Higher accuracy due to more powerful servers.</span>
       </button>
       <button type="button" class="quiz-option" data-q="0" data-i="2">
         <span class="quiz-letter">C</span>
-        <span class="quiz-option-text">By accessing an external database of task-specific rules during runtime.</span>
+        <span class="quiz-option-text">Easier model updates and maintenance.</span>
       </button>
       <button type="button" class="quiz-option" data-q="0" data-i="3">
         <span class="quiz-letter">D</span>
-        <span class="quiz-option-text">By undergoing a rapid, on-the-fly fine-tuning process with each new prompt.</span>
+        <span class="quiz-option-text">Greater data storage capacity on the device.</span>
       </button></div>
       <div class="quiz-feedback" data-q="0"></div>
     </div><div class="quiz-item" data-q="1" data-correct="0">
       <div class="quiz-q-num">Question 2 of 5</div>
-      <h4 class="quiz-question">Which of the following best describes the role of examples in an in-context learning prompt?</h4>
+      <h4 class="quiz-question">Which of the following is a key challenge when implementing edge inference?</h4>
       <div class="quiz-options">
       <button type="button" class="quiz-option" data-q="1" data-i="0">
         <span class="quiz-letter">A</span>
-        <span class="quiz-option-text">They serve as demonstrations for the model to infer the desired task and output format.</span>
+        <span class="quiz-option-text">Limited computational resources and power on edge devices.</span>
       </button>
       <button type="button" class="quiz-option" data-q="1" data-i="1">
         <span class="quiz-letter">B</span>
-        <span class="quiz-option-text">They are used to retrain a small portion of the model&#39;s final layers.</span>
+        <span class="quiz-option-text">High cost of cloud computing infrastructure.</span>
       </button>
       <button type="button" class="quiz-option" data-q="1" data-i="2">
         <span class="quiz-letter">C</span>
-        <span class="quiz-option-text">They provide new factual information that the model permanently stores.</span>
+        <span class="quiz-option-text">The need for constant internet connectivity.</span>
       </button>
       <button type="button" class="quiz-option" data-q="1" data-i="3">
         <span class="quiz-letter">D</span>
-        <span class="quiz-option-text">They act as a validation set to check the model&#39;s performance before generating the final output.</span>
+        <span class="quiz-option-text">Difficulty in collecting large datasets for training.</span>
       </button></div>
       <div class="quiz-feedback" data-q="1"></div>
-    </div><div class="quiz-item" data-q="2" data-correct="0">
+    </div><div class="quiz-item" data-q="2" data-correct="1">
       <div class="quiz-q-num">Question 3 of 5</div>
-      <h4 class="quiz-question">What is a key advantage of using in-context learning over traditional fine-tuning for adapting a model to a new task?</h4>
+      <h4 class="quiz-question">In which scenario would edge inference be particularly advantageous?</h4>
       <div class="quiz-options">
       <button type="button" class="quiz-option" data-q="2" data-i="0">
         <span class="quiz-letter">A</span>
-        <span class="quiz-option-text">It allows for rapid task adaptation without requiring extensive datasets or retraining.</span>
+        <span class="quiz-option-text">A system requiring complex, large-scale data aggregation.</span>
       </button>
       <button type="button" class="quiz-option" data-q="2" data-i="1">
         <span class="quiz-letter">B</span>
-        <span class="quiz-option-text">It guarantees superior performance compared to any fine-tuned model.</span>
+        <span class="quiz-option-text">An application needing real-time object detection on a moving vehicle.</span>
       </button>
       <button type="button" class="quiz-option" data-q="2" data-i="2">
         <span class="quiz-letter">C</span>
-        <span class="quiz-option-text">It permanently alters the model&#39;s foundational knowledge for future tasks.</span>
+        <span class="quiz-option-text">A service that relies on frequent model retraining with massive datasets.</span>
       </button>
       <button type="button" class="quiz-option" data-q="2" data-i="3">
         <span class="quiz-letter">D</span>
-        <span class="quiz-option-text">It enables the model to learn entirely new concepts not present in its pre-training data.</span>
+        <span class="quiz-option-text">A platform for long-term archival of raw sensor data.</span>
       </button></div>
       <div class="quiz-feedback" data-q="2"></div>
-    </div><div class="quiz-item" data-q="3" data-correct="0">
+    </div><div class="quiz-item" data-q="3" data-correct="1">
       <div class="quiz-q-num">Question 4 of 5</div>
-      <h4 class="quiz-question">If a large language model consistently ignores the specific output format demonstrated in the in-context examples, what is a likely reason?</h4>
+      <h4 class="quiz-question">What does it mean to &#39;optimize&#39; a model for edge inference?</h4>
       <div class="quiz-options">
       <button type="button" class="quiz-option" data-q="3" data-i="0">
         <span class="quiz-letter">A</span>
-        <span class="quiz-option-text">The model&#39;s pre-training was insufficient, or the prompt structure is unclear or inconsistent.</span>
+        <span class="quiz-option-text">Increasing the model&#39;s size and complexity for better performance.</span>
       </button>
       <button type="button" class="quiz-option" data-q="3" data-i="1">
         <span class="quiz-letter">B</span>
-        <span class="quiz-option-text">The model is actively trying to innovate and create a new output format.</span>
+        <span class="quiz-option-text">Reducing the model&#39;s size and computational requirements for efficiency.</span>
       </button>
       <button type="button" class="quiz-option" data-q="3" data-i="2">
         <span class="quiz-letter">C</span>
-        <span class="quiz-option-text">The model has entered a &#39;read-only&#39; mode where it cannot process new instructions.</span>
+        <span class="quiz-option-text">Ensuring the model requires a high-speed internet connection.</span>
       </button>
       <button type="button" class="quiz-option" data-q="3" data-i="3">
         <span class="quiz-letter">D</span>
-        <span class="quiz-option-text">The model has run out of memory and cannot retain the examples.</span>
+        <span class="quiz-option-text">Making the model dependent on cloud-based processing units.</span>
       </button></div>
       <div class="quiz-feedback" data-q="3"></div>
-    </div><div class="quiz-item" data-q="4" data-correct="0">
+    </div><div class="quiz-item" data-q="4" data-correct="2">
       <div class="quiz-q-num">Question 5 of 5</div>
-      <h4 class="quiz-question">Which statement accurately differentiates in-context learning from fine-tuning?</h4>
+      <h4 class="quiz-question">Which of these is a common type of device where edge inference is deployed?</h4>
       <div class="quiz-options">
       <button type="button" class="quiz-option" data-q="4" data-i="0">
         <span class="quiz-letter">A</span>
-        <span class="quiz-option-text">In-context learning involves no parameter updates, while fine-tuning adjusts model weights.</span>
+        <span class="quiz-option-text">High-performance computing clusters.</span>
       </button>
       <button type="button" class="quiz-option" data-q="4" data-i="1">
         <span class="quiz-letter">B</span>
-        <span class="quiz-option-text">In-context learning requires a much larger dataset than fine-tuning.</span>
+        <span class="quiz-option-text">Mainframe computers in data centers.</span>
       </button>
       <button type="button" class="quiz-option" data-q="4" data-i="2">
         <span class="quiz-letter">C</span>
-        <span class="quiz-option-text">Fine-tuning is only applicable to smaller models, whereas in-context learning is for large models.</span>
+        <span class="quiz-option-text">Smartphones and IoT sensors.</span>
       </button>
       <button type="button" class="quiz-option" data-q="4" data-i="3">
         <span class="quiz-letter">D</span>
-        <span class="quiz-option-text">In-context learning modifies the model&#39;s architecture, while fine-tuning only updates its weights.</span>
+        <span class="quiz-option-text">Desktop workstations for graphic design.</span>
       </button></div>
       <div class="quiz-feedback" data-q="4"></div>
     </div>
@@ -663,7 +390,7 @@
 </section>
 <script>
 (function() {
-  var answers = [{"correct":0,"explanation":"In-context learning relies on the model's ability to recognize and apply patterns from the prompt during a single forward pass, without modifying its weights."},{"correct":0,"explanation":"Examples in the prompt guide the model by showing it how to perform the task and what format the output should take."},{"correct":0,"explanation":"In-context learning allows for quick adaptation to new tasks with minimal examples and no retraining, saving time and resources."},{"correct":0,"explanation":"Models may ignore in-context examples if the prompt is poorly structured, the examples are inconsistent, or the model's capacity to follow complex instructions is limited."},{"correct":0,"explanation":"The fundamental difference is that in-context learning occurs during inference without changing model parameters, while fine-tuning involves updating the model's weights through training."}];
+  var answers = [{"correct":0,"explanation":"Edge inference processes data locally, eliminating network delays and enabling quicker results."},{"correct":0,"explanation":"Edge devices often have constraints on processing power, memory, and energy consumption."},{"correct":1,"explanation":"Real-time needs and potential connectivity issues make edge inference ideal for applications like autonomous systems."},{"correct":1,"explanation":"Optimization for edge involves making models smaller and faster to run on less powerful hardware."},{"correct":2,"explanation":"Edge inference is designed for devices at the 'edge' of the network, like mobile phones and connected sensors."}];
   var picked = {};
   document.querySelectorAll('.quiz-option').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -673,7 +400,6 @@
       picked[qIdx] = iIdx;
       var item = document.querySelector('.quiz-item[data-q="' + qIdx + '"]');
       var correct = answers[qIdx].correct;
-      // Mark all options
       item.querySelectorAll('.quiz-option').forEach(function(opt, idx) {
         opt.classList.add('locked');
         if (idx === correct) opt.classList.add('correct');
@@ -688,18 +414,16 @@
     });
   });
   function updateScore() {
-    var keys = Object.keys(picked);
-    if (keys.length < answers.length) return;
+    if (Object.keys(picked).length < answers.length) return;
     var right = 0;
     for (var k in picked) if (picked[k] === answers[k].correct) right++;
-    var msg = right + ' of ' + answers.length;
     var label;
     if (right === answers.length) label = 'Perfect score.';
     else if (right >= 4) label = 'Strong.';
     else if (right >= 3) label = 'You got the gist.';
     else label = 'Worth re-reading the explanation.';
     document.getElementById('quizScore').innerHTML =
-      '<div class="score-final">You scored <strong>' + msg + '</strong>. ' + label + '</div>';
+      '<div class="score-final">You scored <strong>' + right + ' of ' + answers.length + '</strong>. ' + label + '</div>';
   }
 })();
 </script>
@@ -709,15 +433,13 @@
 
   </div>
 </main>
-
 <footer class="footer">
   <div class="container">
     <p>Arunkumar Panchanana &middot; AI tools &middot; Automation &middot; IT Leadership</p>
     <p>Email: <a href="mailto:arunkumar.panchanana@gmail.com">arunkumar.panchanana@gmail.com</a></p>
     <div>Lessons generated daily by AI; structure and curriculum are human-curated.</div>
-    <div class="footer-meta">Updated <time datetime="2026-05-05T17:42:29Z">2026-05-05T17:42:29Z</time></div>
+    <div class="footer-meta">Updated <time datetime="2026-05-06T05:14:28Z">2026-05-06T05:14:28Z</time></div>
   </div>
 </footer>
-
 </body>
 </html>
