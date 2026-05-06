@@ -1,261 +1,1781 @@
 {
   "tracks": [
-    { "id": "foundations", "label": "Foundations", "description": "Core concepts every AI practitioner must know" },
-    { "id": "practitioner", "label": "Practitioner", "description": "Applied skills for building with AI" },
-    { "id": "production", "label": "Production", "description": "Deploying and operating AI systems reliably" },
-    { "id": "frontier", "label": "Frontier", "description": "Cutting-edge research and emerging capabilities" },
-    { "id": "industry", "label": "Industry", "description": "AI applied across real-world domains" }
+    {
+      "id": "foundations",
+      "label": "Foundations",
+      "description": "Core concepts every AI practitioner must know"
+    },
+    {
+      "id": "practitioner",
+      "label": "Practitioner",
+      "description": "Applied skills for building with AI"
+    },
+    {
+      "id": "production",
+      "label": "Production",
+      "description": "Deploying and operating AI systems reliably"
+    },
+    {
+      "id": "frontier",
+      "label": "Frontier",
+      "description": "Cutting-edge research and emerging capabilities"
+    },
+    {
+      "id": "industry",
+      "label": "Industry",
+      "description": "AI applied across real-world domains"
+    }
   ],
   "topics": [
-    { "id": "f001", "track": "foundations", "title": "What is a Neural Network?", "summary": "Layers of connected nodes that learn patterns from data by adjusting weights during training." },
-    { "id": "f002", "track": "foundations", "title": "Supervised vs Unsupervised Learning", "summary": "Supervised learning uses labeled examples; unsupervised learning finds structure in unlabeled data." },
-    { "id": "f003", "track": "foundations", "title": "What is a Large Language Model?", "summary": "A neural network trained on massive text corpora to predict and generate human language." },
-    { "id": "f004", "track": "foundations", "title": "Tokens and Tokenization", "summary": "LLMs process text as tokens — subword chunks — not raw characters or whole words." },
-    { "id": "f005", "track": "foundations", "title": "The Transformer Architecture", "summary": "The attention-based architecture introduced in 2017 that underlies virtually every modern LLM." },
-    { "id": "f006", "track": "foundations", "title": "Attention Mechanism", "summary": "Allows the model to weigh how relevant each token is to every other token when generating output." },
-    { "id": "f007", "track": "foundations", "title": "Context Window", "summary": "The maximum number of tokens a model can process at once — both input and output combined." },
-    { "id": "f008", "track": "foundations", "title": "Temperature and Sampling", "summary": "Temperature controls randomness in token selection; higher values produce more creative, less predictable output." },
-    { "id": "f009", "track": "foundations", "title": "Top-p and Top-k Sampling", "summary": "Sampling strategies that limit token selection to the most probable candidates, controlling output diversity." },
-    { "id": "f010", "track": "foundations", "title": "Pre-training vs Fine-tuning", "summary": "Pre-training builds general knowledge from massive data; fine-tuning adapts the model to specific tasks." },
-    { "id": "f011", "track": "foundations", "title": "RLHF — Reinforcement Learning from Human Feedback", "summary": "Training technique that uses human preference ratings to align model outputs with desired behavior." },
-    { "id": "f012", "track": "foundations", "title": "Embeddings", "summary": "Dense numerical vectors that represent the semantic meaning of text, enabling similarity comparisons." },
-    { "id": "f013", "track": "foundations", "title": "Vector Similarity and Cosine Distance", "summary": "Measuring how semantically similar two embeddings are using the angle between their vectors." },
-    { "id": "f014", "track": "foundations", "title": "Loss Functions", "summary": "Mathematical functions that quantify how far a model's predictions are from the correct answers during training." },
-    { "id": "f015", "track": "foundations", "title": "Gradient Descent", "summary": "The optimization algorithm that iteratively adjusts model weights to minimize the loss function." },
-    { "id": "f016", "track": "foundations", "title": "Backpropagation", "summary": "Algorithm for computing gradients through a network by propagating errors from output back to input layers." },
-    { "id": "f017", "track": "foundations", "title": "Overfitting and Regularization", "summary": "Overfitting is memorizing training data; regularization techniques like dropout prevent this." },
-    { "id": "f018", "track": "foundations", "title": "Batch Size and Learning Rate", "summary": "Key hyperparameters: batch size controls training stability; learning rate controls how fast weights update." },
-    { "id": "f019", "track": "foundations", "title": "Model Parameters vs Hyperparameters", "summary": "Parameters are learned during training; hyperparameters are set before training and control the process." },
-    { "id": "f020", "track": "foundations", "title": "Benchmarks — MMLU, HumanEval, HellaSwag", "summary": "Standardized evaluation datasets used to compare model capabilities across reasoning, coding, and comprehension." },
-    { "id": "f021", "track": "foundations", "title": "Hallucination", "summary": "When a model generates plausible-sounding but factually incorrect or fabricated information." },
-    { "id": "f022", "track": "foundations", "title": "Grounding", "summary": "Connecting model outputs to verified external sources to reduce hallucination and improve factual accuracy." },
-    { "id": "f023", "track": "foundations", "title": "Zero-shot vs Few-shot Learning", "summary": "Zero-shot uses no examples; few-shot provides a small number of examples in the prompt to guide the model." },
-    { "id": "f024", "track": "foundations", "title": "In-context Learning", "summary": "The model's ability to adapt its behavior based on examples or instructions provided in the prompt itself." },
-    { "id": "f025", "track": "foundations", "title": "Multimodal Models", "summary": "Models that process and generate multiple data types — text, images, audio, or video — in a single system." },
-    { "id": "f026", "track": "foundations", "title": "Model Size and Scaling Laws", "summary": "Larger models trained on more data consistently perform better — a relationship described by empirical scaling laws." },
-    { "id": "f027", "track": "foundations", "title": "Mixture of Experts (MoE)", "summary": "Architecture where only a subset of model parameters are activated per token, enabling larger models efficiently." },
-    { "id": "f028", "track": "foundations", "title": "Positional Encoding", "summary": "Mechanism that injects token order information into transformer inputs, since attention is inherently order-agnostic." },
-    { "id": "f029", "track": "foundations", "title": "Layer Normalization", "summary": "Normalization technique applied within transformer layers to stabilize and accelerate training." },
-    { "id": "f030", "track": "foundations", "title": "Feed-forward Layers in Transformers", "summary": "The MLP component in each transformer block that processes each token independently after attention." },
-    { "id": "f031", "track": "foundations", "title": "Encoder vs Decoder Models", "summary": "Encoders (BERT) understand text; decoders (GPT) generate text; encoder-decoders (T5) do both." },
-    { "id": "f032", "track": "foundations", "title": "Autoregressive Generation", "summary": "Generating text one token at a time, with each new token conditioned on all previously generated tokens." },
-    { "id": "f033", "track": "foundations", "title": "Softmax Function", "summary": "Converts raw model scores (logits) into a probability distribution over the vocabulary for next-token selection." },
-    { "id": "f034", "track": "foundations", "title": "Cross-entropy Loss", "summary": "The standard loss function for language model training, measuring divergence between predicted and actual token distributions." },
-    { "id": "f035", "track": "foundations", "title": "Knowledge Cutoff", "summary": "The date after which a model has no training data — events after this date are unknown to the model." },
-    { "id": "f036", "track": "foundations", "title": "Model Weights and Checkpoints", "summary": "Weights are the learned parameters; checkpoints are saved snapshots of weights at points during training." },
-    { "id": "f037", "track": "foundations", "title": "Inference vs Training", "summary": "Training updates model weights using data; inference uses fixed weights to generate predictions." },
-    { "id": "f038", "track": "foundations", "title": "Quantization", "summary": "Reducing model precision (e.g. 32-bit to 4-bit) to shrink memory footprint and speed up inference." },
-    { "id": "f039", "track": "foundations", "title": "Distillation", "summary": "Training a smaller student model to mimic the behavior of a larger teacher model." },
-    { "id": "f040", "track": "foundations", "title": "Sparse vs Dense Models", "summary": "Dense models activate all parameters per token; sparse models (MoE) activate only a fraction." },
-    { "id": "f041", "track": "foundations", "title": "Logits", "summary": "Raw, unnormalized scores output by the final layer of a model before softmax converts them to probabilities." },
-    { "id": "f042", "track": "foundations", "title": "Perplexity", "summary": "A metric for language model quality — lower perplexity means the model is less surprised by real text." },
-    { "id": "f043", "track": "foundations", "title": "Chain-of-Thought Reasoning", "summary": "Prompting technique where the model reasons step-by-step before giving a final answer, improving accuracy." },
-    { "id": "f044", "track": "foundations", "title": "Constitutional AI", "summary": "Anthropic's technique for training AI to self-critique and revise outputs according to a set of principles." },
-    { "id": "f045", "track": "foundations", "title": "Instruction Tuning", "summary": "Fine-tuning a base model on instruction-response pairs so it follows natural language directives." },
-    { "id": "f046", "track": "foundations", "title": "System Prompt", "summary": "Instructions given to a model before the conversation begins, shaping its persona, constraints, and behavior." },
-    { "id": "f047", "track": "foundations", "title": "Prompt Injection", "summary": "An attack where malicious text in input overrides or manipulates the system prompt or intended behavior." },
-    { "id": "f048", "track": "foundations", "title": "Emergent Capabilities", "summary": "Abilities that appear in large models that were not present in smaller versions and were not explicitly trained." },
-    { "id": "f049", "track": "foundations", "title": "AI Alignment", "summary": "The challenge of ensuring AI systems pursue goals that are beneficial and consistent with human values." },
-    { "id": "f050", "track": "foundations", "title": "The Turing Test", "summary": "A benchmark proposed by Alan Turing in 1950 where a machine passes if it is indistinguishable from a human in text conversation." },
-    { "id": "p001", "track": "practitioner", "title": "Prompt Engineering Fundamentals", "summary": "The craft of structuring inputs to reliably elicit desired outputs from language models." },
-    { "id": "p002", "track": "practitioner", "title": "System Prompts in Practice", "summary": "How to write effective system prompts that define model persona, scope, tone, and constraints." },
-    { "id": "p003", "track": "practitioner", "title": "Few-shot Prompting Patterns", "summary": "Providing worked examples in the prompt to demonstrate the exact format and reasoning style you want." },
-    { "id": "p004", "track": "practitioner", "title": "Chain-of-Thought Prompting", "summary": "Asking the model to show its reasoning steps, improving accuracy on math, logic, and multi-step tasks." },
-    { "id": "p005", "track": "practitioner", "title": "Retrieval-Augmented Generation (RAG)", "summary": "Combining a retrieval system with an LLM so answers are grounded in fetched, up-to-date documents." },
-    { "id": "p006", "track": "practitioner", "title": "Chunking Strategies for RAG", "summary": "How to split documents into chunks — by size, sentence, or semantic unit — for effective retrieval." },
-    { "id": "p007", "track": "practitioner", "title": "Embedding Models for Retrieval", "summary": "Choosing and using embedding models (OpenAI, Cohere, BGE) to index and query your document store." },
-    { "id": "p008", "track": "practitioner", "title": "Vector Databases in Practice", "summary": "Using Chroma, Pinecone, or Qdrant to store embeddings and run fast similarity search at scale." },
-    { "id": "p009", "track": "practitioner", "title": "Tool Use and Function Calling", "summary": "Giving models the ability to invoke external functions — APIs, calculators, search — to extend their capabilities." },
-    { "id": "p010", "track": "practitioner", "title": "Structured Output with JSON Mode", "summary": "Constraining model output to valid JSON for reliable downstream parsing in applications." },
-    { "id": "p011", "track": "practitioner", "title": "LLM APIs — OpenAI, Anthropic, Google", "summary": "Core differences in API design, pricing models, rate limits, and capability trade-offs across major providers." },
-    { "id": "p012", "track": "practitioner", "title": "Building a Chatbot with Memory", "summary": "Implementing conversation history management to maintain context across multi-turn interactions." },
-    { "id": "p013", "track": "practitioner", "title": "Streaming Responses", "summary": "Using server-sent events to stream tokens as they are generated for a faster, more responsive UX." },
-    { "id": "p014", "track": "practitioner", "title": "Token Counting and Cost Management", "summary": "Estimating token usage before API calls and controlling costs through truncation and caching strategies." },
-    { "id": "p015", "track": "practitioner", "title": "Prompt Templates and Variables", "summary": "Parameterizing prompts with dynamic values using template strings for reusable, maintainable prompt code." },
-    { "id": "p016", "track": "practitioner", "title": "Output Parsing and Validation", "summary": "Reliably extracting structured data from model responses and handling malformed outputs gracefully." },
-    { "id": "p017", "track": "practitioner", "title": "LangChain Core Concepts", "summary": "Chains, agents, tools, and memory — the four primitives of the LangChain framework." },
-    { "id": "p018", "track": "practitioner", "title": "LlamaIndex for Document Q&A", "summary": "Using LlamaIndex to ingest, index, and query large document collections with LLMs." },
-    { "id": "p019", "track": "practitioner", "title": "Fine-tuning with LoRA", "summary": "Low-Rank Adaptation enables efficient fine-tuning by training only a small number of additional parameters." },
-    { "id": "p020", "track": "practitioner", "title": "Dataset Preparation for Fine-tuning", "summary": "Formatting instruction-response pairs into JSONL and cleaning data for supervised fine-tuning." },
-    { "id": "p021", "track": "practitioner", "title": "Evaluation — Building an LLM Test Suite", "summary": "Writing deterministic and LLM-as-judge evaluations to measure model quality before shipping." },
-    { "id": "p022", "track": "practitioner", "title": "Prompt Versioning and Management", "summary": "Treating prompts as code — version control, A/B testing, and regression testing for prompt changes." },
-    { "id": "p023", "track": "practitioner", "title": "Agentic Loops", "summary": "Architectures where an LLM repeatedly reasons, acts, and observes until a task is complete." },
-    { "id": "p024", "track": "practitioner", "title": "ReAct Pattern", "summary": "Reason + Act: the model alternates between reasoning steps and tool-use actions to solve tasks." },
-    { "id": "p025", "track": "practitioner", "title": "Multi-agent Architectures", "summary": "Systems with multiple specialized LLM agents collaborating, each with distinct roles and tools." },
-    { "id": "p026", "track": "practitioner", "title": "Running Local Models with Ollama", "summary": "Using Ollama to run Llama, Mistral, and other open models on your laptop without cloud API costs." },
-    { "id": "p027", "track": "practitioner", "title": "Comparing Models for a Task", "summary": "Systematic approach to selecting the right model — capability, latency, cost, and context window trade-offs." },
-    { "id": "p028", "track": "practitioner", "title": "Image Input with Vision Models", "summary": "Sending images to multimodal APIs (GPT-4o, Claude, Gemini) for analysis, captioning, and extraction." },
-    { "id": "p029", "track": "practitioner", "title": "Building a PDF Q&A System", "summary": "Extract, chunk, embed, and query PDF content using RAG to answer questions over documents." },
-    { "id": "p030", "track": "practitioner", "title": "Web Scraping for LLM Context", "summary": "Fetching and cleaning web content to use as real-time context in LLM prompts." },
-    { "id": "p031", "track": "practitioner", "title": "Semantic Search vs Keyword Search", "summary": "Semantic search uses embeddings to find meaning; keyword search matches exact terms — both have trade-offs." },
-    { "id": "p032", "track": "practitioner", "title": "Hybrid Search", "summary": "Combining dense vector search with sparse BM25 keyword search for better retrieval coverage." },
-    { "id": "p033", "track": "practitioner", "title": "Re-ranking Retrieved Results", "summary": "Using a cross-encoder or LLM to re-score retrieved chunks by relevance before passing them to the model." },
-    { "id": "p034", "track": "practitioner", "title": "Summarization Strategies", "summary": "Map-reduce, refine, and rolling summarization patterns for handling long documents that exceed context limits." },
-    { "id": "p035", "track": "practitioner", "title": "Code Generation Best Practices", "summary": "Prompting techniques for reliable code output — including test-first generation and iterative debugging loops." },
-    { "id": "p036", "track": "practitioner", "title": "LLM Output Caching", "summary": "Caching identical or semantically similar prompts to reduce latency and API costs in production." },
-    { "id": "p037", "track": "practitioner", "title": "Guardrails and Input Validation", "summary": "Filtering and validating user inputs before they reach the model to prevent misuse and prompt injection." },
-    { "id": "p038", "track": "practitioner", "title": "Building a Classifier with an LLM", "summary": "Using an LLM with a structured prompt to categorize, route, or label text without training a custom model." },
-    { "id": "p039", "track": "practitioner", "title": "Named Entity Recognition with LLMs", "summary": "Extracting structured entities (names, dates, amounts) from unstructured text using prompted LLMs." },
-    { "id": "p040", "track": "practitioner", "title": "Sentiment Analysis with LLMs", "summary": "Classifying emotional tone in text — and getting confidence scores and explanations — using LLM prompts." },
-    { "id": "p041", "track": "practitioner", "title": "Translation with LLMs", "summary": "Using LLMs for nuanced translation that preserves tone, idiom, and domain-specific terminology." },
-    { "id": "p042", "track": "practitioner", "title": "Data Extraction from Unstructured Text", "summary": "Pulling structured fields from emails, reports, and documents using prompted LLMs with JSON output." },
-    { "id": "p043", "track": "practitioner", "title": "LLM-based Routing", "summary": "Using a fast, cheap LLM to classify user intent and route requests to specialized downstream handlers." },
-    { "id": "p044", "track": "practitioner", "title": "Fallback and Retry Strategies", "summary": "Handling API failures, timeouts, and malformed outputs gracefully with exponential backoff and fallback models." },
-    { "id": "p045", "track": "practitioner", "title": "Batch Processing with LLMs", "summary": "Processing large volumes of documents asynchronously using batch API endpoints to reduce cost and latency." },
-    { "id": "p046", "track": "practitioner", "title": "System Design for LLM Applications", "summary": "Architectural patterns for building scalable, maintainable LLM apps — separation of concerns and state management." },
-    { "id": "p047", "track": "practitioner", "title": "Evaluating RAG Systems", "summary": "Metrics for RAG quality: retrieval precision, answer faithfulness, and answer relevance." },
-    { "id": "p048", "track": "practitioner", "title": "Context Stuffing vs RAG Trade-offs", "summary": "When to stuff all context into a long-context model vs when to use retrieval — cost, latency, and accuracy." },
-    { "id": "p049", "track": "practitioner", "title": "Building with the Vercel AI SDK", "summary": "Using the Vercel AI SDK for streaming, tool use, and multi-provider model switching in TypeScript web apps." },
-    { "id": "p050", "track": "practitioner", "title": "Cursor and AI-native Development", "summary": "How AI-native IDEs like Cursor change the development workflow with codebase-aware chat and autocomplete." },
-    { "id": "pr001", "track": "production", "title": "Latency Optimization for LLM APIs", "summary": "Techniques to reduce response time: streaming, caching, smaller models, and prompt length reduction." },
-    { "id": "pr002", "track": "production", "title": "LLM Observability and Tracing", "summary": "Using tools like LangSmith, Helicone, or Langfuse to trace every LLM call, input, output, and cost." },
-    { "id": "pr003", "track": "production", "title": "Rate Limiting and Quota Management", "summary": "Handling API rate limits gracefully with queues, backoff, and per-user quotas in your application." },
-    { "id": "pr004", "track": "production", "title": "Prompt Security in Production", "summary": "Preventing prompt injection, jailbreaks, and data leakage in user-facing LLM applications." },
-    { "id": "pr005", "track": "production", "title": "Cost Monitoring and Budgets", "summary": "Setting spend alerts, tracking per-request costs, and choosing models based on cost-performance trade-offs." },
-    { "id": "pr006", "track": "production", "title": "A/B Testing Prompts", "summary": "Running controlled experiments to compare prompt variants on real user traffic before full rollout." },
-    { "id": "pr007", "track": "production", "title": "Model Versioning and Rollback", "summary": "Pinning to specific model versions and maintaining rollback capability when providers release updates." },
-    { "id": "pr008", "track": "production", "title": "Human-in-the-Loop Workflows", "summary": "Designing systems where humans review, correct, or approve AI outputs before they take effect." },
-    { "id": "pr009", "track": "production", "title": "Confidence Scoring and Uncertainty", "summary": "Estimating how confident an LLM is in its output and routing low-confidence cases to human review." },
-    { "id": "pr010", "track": "production", "title": "LLM Output Moderation", "summary": "Using moderation APIs or a secondary LLM to filter harmful, off-topic, or policy-violating outputs." },
-    { "id": "pr011", "track": "production", "title": "Data Privacy in LLM Applications", "summary": "PII detection, data minimization, and ensuring user data is not inadvertently sent to third-party model APIs." },
-    { "id": "pr012", "track": "production", "title": "Serving Open-source Models at Scale", "summary": "Deploying Llama or Mistral with vLLM, TGI, or Modal for high-throughput, low-latency inference." },
-    { "id": "pr013", "track": "production", "title": "vLLM and PagedAttention", "summary": "vLLM's memory management technique that enables significantly higher throughput for batched inference." },
-    { "id": "pr014", "track": "production", "title": "Kubernetes for AI Workloads", "summary": "Orchestrating GPU nodes, model servers, and autoscaling for AI inference in Kubernetes." },
-    { "id": "pr015", "track": "production", "title": "Continuous Evaluation in CI/CD", "summary": "Running LLM eval suites automatically on every deployment to catch regressions before they reach users." },
-    { "id": "pr016", "track": "production", "title": "Feedback Loops and Data Flywheels", "summary": "Collecting user feedback to continuously improve model quality through fine-tuning and prompt iteration." },
-    { "id": "pr017", "track": "production", "title": "Multi-tenant LLM Architecture", "summary": "Isolating prompts, context, and data between customers in a shared LLM backend." },
-    { "id": "pr018", "track": "production", "title": "Edge Inference", "summary": "Running small quantized models on-device (mobile, browser, IoT) to eliminate latency and preserve privacy." },
-    { "id": "pr019", "track": "production", "title": "Fallback Model Chains", "summary": "Routing to a cheaper model first and escalating to a more capable one only when needed." },
-    { "id": "pr020", "track": "production", "title": "SLAs for AI Features", "summary": "Setting and monitoring latency, uptime, and quality SLAs for AI-powered features in production products." },
-    { "id": "pr021", "track": "production", "title": "Semantic Caching", "summary": "Caching LLM responses based on embedding similarity of prompts — not just exact string matches." },
-    { "id": "pr022", "track": "production", "title": "Load Testing LLM Applications", "summary": "Simulating concurrent users to measure throughput, latency percentiles, and failure modes under load." },
-    { "id": "pr023", "track": "production", "title": "Prompt Injection Defenses", "summary": "Architectural and prompt-level defenses against adversarial inputs designed to hijack model behavior." },
-    { "id": "pr024", "track": "production", "title": "Compliance and Audit Logging", "summary": "Logging every LLM interaction with user ID, prompt, response, and timestamp for regulatory compliance." },
-    { "id": "pr025", "track": "production", "title": "GPU Memory Management", "summary": "Understanding VRAM requirements for inference and techniques like KV cache management to maximize throughput." },
-    { "id": "pr026", "track": "production", "title": "Speculative Decoding", "summary": "Using a small draft model to propose tokens that a larger model verifies in parallel, speeding up inference." },
-    { "id": "pr027", "track": "production", "title": "Model Routing by Task", "summary": "Dynamically selecting the right model (fast/cheap vs capable/expensive) based on detected task complexity." },
-    { "id": "pr028", "track": "production", "title": "Feature Flags for AI", "summary": "Using feature flags to gradually roll out new models or prompts to subsets of users." },
-    { "id": "pr029", "track": "production", "title": "Incident Response for AI Systems", "summary": "Runbooks and protocols for handling AI-specific incidents: hallucination spikes, toxicity, and API outages." },
-    { "id": "pr030", "track": "production", "title": "LLM Infrastructure Cost Architecture", "summary": "Designing infrastructure to balance inference cost, latency, and reliability across cloud and self-hosted options." },
-    { "id": "pr031", "track": "production", "title": "Token Streaming Architecture", "summary": "Backend and frontend patterns for reliably delivering streamed tokens to users with proper error handling." },
-    { "id": "pr032", "track": "production", "title": "Canary Deployments for Models", "summary": "Rolling out new model versions to a small percentage of traffic first to catch quality regressions early." },
-    { "id": "pr033", "track": "production", "title": "Shadow Mode Testing", "summary": "Running a new model alongside the current one on live traffic to compare outputs before switching." },
-    { "id": "pr034", "track": "production", "title": "Retrieval Latency Optimization", "summary": "Techniques to reduce vector search latency: index tuning, ANN algorithms, and approximate search." },
-    { "id": "pr035", "track": "production", "title": "Multi-region LLM Deployment", "summary": "Deploying model endpoints across regions to reduce latency and ensure data residency compliance." },
-    { "id": "pr036", "track": "production", "title": "Input and Output Schema Validation", "summary": "Enforcing strict schemas on LLM inputs and outputs using Pydantic or Zod to catch errors early." },
-    { "id": "pr037", "track": "production", "title": "Async LLM Request Handling", "summary": "Using async/await patterns and job queues to handle LLM requests without blocking application threads." },
-    { "id": "pr038", "track": "production", "title": "Cold Start Optimization", "summary": "Reducing model initialization time on serverless inference platforms through pre-warming and caching." },
-    { "id": "pr039", "track": "production", "title": "Monitoring Embedding Drift", "summary": "Detecting when the distribution of user queries shifts away from the data used to build your retrieval index." },
-    { "id": "pr040", "track": "production", "title": "LLMOps Platforms Overview", "summary": "Comparing LLMOps tools — LangSmith, Weights & Biases, Helicone, Arize — for production monitoring." },
-    { "id": "pr041", "track": "production", "title": "Dependency Management for AI Stacks", "summary": "Managing rapidly evolving AI library versions and avoiding breaking changes in LangChain, OpenAI SDK, etc." },
-    { "id": "pr042", "track": "production", "title": "Graceful Degradation in AI Features", "summary": "Designing AI features to fall back to rule-based behavior when the model is unavailable or produces low-quality output." },
-    { "id": "pr043", "track": "production", "title": "API Gateway Patterns for LLMs", "summary": "Using an API gateway layer to centralize auth, rate limiting, logging, and model routing for LLM backends." },
-    { "id": "pr044", "track": "production", "title": "Context Window Overflow Handling", "summary": "Strategies for when input exceeds the model's context limit: truncation, summarization, and chunking." },
-    { "id": "pr045", "track": "production", "title": "Evaluating LLM Quality at Scale", "summary": "Running automated evals across thousands of test cases using LLM-as-judge and human spot-checks." },
-    { "id": "pr046", "track": "production", "title": "GDPR and AI Data Handling", "summary": "Requirements for AI systems processing EU user data: consent, purpose limitation, and data subject rights." },
-    { "id": "pr047", "track": "production", "title": "Prompt Length vs Quality Trade-offs", "summary": "Longer prompts improve instruction clarity but increase latency and cost — finding the optimal balance." },
-    { "id": "pr048", "track": "production", "title": "Model Card Reading", "summary": "Understanding what model cards tell you about intended use, limitations, and evaluation results." },
-    { "id": "pr049", "track": "production", "title": "AI Feature Rollout Checklist", "summary": "Pre-launch checklist covering eval, moderation, privacy, cost, and monitoring for AI features." },
-    { "id": "pr050", "track": "production", "title": "Post-mortems for AI Incidents", "summary": "Writing blameless post-mortems for AI system failures with a focus on systemic improvements." },
-    { "id": "fr001", "track": "frontier", "title": "GPT-4o and Omni Models", "summary": "Natively multimodal models that process and generate text, audio, and images in a unified architecture." },
-    { "id": "fr002", "track": "frontier", "title": "Claude's Extended Thinking", "summary": "Anthropic's approach to giving Claude dedicated reasoning time before responding to improve accuracy." },
-    { "id": "fr003", "track": "frontier", "title": "OpenAI o1 and Reasoning Models", "summary": "Models trained to reason extensively before answering, with major gains on math and logical tasks." },
-    { "id": "fr004", "track": "frontier", "title": "Gemini 1.5 and Long Context", "summary": "Google's model with 1M+ token context, enabling analysis of entire codebases, films, or book collections." },
-    { "id": "fr005", "track": "frontier", "title": "Mixture of Experts at Frontier Scale", "summary": "How GPT-4, Mixtral, and other frontier models use MoE to achieve high capability with manageable compute." },
-    { "id": "fr006", "track": "frontier", "title": "Multimodal Understanding vs Generation", "summary": "The distinction between models that understand multiple modalities and those that generate across them." },
-    { "id": "fr007", "track": "frontier", "title": "AI Agents in the Wild", "summary": "Real deployments of autonomous AI agents — from coding assistants to customer service — and their failure modes." },
-    { "id": "fr008", "track": "frontier", "title": "Computer Use and GUI Agents", "summary": "Models that can see a screen and control a computer, enabling automation of any desktop task." },
-    { "id": "fr009", "track": "frontier", "title": "Text-to-Video: Sora and Beyond", "summary": "OpenAI Sora and competing models that generate temporally consistent, high-fidelity video from text." },
-    { "id": "fr010", "track": "frontier", "title": "AlphaFold and Scientific AI", "summary": "DeepMind's breakthrough in protein structure prediction and what it means for AI-driven scientific discovery." },
-    { "id": "fr011", "track": "frontier", "title": "LLM-based Theorem Proving", "summary": "AI systems like AlphaProof that can formally verify and discover mathematical proofs." },
-    { "id": "fr012", "track": "frontier", "title": "Reinforcement Learning for Reasoning", "summary": "Using RL reward signals — process and outcome — to train models with improved step-by-step reasoning." },
-    { "id": "fr013", "track": "frontier", "title": "Self-improvement and Recursive AI", "summary": "Architectures where AI systems generate training data or improve their own weights — and the risks involved." },
-    { "id": "fr014", "track": "frontier", "title": "World Models", "summary": "AI systems that build internal simulations of physical or social environments to enable planning and prediction." },
-    { "id": "fr015", "track": "frontier", "title": "Sparse Autoencoders and Interpretability", "summary": "Using sparse autoencoders to decompose LLM activations into human-interpretable features." },
-    { "id": "fr016", "track": "frontier", "title": "Mechanistic Interpretability", "summary": "Reverse-engineering the internal computations of neural networks to understand what they are actually doing." },
-    { "id": "fr017", "track": "frontier", "title": "Superposition in Neural Networks", "summary": "The phenomenon where models represent more features than they have neurons by overlapping representations." },
-    { "id": "fr018", "track": "frontier", "title": "Constitutional AI and RLAIF", "summary": "Training models using AI feedback rather than human feedback, scaling alignment with AI-generated critiques." },
-    { "id": "fr019", "track": "frontier", "title": "Frontier Model Safety Evaluations", "summary": "How labs like Anthropic, OpenAI, and Google evaluate models for dangerous capabilities before release." },
-    { "id": "fr020", "track": "frontier", "title": "AI Diplomacy and Strategy Games", "summary": "AI systems that master complex negotiation and strategy games requiring long-horizon planning and deception." },
-    { "id": "fr021", "track": "frontier", "title": "Scaling Hypothesis Debate", "summary": "The ongoing debate about whether continued scaling of data and compute will lead to AGI or hit fundamental limits." },
-    { "id": "fr022", "track": "frontier", "title": "Test-Time Compute Scaling", "summary": "Spending more compute at inference time — through search, sampling, and reasoning — rather than just training." },
-    { "id": "fr023", "track": "frontier", "title": "Synthetic Data Generation", "summary": "Using AI to generate training data, enabling models to learn from far more examples than exist in the real world." },
-    { "id": "fr024", "track": "frontier", "title": "Long-horizon Task Completion", "summary": "The challenge of getting AI agents to reliably complete tasks requiring dozens or hundreds of sequential steps." },
-    { "id": "fr025", "track": "frontier", "title": "Memory Architectures for Agents", "summary": "Episodic, semantic, and procedural memory designs for AI agents that need to learn and retain over time." },
-    { "id": "fr026", "track": "frontier", "title": "Foundation Models for Robotics", "summary": "Adapting LLMs and vision models for robot control — from manipulation to navigation — in real environments." },
-    { "id": "fr027", "track": "frontier", "title": "AI-generated Code at Scale", "summary": "Frontier models like Claude Code and Devin that can write, test, and deploy entire software systems autonomously." },
-    { "id": "fr028", "track": "frontier", "title": "Neurosymbolic AI", "summary": "Combining neural networks with symbolic reasoning systems to get the benefits of both approaches." },
-    { "id": "fr029", "track": "frontier", "title": "Latent Space Geometry", "summary": "The structure and properties of high-dimensional embedding spaces that determine model capabilities." },
-    { "id": "fr030", "track": "frontier", "title": "AI-to-AI Communication", "summary": "Emerging protocols and architectures for AI agents to coordinate and communicate with each other directly." },
-    { "id": "fr031", "track": "frontier", "title": "Diffusion Models for Text", "summary": "Applying diffusion model architectures to text generation as an alternative to autoregressive approaches." },
-    { "id": "fr032", "track": "frontier", "title": "State Space Models — Mamba", "summary": "Mamba and S4 models as efficient alternatives to transformers for long-sequence modeling." },
-    { "id": "fr033", "track": "frontier", "title": "Flash Attention", "summary": "A memory-efficient attention algorithm that enables training much longer sequences without running out of GPU memory." },
-    { "id": "fr034", "track": "frontier", "title": "Frontier AI Governance", "summary": "International efforts to regulate frontier AI development, from the EU AI Act to the Seoul AI Safety Summit." },
-    { "id": "fr035", "track": "frontier", "title": "AI in Drug Discovery", "summary": "How AI systems are accelerating pharmaceutical research from target identification to clinical trial design." },
-    { "id": "fr036", "track": "frontier", "title": "Autonomous Research Agents", "summary": "AI systems that can design experiments, run simulations, and iterate on scientific hypotheses independently." },
-    { "id": "fr037", "track": "frontier", "title": "Emergent Reasoning in Small Models", "summary": "How distillation and reasoning training are bringing o1-class reasoning capabilities to smaller, cheaper models." },
-    { "id": "fr038", "track": "frontier", "title": "Video Understanding at Scale", "summary": "Models that can process and reason over long-form video for summarization, search, and question answering." },
-    { "id": "fr039", "track": "frontier", "title": "AI Companions and Long-term Memory", "summary": "Architectures for AI systems that maintain persistent memory across thousands of interactions with a user." },
-    { "id": "fr040", "track": "frontier", "title": "Debate as an Alignment Technique", "summary": "Training AI to be honest by having two models argue opposing positions, with humans judging the winner." },
-    { "id": "fr041", "track": "frontier", "title": "Activation Steering", "summary": "Directly modifying model activations at inference time to steer behavior without changing weights." },
-    { "id": "fr042", "track": "frontier", "title": "LLM Planning and Tree Search", "summary": "Using tree-of-thought and Monte Carlo tree search with LLMs to solve multi-step planning problems." },
-    { "id": "fr043", "track": "frontier", "title": "Cross-modal Grounding", "summary": "Connecting visual and linguistic representations so models develop shared meaning across modalities." },
-    { "id": "fr044", "track": "frontier", "title": "Frontier Model Evaluations — ARC-AGI", "summary": "The ARC-AGI benchmark and why it has remained one of the hardest tests for general AI reasoning." },
-    { "id": "fr045", "track": "frontier", "title": "AI and Chip Design", "summary": "How AI is accelerating the design of the next generation of chips, creating a feedback loop for AI progress." },
-    { "id": "fr046", "track": "frontier", "title": "In-context Reinforcement Learning", "summary": "Models that can perform RL-style adaptation purely from examples in their context window." },
-    { "id": "fr047", "track": "frontier", "title": "Towards AGI — Definitions and Milestones", "summary": "How researchers define AGI, what milestones matter, and the disagreements about how close we are." },
-    { "id": "fr048", "track": "frontier", "title": "Model Merging", "summary": "Combining weights from multiple fine-tuned models to produce a single model with multiple capabilities." },
-    { "id": "fr049", "track": "frontier", "title": "Continual Learning", "summary": "Training models to learn new information without forgetting previously learned knowledge — avoiding catastrophic forgetting." },
-    { "id": "fr050", "track": "frontier", "title": "AI Safety via Debate", "summary": "Paul Christiano's proposal to use AI-generated debate as a scalable method for human oversight of capable AI." },
-    { "id": "i001", "track": "industry", "title": "AI in Software Development", "summary": "How AI coding tools are changing developer productivity, code review, and the skills that matter." },
-    { "id": "i002", "track": "industry", "title": "AI in Customer Support", "summary": "Deploying LLMs for tier-1 support deflection, agent assist, and automated ticket resolution." },
-    { "id": "i003", "track": "industry", "title": "AI in Healthcare — Clinical Decision Support", "summary": "LLMs and diagnostic AI helping clinicians with differential diagnosis, summarization, and protocol adherence." },
-    { "id": "i004", "track": "industry", "title": "AI in Legal — Contract Analysis", "summary": "Using LLMs to review, redline, and extract obligations from contracts at scale." },
-    { "id": "i005", "track": "industry", "title": "AI in Finance — Fraud Detection", "summary": "ML models for real-time transaction anomaly detection and adaptive fraud pattern recognition." },
-    { "id": "i006", "track": "industry", "title": "AI in HR — Resume Screening", "summary": "Automating candidate screening with LLMs and the bias, compliance, and fairness issues this raises." },
-    { "id": "i007", "track": "industry", "title": "AI in Marketing — Content Generation", "summary": "Using LLMs for ad copy, email campaigns, and SEO content — and the brand voice control challenges." },
-    { "id": "i008", "track": "industry", "title": "AI in Education — Personalized Tutoring", "summary": "AI tutors that adapt explanations to individual students and provide instant, detailed feedback." },
-    { "id": "i009", "track": "industry", "title": "AI in Manufacturing — Predictive Maintenance", "summary": "ML models that predict equipment failure from sensor data, reducing unplanned downtime." },
-    { "id": "i010", "track": "industry", "title": "AI in Retail — Recommendation Engines", "summary": "Collaborative filtering and LLM-powered recommendation systems that drive e-commerce revenue." },
-    { "id": "i011", "track": "industry", "title": "AI in Supply Chain", "summary": "Demand forecasting, inventory optimization, and disruption prediction using ML in supply chain management." },
-    { "id": "i012", "track": "industry", "title": "AI in Cybersecurity", "summary": "Using AI for threat detection, vulnerability scanning, and automated incident response." },
-    { "id": "i013", "track": "industry", "title": "AI in Insurance — Underwriting", "summary": "ML models for risk scoring, claims processing automation, and personalized pricing." },
-    { "id": "i014", "track": "industry", "title": "AI in Real Estate", "summary": "Automated valuation models, property search, and document processing in real estate transactions." },
-    { "id": "i015", "track": "industry", "title": "AI in Media — Content Moderation", "summary": "Automated detection of policy-violating content at scale across text, image, and video." },
-    { "id": "i016", "track": "industry", "title": "AI in Logistics — Route Optimization", "summary": "ML-driven routing algorithms that reduce delivery cost and time for last-mile logistics." },
-    { "id": "i017", "track": "industry", "title": "AI in Agriculture", "summary": "Crop yield prediction, precision irrigation, and disease detection using satellite imagery and ML." },
-    { "id": "i018", "track": "industry", "title": "AI in Energy — Grid Optimization", "summary": "ML for demand forecasting, renewable integration, and smart grid management." },
-    { "id": "i019", "track": "industry", "title": "AI in Autonomous Vehicles", "summary": "The perception, planning, and decision-making stack that enables self-driving cars." },
-    { "id": "i020", "track": "industry", "title": "AI in Financial Trading", "summary": "Algorithmic trading, sentiment analysis, and LLM-based market research in quantitative finance." },
-    { "id": "i021", "track": "industry", "title": "AI in Government and Public Sector", "summary": "AI applications in public services: benefits processing, document automation, and policy analysis." },
-    { "id": "i022", "track": "industry", "title": "AI in Journalism", "summary": "Automated report generation, fact-checking tools, and AI-assisted investigative research." },
-    { "id": "i023", "track": "industry", "title": "AI in Gaming", "summary": "Procedural content generation, NPC behavior, and AI game masters that adapt to player choices." },
-    { "id": "i024", "track": "industry", "title": "AI in Architecture and Design", "summary": "Generative design tools that explore solution spaces for buildings, products, and urban layouts." },
-    { "id": "i025", "track": "industry", "title": "AI in Pharma — Clinical Trials", "summary": "AI for patient recruitment, trial design optimization, and adverse event detection in clinical research." },
-    { "id": "i026", "track": "industry", "title": "AI for Accessibility", "summary": "Tools that use AI to improve accessibility: real-time captions, image descriptions, and communication aids." },
-    { "id": "i027", "track": "industry", "title": "AI in Translation and Localization", "summary": "Neural machine translation and LLMs transforming the localization industry and the role of human translators." },
-    { "id": "i028", "track": "industry", "title": "AI in Accounting and Audit", "summary": "Automated transaction classification, anomaly detection, and AI-assisted audit sampling." },
-    { "id": "i029", "track": "industry", "title": "AI in Talent Development", "summary": "Personalized learning paths, skill gap analysis, and AI coaching tools for workforce development." },
-    { "id": "i030", "track": "industry", "title": "AI Regulation — EU AI Act", "summary": "The EU AI Act's risk-based framework, prohibited uses, and compliance obligations for AI systems." },
-    { "id": "i031", "track": "industry", "title": "AI Ethics in Practice", "summary": "Moving from ethical principles to operational processes: bias audits, impact assessments, and red teaming." },
-    { "id": "i032", "track": "industry", "title": "AI and the Future of Work", "summary": "Evidence on how AI is changing job tasks, skill demands, and labor market outcomes across industries." },
-    { "id": "i033", "track": "industry", "title": "Build vs Buy AI Decisions", "summary": "Framework for deciding when to use off-the-shelf AI APIs versus building custom models for a use case." },
-    { "id": "i034", "track": "industry", "title": "AI ROI Measurement", "summary": "How to measure the business value of AI investments through attribution, baselines, and controlled experiments." },
-    { "id": "i035", "track": "industry", "title": "IT Operations and AIOps", "summary": "Using ML for log analysis, anomaly detection, and automated remediation in IT operations." },
-    { "id": "i036", "track": "industry", "title": "AI for ITSM — ServiceNow and Beyond", "summary": "AI-powered ticket routing, knowledge management, and self-service in IT service management platforms." },
-    { "id": "i037", "track": "industry", "title": "Enterprise AI Governance", "summary": "Policies, controls, and oversight structures for managing AI risk in large organizations." },
-    { "id": "i038", "track": "industry", "title": "AI Procurement and Vendor Evaluation", "summary": "How to evaluate AI vendors: capability, reliability, security, pricing, and contractual protections." },
-    { "id": "i039", "track": "industry", "title": "Shadow AI in the Enterprise", "summary": "The risk of employees using unauthorized AI tools with company data — and how to respond." },
-    { "id": "i040", "track": "industry", "title": "AI Change Management", "summary": "Managing the human side of AI adoption: resistance, retraining, and building a culture of AI literacy." },
-    { "id": "i041", "track": "industry", "title": "AI in Sales — Lead Scoring", "summary": "ML models that rank leads by conversion probability to help sales teams prioritize their time." },
-    { "id": "i042", "track": "industry", "title": "AI for Business Intelligence", "summary": "Natural language interfaces to data, automated insight generation, and AI-powered dashboards." },
-    { "id": "i043", "track": "industry", "title": "AI in Mental Health", "summary": "AI-powered therapy support tools, crisis detection, and the ethical boundaries of AI in mental healthcare." },
-    { "id": "i044", "track": "industry", "title": "AI in Sports Analytics", "summary": "Performance prediction, injury prevention, and tactical analysis using computer vision and ML in sports." },
-    { "id": "i045", "track": "industry", "title": "AI Copyright and IP Issues", "summary": "Unresolved legal questions around AI training data, generated content ownership, and licensing." },
-    { "id": "i046", "track": "industry", "title": "AI and Climate Change", "summary": "AI applications for climate modeling, emissions reduction, and the energy cost of training large models." },
-    { "id": "i047", "track": "industry", "title": "Conversational AI for Enterprise", "summary": "Deploying enterprise chatbots with RAG over internal knowledge bases, integrated with ticketing and CRM." },
-    { "id": "i048", "track": "industry", "title": "AI in Product Management", "summary": "Using AI for user research synthesis, feature prioritization, and product analytics at scale." },
-    { "id": "i049", "track": "industry", "title": "AI Strategy for IT Managers", "summary": "How IT leaders can build an AI roadmap: prioritizing use cases, managing risk, and enabling adoption." },
-    { "id": "i050", "track": "industry", "title": "Measuring AI Maturity", "summary": "Frameworks for assessing an organization's AI maturity across strategy, data, talent, and governance." }
+    {
+      "id": "f001",
+      "track": "foundations",
+      "title": "What is a Neural Network?",
+      "summary": "Layers of connected nodes that learn patterns from data by adjusting weights during training.",
+      "slug": "what-is-a-neural-network"
+    },
+    {
+      "id": "f002",
+      "track": "foundations",
+      "title": "Supervised vs Unsupervised Learning",
+      "summary": "Supervised learning uses labeled examples; unsupervised learning finds structure in unlabeled data.",
+      "slug": "supervised-vs-unsupervised-learning"
+    },
+    {
+      "id": "f003",
+      "track": "foundations",
+      "title": "What is a Large Language Model?",
+      "summary": "A neural network trained on massive text corpora to predict and generate human language.",
+      "slug": "what-is-a-large-language-model"
+    },
+    {
+      "id": "f004",
+      "track": "foundations",
+      "title": "Tokens and Tokenization",
+      "summary": "LLMs process text as tokens \u2014 subword chunks \u2014 not raw characters or whole words.",
+      "slug": "tokens-and-tokenization"
+    },
+    {
+      "id": "f005",
+      "track": "foundations",
+      "title": "The Transformer Architecture",
+      "summary": "The attention-based architecture introduced in 2017 that underlies virtually every modern LLM.",
+      "slug": "the-transformer-architecture"
+    },
+    {
+      "id": "f006",
+      "track": "foundations",
+      "title": "Attention Mechanism",
+      "summary": "Allows the model to weigh how relevant each token is to every other token when generating output.",
+      "slug": "attention-mechanism"
+    },
+    {
+      "id": "f007",
+      "track": "foundations",
+      "title": "Context Window",
+      "summary": "The maximum number of tokens a model can process at once \u2014 both input and output combined.",
+      "slug": "context-window"
+    },
+    {
+      "id": "f008",
+      "track": "foundations",
+      "title": "Temperature and Sampling",
+      "summary": "Temperature controls randomness in token selection; higher values produce more creative, less predictable output.",
+      "slug": "temperature-and-sampling"
+    },
+    {
+      "id": "f009",
+      "track": "foundations",
+      "title": "Top-p and Top-k Sampling",
+      "summary": "Sampling strategies that limit token selection to the most probable candidates, controlling output diversity.",
+      "slug": "top-p-and-top-k-sampling"
+    },
+    {
+      "id": "f010",
+      "track": "foundations",
+      "title": "Pre-training vs Fine-tuning",
+      "summary": "Pre-training builds general knowledge from massive data; fine-tuning adapts the model to specific tasks.",
+      "slug": "pre-training-vs-fine-tuning"
+    },
+    {
+      "id": "f011",
+      "track": "foundations",
+      "title": "RLHF \u2014 Reinforcement Learning from Human Feedback",
+      "summary": "Training technique that uses human preference ratings to align model outputs with desired behavior.",
+      "slug": "rlhf-reinforcement-learning-from-human-feedback"
+    },
+    {
+      "id": "f012",
+      "track": "foundations",
+      "title": "Embeddings",
+      "summary": "Dense numerical vectors that represent the semantic meaning of text, enabling similarity comparisons.",
+      "slug": "embeddings"
+    },
+    {
+      "id": "f013",
+      "track": "foundations",
+      "title": "Vector Similarity and Cosine Distance",
+      "summary": "Measuring how semantically similar two embeddings are using the angle between their vectors.",
+      "slug": "vector-similarity-and-cosine-distance"
+    },
+    {
+      "id": "f014",
+      "track": "foundations",
+      "title": "Loss Functions",
+      "summary": "Mathematical functions that quantify how far a model's predictions are from the correct answers during training.",
+      "slug": "loss-functions"
+    },
+    {
+      "id": "f015",
+      "track": "foundations",
+      "title": "Gradient Descent",
+      "summary": "The optimization algorithm that iteratively adjusts model weights to minimize the loss function.",
+      "slug": "gradient-descent"
+    },
+    {
+      "id": "f016",
+      "track": "foundations",
+      "title": "Backpropagation",
+      "summary": "Algorithm for computing gradients through a network by propagating errors from output back to input layers.",
+      "slug": "backpropagation"
+    },
+    {
+      "id": "f017",
+      "track": "foundations",
+      "title": "Overfitting and Regularization",
+      "summary": "Overfitting is memorizing training data; regularization techniques like dropout prevent this.",
+      "slug": "overfitting-and-regularization"
+    },
+    {
+      "id": "f018",
+      "track": "foundations",
+      "title": "Batch Size and Learning Rate",
+      "summary": "Key hyperparameters: batch size controls training stability; learning rate controls how fast weights update.",
+      "slug": "batch-size-and-learning-rate"
+    },
+    {
+      "id": "f019",
+      "track": "foundations",
+      "title": "Model Parameters vs Hyperparameters",
+      "summary": "Parameters are learned during training; hyperparameters are set before training and control the process.",
+      "slug": "model-parameters-vs-hyperparameters"
+    },
+    {
+      "id": "f020",
+      "track": "foundations",
+      "title": "Benchmarks \u2014 MMLU, HumanEval, HellaSwag",
+      "summary": "Standardized evaluation datasets used to compare model capabilities across reasoning, coding, and comprehension.",
+      "slug": "benchmarks-mmlu-humaneval-hellaswag"
+    },
+    {
+      "id": "f021",
+      "track": "foundations",
+      "title": "Hallucination",
+      "summary": "When a model generates plausible-sounding but factually incorrect or fabricated information.",
+      "slug": "hallucination"
+    },
+    {
+      "id": "f022",
+      "track": "foundations",
+      "title": "Grounding",
+      "summary": "Connecting model outputs to verified external sources to reduce hallucination and improve factual accuracy.",
+      "slug": "grounding"
+    },
+    {
+      "id": "f023",
+      "track": "foundations",
+      "title": "Zero-shot vs Few-shot Learning",
+      "summary": "Zero-shot uses no examples; few-shot provides a small number of examples in the prompt to guide the model.",
+      "slug": "zero-shot-vs-few-shot-learning"
+    },
+    {
+      "id": "f024",
+      "track": "foundations",
+      "title": "In-context Learning",
+      "summary": "The model's ability to adapt its behavior based on examples or instructions provided in the prompt itself.",
+      "slug": "in-context-learning"
+    },
+    {
+      "id": "f025",
+      "track": "foundations",
+      "title": "Multimodal Models",
+      "summary": "Models that process and generate multiple data types \u2014 text, images, audio, or video \u2014 in a single system.",
+      "slug": "multimodal-models"
+    },
+    {
+      "id": "f026",
+      "track": "foundations",
+      "title": "Model Size and Scaling Laws",
+      "summary": "Larger models trained on more data consistently perform better \u2014 a relationship described by empirical scaling laws.",
+      "slug": "model-size-and-scaling-laws"
+    },
+    {
+      "id": "f027",
+      "track": "foundations",
+      "title": "Mixture of Experts (MoE)",
+      "summary": "Architecture where only a subset of model parameters are activated per token, enabling larger models efficiently.",
+      "slug": "mixture-of-experts-moe"
+    },
+    {
+      "id": "f028",
+      "track": "foundations",
+      "title": "Positional Encoding",
+      "summary": "Mechanism that injects token order information into transformer inputs, since attention is inherently order-agnostic.",
+      "slug": "positional-encoding"
+    },
+    {
+      "id": "f029",
+      "track": "foundations",
+      "title": "Layer Normalization",
+      "summary": "Normalization technique applied within transformer layers to stabilize and accelerate training.",
+      "slug": "layer-normalization"
+    },
+    {
+      "id": "f030",
+      "track": "foundations",
+      "title": "Feed-forward Layers in Transformers",
+      "summary": "The MLP component in each transformer block that processes each token independently after attention.",
+      "slug": "feed-forward-layers-in-transformers"
+    },
+    {
+      "id": "f031",
+      "track": "foundations",
+      "title": "Encoder vs Decoder Models",
+      "summary": "Encoders (BERT) understand text; decoders (GPT) generate text; encoder-decoders (T5) do both.",
+      "slug": "encoder-vs-decoder-models"
+    },
+    {
+      "id": "f032",
+      "track": "foundations",
+      "title": "Autoregressive Generation",
+      "summary": "Generating text one token at a time, with each new token conditioned on all previously generated tokens.",
+      "slug": "autoregressive-generation"
+    },
+    {
+      "id": "f033",
+      "track": "foundations",
+      "title": "Softmax Function",
+      "summary": "Converts raw model scores (logits) into a probability distribution over the vocabulary for next-token selection.",
+      "slug": "softmax-function"
+    },
+    {
+      "id": "f034",
+      "track": "foundations",
+      "title": "Cross-entropy Loss",
+      "summary": "The standard loss function for language model training, measuring divergence between predicted and actual token distributions.",
+      "slug": "cross-entropy-loss"
+    },
+    {
+      "id": "f035",
+      "track": "foundations",
+      "title": "Knowledge Cutoff",
+      "summary": "The date after which a model has no training data \u2014 events after this date are unknown to the model.",
+      "slug": "knowledge-cutoff"
+    },
+    {
+      "id": "f036",
+      "track": "foundations",
+      "title": "Model Weights and Checkpoints",
+      "summary": "Weights are the learned parameters; checkpoints are saved snapshots of weights at points during training.",
+      "slug": "model-weights-and-checkpoints"
+    },
+    {
+      "id": "f037",
+      "track": "foundations",
+      "title": "Inference vs Training",
+      "summary": "Training updates model weights using data; inference uses fixed weights to generate predictions.",
+      "slug": "inference-vs-training"
+    },
+    {
+      "id": "f038",
+      "track": "foundations",
+      "title": "Quantization",
+      "summary": "Reducing model precision (e.g. 32-bit to 4-bit) to shrink memory footprint and speed up inference.",
+      "slug": "quantization"
+    },
+    {
+      "id": "f039",
+      "track": "foundations",
+      "title": "Distillation",
+      "summary": "Training a smaller student model to mimic the behavior of a larger teacher model.",
+      "slug": "distillation"
+    },
+    {
+      "id": "f040",
+      "track": "foundations",
+      "title": "Sparse vs Dense Models",
+      "summary": "Dense models activate all parameters per token; sparse models (MoE) activate only a fraction.",
+      "slug": "sparse-vs-dense-models"
+    },
+    {
+      "id": "f041",
+      "track": "foundations",
+      "title": "Logits",
+      "summary": "Raw, unnormalized scores output by the final layer of a model before softmax converts them to probabilities.",
+      "slug": "logits"
+    },
+    {
+      "id": "f042",
+      "track": "foundations",
+      "title": "Perplexity",
+      "summary": "A metric for language model quality \u2014 lower perplexity means the model is less surprised by real text.",
+      "slug": "perplexity"
+    },
+    {
+      "id": "f043",
+      "track": "foundations",
+      "title": "Chain-of-Thought Reasoning",
+      "summary": "Prompting technique where the model reasons step-by-step before giving a final answer, improving accuracy.",
+      "slug": "chain-of-thought-reasoning"
+    },
+    {
+      "id": "f044",
+      "track": "foundations",
+      "title": "Constitutional AI",
+      "summary": "Anthropic's technique for training AI to self-critique and revise outputs according to a set of principles.",
+      "slug": "constitutional-ai"
+    },
+    {
+      "id": "f045",
+      "track": "foundations",
+      "title": "Instruction Tuning",
+      "summary": "Fine-tuning a base model on instruction-response pairs so it follows natural language directives.",
+      "slug": "instruction-tuning"
+    },
+    {
+      "id": "f046",
+      "track": "foundations",
+      "title": "System Prompt",
+      "summary": "Instructions given to a model before the conversation begins, shaping its persona, constraints, and behavior.",
+      "slug": "system-prompt"
+    },
+    {
+      "id": "f047",
+      "track": "foundations",
+      "title": "Prompt Injection",
+      "summary": "An attack where malicious text in input overrides or manipulates the system prompt or intended behavior.",
+      "slug": "prompt-injection"
+    },
+    {
+      "id": "f048",
+      "track": "foundations",
+      "title": "Emergent Capabilities",
+      "summary": "Abilities that appear in large models that were not present in smaller versions and were not explicitly trained.",
+      "slug": "emergent-capabilities"
+    },
+    {
+      "id": "f049",
+      "track": "foundations",
+      "title": "AI Alignment",
+      "summary": "The challenge of ensuring AI systems pursue goals that are beneficial and consistent with human values.",
+      "slug": "ai-alignment"
+    },
+    {
+      "id": "f050",
+      "track": "foundations",
+      "title": "The Turing Test",
+      "summary": "A benchmark proposed by Alan Turing in 1950 where a machine passes if it is indistinguishable from a human in text conversation.",
+      "slug": "the-turing-test"
+    },
+    {
+      "id": "p001",
+      "track": "practitioner",
+      "title": "Prompt Engineering Fundamentals",
+      "summary": "The craft of structuring inputs to reliably elicit desired outputs from language models.",
+      "slug": "prompt-engineering-fundamentals"
+    },
+    {
+      "id": "p002",
+      "track": "practitioner",
+      "title": "System Prompts in Practice",
+      "summary": "How to write effective system prompts that define model persona, scope, tone, and constraints.",
+      "slug": "system-prompts-in-practice"
+    },
+    {
+      "id": "p003",
+      "track": "practitioner",
+      "title": "Few-shot Prompting Patterns",
+      "summary": "Providing worked examples in the prompt to demonstrate the exact format and reasoning style you want.",
+      "slug": "few-shot-prompting-patterns"
+    },
+    {
+      "id": "p004",
+      "track": "practitioner",
+      "title": "Chain-of-Thought Prompting",
+      "summary": "Asking the model to show its reasoning steps, improving accuracy on math, logic, and multi-step tasks.",
+      "slug": "chain-of-thought-prompting"
+    },
+    {
+      "id": "p005",
+      "track": "practitioner",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "summary": "Combining a retrieval system with an LLM so answers are grounded in fetched, up-to-date documents.",
+      "slug": "retrieval-augmented-generation-rag"
+    },
+    {
+      "id": "p006",
+      "track": "practitioner",
+      "title": "Chunking Strategies for RAG",
+      "summary": "How to split documents into chunks \u2014 by size, sentence, or semantic unit \u2014 for effective retrieval.",
+      "slug": "chunking-strategies-for-rag"
+    },
+    {
+      "id": "p007",
+      "track": "practitioner",
+      "title": "Embedding Models for Retrieval",
+      "summary": "Choosing and using embedding models (OpenAI, Cohere, BGE) to index and query your document store.",
+      "slug": "embedding-models-for-retrieval"
+    },
+    {
+      "id": "p008",
+      "track": "practitioner",
+      "title": "Vector Databases in Practice",
+      "summary": "Using Chroma, Pinecone, or Qdrant to store embeddings and run fast similarity search at scale.",
+      "slug": "vector-databases-in-practice"
+    },
+    {
+      "id": "p009",
+      "track": "practitioner",
+      "title": "Tool Use and Function Calling",
+      "summary": "Giving models the ability to invoke external functions \u2014 APIs, calculators, search \u2014 to extend their capabilities.",
+      "slug": "tool-use-and-function-calling"
+    },
+    {
+      "id": "p010",
+      "track": "practitioner",
+      "title": "Structured Output with JSON Mode",
+      "summary": "Constraining model output to valid JSON for reliable downstream parsing in applications.",
+      "slug": "structured-output-with-json-mode"
+    },
+    {
+      "id": "p011",
+      "track": "practitioner",
+      "title": "LLM APIs \u2014 OpenAI, Anthropic, Google",
+      "summary": "Core differences in API design, pricing models, rate limits, and capability trade-offs across major providers.",
+      "slug": "llm-apis-openai-anthropic-google"
+    },
+    {
+      "id": "p012",
+      "track": "practitioner",
+      "title": "Building a Chatbot with Memory",
+      "summary": "Implementing conversation history management to maintain context across multi-turn interactions.",
+      "slug": "building-a-chatbot-with-memory"
+    },
+    {
+      "id": "p013",
+      "track": "practitioner",
+      "title": "Streaming Responses",
+      "summary": "Using server-sent events to stream tokens as they are generated for a faster, more responsive UX.",
+      "slug": "streaming-responses"
+    },
+    {
+      "id": "p014",
+      "track": "practitioner",
+      "title": "Token Counting and Cost Management",
+      "summary": "Estimating token usage before API calls and controlling costs through truncation and caching strategies.",
+      "slug": "token-counting-and-cost-management"
+    },
+    {
+      "id": "p015",
+      "track": "practitioner",
+      "title": "Prompt Templates and Variables",
+      "summary": "Parameterizing prompts with dynamic values using template strings for reusable, maintainable prompt code.",
+      "slug": "prompt-templates-and-variables"
+    },
+    {
+      "id": "p016",
+      "track": "practitioner",
+      "title": "Output Parsing and Validation",
+      "summary": "Reliably extracting structured data from model responses and handling malformed outputs gracefully.",
+      "slug": "output-parsing-and-validation"
+    },
+    {
+      "id": "p017",
+      "track": "practitioner",
+      "title": "LangChain Core Concepts",
+      "summary": "Chains, agents, tools, and memory \u2014 the four primitives of the LangChain framework.",
+      "slug": "langchain-core-concepts"
+    },
+    {
+      "id": "p018",
+      "track": "practitioner",
+      "title": "LlamaIndex for Document Q&A",
+      "summary": "Using LlamaIndex to ingest, index, and query large document collections with LLMs.",
+      "slug": "llamaindex-for-document-qa"
+    },
+    {
+      "id": "p019",
+      "track": "practitioner",
+      "title": "Fine-tuning with LoRA",
+      "summary": "Low-Rank Adaptation enables efficient fine-tuning by training only a small number of additional parameters.",
+      "slug": "fine-tuning-with-lora"
+    },
+    {
+      "id": "p020",
+      "track": "practitioner",
+      "title": "Dataset Preparation for Fine-tuning",
+      "summary": "Formatting instruction-response pairs into JSONL and cleaning data for supervised fine-tuning.",
+      "slug": "dataset-preparation-for-fine-tuning"
+    },
+    {
+      "id": "p021",
+      "track": "practitioner",
+      "title": "Evaluation \u2014 Building an LLM Test Suite",
+      "summary": "Writing deterministic and LLM-as-judge evaluations to measure model quality before shipping.",
+      "slug": "evaluation-building-an-llm-test-suite"
+    },
+    {
+      "id": "p022",
+      "track": "practitioner",
+      "title": "Prompt Versioning and Management",
+      "summary": "Treating prompts as code \u2014 version control, A/B testing, and regression testing for prompt changes.",
+      "slug": "prompt-versioning-and-management"
+    },
+    {
+      "id": "p023",
+      "track": "practitioner",
+      "title": "Agentic Loops",
+      "summary": "Architectures where an LLM repeatedly reasons, acts, and observes until a task is complete.",
+      "slug": "agentic-loops"
+    },
+    {
+      "id": "p024",
+      "track": "practitioner",
+      "title": "ReAct Pattern",
+      "summary": "Reason + Act: the model alternates between reasoning steps and tool-use actions to solve tasks.",
+      "slug": "react-pattern"
+    },
+    {
+      "id": "p025",
+      "track": "practitioner",
+      "title": "Multi-agent Architectures",
+      "summary": "Systems with multiple specialized LLM agents collaborating, each with distinct roles and tools.",
+      "slug": "multi-agent-architectures"
+    },
+    {
+      "id": "p026",
+      "track": "practitioner",
+      "title": "Running Local Models with Ollama",
+      "summary": "Using Ollama to run Llama, Mistral, and other open models on your laptop without cloud API costs.",
+      "slug": "running-local-models-with-ollama"
+    },
+    {
+      "id": "p027",
+      "track": "practitioner",
+      "title": "Comparing Models for a Task",
+      "summary": "Systematic approach to selecting the right model \u2014 capability, latency, cost, and context window trade-offs.",
+      "slug": "comparing-models-for-a-task"
+    },
+    {
+      "id": "p028",
+      "track": "practitioner",
+      "title": "Image Input with Vision Models",
+      "summary": "Sending images to multimodal APIs (GPT-4o, Claude, Gemini) for analysis, captioning, and extraction.",
+      "slug": "image-input-with-vision-models"
+    },
+    {
+      "id": "p029",
+      "track": "practitioner",
+      "title": "Building a PDF Q&A System",
+      "summary": "Extract, chunk, embed, and query PDF content using RAG to answer questions over documents.",
+      "slug": "building-a-pdf-qa-system"
+    },
+    {
+      "id": "p030",
+      "track": "practitioner",
+      "title": "Web Scraping for LLM Context",
+      "summary": "Fetching and cleaning web content to use as real-time context in LLM prompts.",
+      "slug": "web-scraping-for-llm-context"
+    },
+    {
+      "id": "p031",
+      "track": "practitioner",
+      "title": "Semantic Search vs Keyword Search",
+      "summary": "Semantic search uses embeddings to find meaning; keyword search matches exact terms \u2014 both have trade-offs.",
+      "slug": "semantic-search-vs-keyword-search"
+    },
+    {
+      "id": "p032",
+      "track": "practitioner",
+      "title": "Hybrid Search",
+      "summary": "Combining dense vector search with sparse BM25 keyword search for better retrieval coverage.",
+      "slug": "hybrid-search"
+    },
+    {
+      "id": "p033",
+      "track": "practitioner",
+      "title": "Re-ranking Retrieved Results",
+      "summary": "Using a cross-encoder or LLM to re-score retrieved chunks by relevance before passing them to the model.",
+      "slug": "re-ranking-retrieved-results"
+    },
+    {
+      "id": "p034",
+      "track": "practitioner",
+      "title": "Summarization Strategies",
+      "summary": "Map-reduce, refine, and rolling summarization patterns for handling long documents that exceed context limits.",
+      "slug": "summarization-strategies"
+    },
+    {
+      "id": "p035",
+      "track": "practitioner",
+      "title": "Code Generation Best Practices",
+      "summary": "Prompting techniques for reliable code output \u2014 including test-first generation and iterative debugging loops.",
+      "slug": "code-generation-best-practices"
+    },
+    {
+      "id": "p036",
+      "track": "practitioner",
+      "title": "LLM Output Caching",
+      "summary": "Caching identical or semantically similar prompts to reduce latency and API costs in production.",
+      "slug": "llm-output-caching"
+    },
+    {
+      "id": "p037",
+      "track": "practitioner",
+      "title": "Guardrails and Input Validation",
+      "summary": "Filtering and validating user inputs before they reach the model to prevent misuse and prompt injection.",
+      "slug": "guardrails-and-input-validation"
+    },
+    {
+      "id": "p038",
+      "track": "practitioner",
+      "title": "Building a Classifier with an LLM",
+      "summary": "Using an LLM with a structured prompt to categorize, route, or label text without training a custom model.",
+      "slug": "building-a-classifier-with-an-llm"
+    },
+    {
+      "id": "p039",
+      "track": "practitioner",
+      "title": "Named Entity Recognition with LLMs",
+      "summary": "Extracting structured entities (names, dates, amounts) from unstructured text using prompted LLMs.",
+      "slug": "named-entity-recognition-with-llms"
+    },
+    {
+      "id": "p040",
+      "track": "practitioner",
+      "title": "Sentiment Analysis with LLMs",
+      "summary": "Classifying emotional tone in text \u2014 and getting confidence scores and explanations \u2014 using LLM prompts.",
+      "slug": "sentiment-analysis-with-llms"
+    },
+    {
+      "id": "p041",
+      "track": "practitioner",
+      "title": "Translation with LLMs",
+      "summary": "Using LLMs for nuanced translation that preserves tone, idiom, and domain-specific terminology.",
+      "slug": "translation-with-llms"
+    },
+    {
+      "id": "p042",
+      "track": "practitioner",
+      "title": "Data Extraction from Unstructured Text",
+      "summary": "Pulling structured fields from emails, reports, and documents using prompted LLMs with JSON output.",
+      "slug": "data-extraction-from-unstructured-text"
+    },
+    {
+      "id": "p043",
+      "track": "practitioner",
+      "title": "LLM-based Routing",
+      "summary": "Using a fast, cheap LLM to classify user intent and route requests to specialized downstream handlers.",
+      "slug": "llm-based-routing"
+    },
+    {
+      "id": "p044",
+      "track": "practitioner",
+      "title": "Fallback and Retry Strategies",
+      "summary": "Handling API failures, timeouts, and malformed outputs gracefully with exponential backoff and fallback models.",
+      "slug": "fallback-and-retry-strategies"
+    },
+    {
+      "id": "p045",
+      "track": "practitioner",
+      "title": "Batch Processing with LLMs",
+      "summary": "Processing large volumes of documents asynchronously using batch API endpoints to reduce cost and latency.",
+      "slug": "batch-processing-with-llms"
+    },
+    {
+      "id": "p046",
+      "track": "practitioner",
+      "title": "System Design for LLM Applications",
+      "summary": "Architectural patterns for building scalable, maintainable LLM apps \u2014 separation of concerns and state management.",
+      "slug": "system-design-for-llm-applications"
+    },
+    {
+      "id": "p047",
+      "track": "practitioner",
+      "title": "Evaluating RAG Systems",
+      "summary": "Metrics for RAG quality: retrieval precision, answer faithfulness, and answer relevance.",
+      "slug": "evaluating-rag-systems"
+    },
+    {
+      "id": "p048",
+      "track": "practitioner",
+      "title": "Context Stuffing vs RAG Trade-offs",
+      "summary": "When to stuff all context into a long-context model vs when to use retrieval \u2014 cost, latency, and accuracy.",
+      "slug": "context-stuffing-vs-rag-trade-offs"
+    },
+    {
+      "id": "p049",
+      "track": "practitioner",
+      "title": "Building with the Vercel AI SDK",
+      "summary": "Using the Vercel AI SDK for streaming, tool use, and multi-provider model switching in TypeScript web apps.",
+      "slug": "building-with-the-vercel-ai-sdk"
+    },
+    {
+      "id": "p050",
+      "track": "practitioner",
+      "title": "Cursor and AI-native Development",
+      "summary": "How AI-native IDEs like Cursor change the development workflow with codebase-aware chat and autocomplete.",
+      "slug": "cursor-and-ai-native-development"
+    },
+    {
+      "id": "pr001",
+      "track": "production",
+      "title": "Latency Optimization for LLM APIs",
+      "summary": "Techniques to reduce response time: streaming, caching, smaller models, and prompt length reduction.",
+      "slug": "latency-optimization-for-llm-apis"
+    },
+    {
+      "id": "pr002",
+      "track": "production",
+      "title": "LLM Observability and Tracing",
+      "summary": "Using tools like LangSmith, Helicone, or Langfuse to trace every LLM call, input, output, and cost.",
+      "slug": "llm-observability-and-tracing"
+    },
+    {
+      "id": "pr003",
+      "track": "production",
+      "title": "Rate Limiting and Quota Management",
+      "summary": "Handling API rate limits gracefully with queues, backoff, and per-user quotas in your application.",
+      "slug": "rate-limiting-and-quota-management"
+    },
+    {
+      "id": "pr004",
+      "track": "production",
+      "title": "Prompt Security in Production",
+      "summary": "Preventing prompt injection, jailbreaks, and data leakage in user-facing LLM applications.",
+      "slug": "prompt-security-in-production"
+    },
+    {
+      "id": "pr005",
+      "track": "production",
+      "title": "Cost Monitoring and Budgets",
+      "summary": "Setting spend alerts, tracking per-request costs, and choosing models based on cost-performance trade-offs.",
+      "slug": "cost-monitoring-and-budgets"
+    },
+    {
+      "id": "pr006",
+      "track": "production",
+      "title": "A/B Testing Prompts",
+      "summary": "Running controlled experiments to compare prompt variants on real user traffic before full rollout.",
+      "slug": "ab-testing-prompts"
+    },
+    {
+      "id": "pr007",
+      "track": "production",
+      "title": "Model Versioning and Rollback",
+      "summary": "Pinning to specific model versions and maintaining rollback capability when providers release updates.",
+      "slug": "model-versioning-and-rollback"
+    },
+    {
+      "id": "pr008",
+      "track": "production",
+      "title": "Human-in-the-Loop Workflows",
+      "summary": "Designing systems where humans review, correct, or approve AI outputs before they take effect.",
+      "slug": "human-in-the-loop-workflows"
+    },
+    {
+      "id": "pr009",
+      "track": "production",
+      "title": "Confidence Scoring and Uncertainty",
+      "summary": "Estimating how confident an LLM is in its output and routing low-confidence cases to human review.",
+      "slug": "confidence-scoring-and-uncertainty"
+    },
+    {
+      "id": "pr010",
+      "track": "production",
+      "title": "LLM Output Moderation",
+      "summary": "Using moderation APIs or a secondary LLM to filter harmful, off-topic, or policy-violating outputs.",
+      "slug": "llm-output-moderation"
+    },
+    {
+      "id": "pr011",
+      "track": "production",
+      "title": "Data Privacy in LLM Applications",
+      "summary": "PII detection, data minimization, and ensuring user data is not inadvertently sent to third-party model APIs.",
+      "slug": "data-privacy-in-llm-applications"
+    },
+    {
+      "id": "pr012",
+      "track": "production",
+      "title": "Serving Open-source Models at Scale",
+      "summary": "Deploying Llama or Mistral with vLLM, TGI, or Modal for high-throughput, low-latency inference.",
+      "slug": "serving-open-source-models-at-scale"
+    },
+    {
+      "id": "pr013",
+      "track": "production",
+      "title": "vLLM and PagedAttention",
+      "summary": "vLLM's memory management technique that enables significantly higher throughput for batched inference.",
+      "slug": "vllm-and-pagedattention"
+    },
+    {
+      "id": "pr014",
+      "track": "production",
+      "title": "Kubernetes for AI Workloads",
+      "summary": "Orchestrating GPU nodes, model servers, and autoscaling for AI inference in Kubernetes.",
+      "slug": "kubernetes-for-ai-workloads"
+    },
+    {
+      "id": "pr015",
+      "track": "production",
+      "title": "Continuous Evaluation in CI/CD",
+      "summary": "Running LLM eval suites automatically on every deployment to catch regressions before they reach users.",
+      "slug": "continuous-evaluation-in-cicd"
+    },
+    {
+      "id": "pr016",
+      "track": "production",
+      "title": "Feedback Loops and Data Flywheels",
+      "summary": "Collecting user feedback to continuously improve model quality through fine-tuning and prompt iteration.",
+      "slug": "feedback-loops-and-data-flywheels"
+    },
+    {
+      "id": "pr017",
+      "track": "production",
+      "title": "Multi-tenant LLM Architecture",
+      "summary": "Isolating prompts, context, and data between customers in a shared LLM backend.",
+      "slug": "multi-tenant-llm-architecture"
+    },
+    {
+      "id": "pr018",
+      "track": "production",
+      "title": "Edge Inference",
+      "summary": "Running small quantized models on-device (mobile, browser, IoT) to eliminate latency and preserve privacy.",
+      "slug": "edge-inference"
+    },
+    {
+      "id": "pr019",
+      "track": "production",
+      "title": "Fallback Model Chains",
+      "summary": "Routing to a cheaper model first and escalating to a more capable one only when needed.",
+      "slug": "fallback-model-chains"
+    },
+    {
+      "id": "pr020",
+      "track": "production",
+      "title": "SLAs for AI Features",
+      "summary": "Setting and monitoring latency, uptime, and quality SLAs for AI-powered features in production products.",
+      "slug": "slas-for-ai-features"
+    },
+    {
+      "id": "pr021",
+      "track": "production",
+      "title": "Semantic Caching",
+      "summary": "Caching LLM responses based on embedding similarity of prompts \u2014 not just exact string matches.",
+      "slug": "semantic-caching"
+    },
+    {
+      "id": "pr022",
+      "track": "production",
+      "title": "Load Testing LLM Applications",
+      "summary": "Simulating concurrent users to measure throughput, latency percentiles, and failure modes under load.",
+      "slug": "load-testing-llm-applications"
+    },
+    {
+      "id": "pr023",
+      "track": "production",
+      "title": "Prompt Injection Defenses",
+      "summary": "Architectural and prompt-level defenses against adversarial inputs designed to hijack model behavior.",
+      "slug": "prompt-injection-defenses"
+    },
+    {
+      "id": "pr024",
+      "track": "production",
+      "title": "Compliance and Audit Logging",
+      "summary": "Logging every LLM interaction with user ID, prompt, response, and timestamp for regulatory compliance.",
+      "slug": "compliance-and-audit-logging"
+    },
+    {
+      "id": "pr025",
+      "track": "production",
+      "title": "GPU Memory Management",
+      "summary": "Understanding VRAM requirements for inference and techniques like KV cache management to maximize throughput.",
+      "slug": "gpu-memory-management"
+    },
+    {
+      "id": "pr026",
+      "track": "production",
+      "title": "Speculative Decoding",
+      "summary": "Using a small draft model to propose tokens that a larger model verifies in parallel, speeding up inference.",
+      "slug": "speculative-decoding"
+    },
+    {
+      "id": "pr027",
+      "track": "production",
+      "title": "Model Routing by Task",
+      "summary": "Dynamically selecting the right model (fast/cheap vs capable/expensive) based on detected task complexity.",
+      "slug": "model-routing-by-task"
+    },
+    {
+      "id": "pr028",
+      "track": "production",
+      "title": "Feature Flags for AI",
+      "summary": "Using feature flags to gradually roll out new models or prompts to subsets of users.",
+      "slug": "feature-flags-for-ai"
+    },
+    {
+      "id": "pr029",
+      "track": "production",
+      "title": "Incident Response for AI Systems",
+      "summary": "Runbooks and protocols for handling AI-specific incidents: hallucination spikes, toxicity, and API outages.",
+      "slug": "incident-response-for-ai-systems"
+    },
+    {
+      "id": "pr030",
+      "track": "production",
+      "title": "LLM Infrastructure Cost Architecture",
+      "summary": "Designing infrastructure to balance inference cost, latency, and reliability across cloud and self-hosted options.",
+      "slug": "llm-infrastructure-cost-architecture"
+    },
+    {
+      "id": "pr031",
+      "track": "production",
+      "title": "Token Streaming Architecture",
+      "summary": "Backend and frontend patterns for reliably delivering streamed tokens to users with proper error handling.",
+      "slug": "token-streaming-architecture"
+    },
+    {
+      "id": "pr032",
+      "track": "production",
+      "title": "Canary Deployments for Models",
+      "summary": "Rolling out new model versions to a small percentage of traffic first to catch quality regressions early.",
+      "slug": "canary-deployments-for-models"
+    },
+    {
+      "id": "pr033",
+      "track": "production",
+      "title": "Shadow Mode Testing",
+      "summary": "Running a new model alongside the current one on live traffic to compare outputs before switching.",
+      "slug": "shadow-mode-testing"
+    },
+    {
+      "id": "pr034",
+      "track": "production",
+      "title": "Retrieval Latency Optimization",
+      "summary": "Techniques to reduce vector search latency: index tuning, ANN algorithms, and approximate search.",
+      "slug": "retrieval-latency-optimization"
+    },
+    {
+      "id": "pr035",
+      "track": "production",
+      "title": "Multi-region LLM Deployment",
+      "summary": "Deploying model endpoints across regions to reduce latency and ensure data residency compliance.",
+      "slug": "multi-region-llm-deployment"
+    },
+    {
+      "id": "pr036",
+      "track": "production",
+      "title": "Input and Output Schema Validation",
+      "summary": "Enforcing strict schemas on LLM inputs and outputs using Pydantic or Zod to catch errors early.",
+      "slug": "input-and-output-schema-validation"
+    },
+    {
+      "id": "pr037",
+      "track": "production",
+      "title": "Async LLM Request Handling",
+      "summary": "Using async/await patterns and job queues to handle LLM requests without blocking application threads.",
+      "slug": "async-llm-request-handling"
+    },
+    {
+      "id": "pr038",
+      "track": "production",
+      "title": "Cold Start Optimization",
+      "summary": "Reducing model initialization time on serverless inference platforms through pre-warming and caching.",
+      "slug": "cold-start-optimization"
+    },
+    {
+      "id": "pr039",
+      "track": "production",
+      "title": "Monitoring Embedding Drift",
+      "summary": "Detecting when the distribution of user queries shifts away from the data used to build your retrieval index.",
+      "slug": "monitoring-embedding-drift"
+    },
+    {
+      "id": "pr040",
+      "track": "production",
+      "title": "LLMOps Platforms Overview",
+      "summary": "Comparing LLMOps tools \u2014 LangSmith, Weights & Biases, Helicone, Arize \u2014 for production monitoring.",
+      "slug": "llmops-platforms-overview"
+    },
+    {
+      "id": "pr041",
+      "track": "production",
+      "title": "Dependency Management for AI Stacks",
+      "summary": "Managing rapidly evolving AI library versions and avoiding breaking changes in LangChain, OpenAI SDK, etc.",
+      "slug": "dependency-management-for-ai-stacks"
+    },
+    {
+      "id": "pr042",
+      "track": "production",
+      "title": "Graceful Degradation in AI Features",
+      "summary": "Designing AI features to fall back to rule-based behavior when the model is unavailable or produces low-quality output.",
+      "slug": "graceful-degradation-in-ai-features"
+    },
+    {
+      "id": "pr043",
+      "track": "production",
+      "title": "API Gateway Patterns for LLMs",
+      "summary": "Using an API gateway layer to centralize auth, rate limiting, logging, and model routing for LLM backends.",
+      "slug": "api-gateway-patterns-for-llms"
+    },
+    {
+      "id": "pr044",
+      "track": "production",
+      "title": "Context Window Overflow Handling",
+      "summary": "Strategies for when input exceeds the model's context limit: truncation, summarization, and chunking.",
+      "slug": "context-window-overflow-handling"
+    },
+    {
+      "id": "pr045",
+      "track": "production",
+      "title": "Evaluating LLM Quality at Scale",
+      "summary": "Running automated evals across thousands of test cases using LLM-as-judge and human spot-checks.",
+      "slug": "evaluating-llm-quality-at-scale"
+    },
+    {
+      "id": "pr046",
+      "track": "production",
+      "title": "GDPR and AI Data Handling",
+      "summary": "Requirements for AI systems processing EU user data: consent, purpose limitation, and data subject rights.",
+      "slug": "gdpr-and-ai-data-handling"
+    },
+    {
+      "id": "pr047",
+      "track": "production",
+      "title": "Prompt Length vs Quality Trade-offs",
+      "summary": "Longer prompts improve instruction clarity but increase latency and cost \u2014 finding the optimal balance.",
+      "slug": "prompt-length-vs-quality-trade-offs"
+    },
+    {
+      "id": "pr048",
+      "track": "production",
+      "title": "Model Card Reading",
+      "summary": "Understanding what model cards tell you about intended use, limitations, and evaluation results.",
+      "slug": "model-card-reading"
+    },
+    {
+      "id": "pr049",
+      "track": "production",
+      "title": "AI Feature Rollout Checklist",
+      "summary": "Pre-launch checklist covering eval, moderation, privacy, cost, and monitoring for AI features.",
+      "slug": "ai-feature-rollout-checklist"
+    },
+    {
+      "id": "pr050",
+      "track": "production",
+      "title": "Post-mortems for AI Incidents",
+      "summary": "Writing blameless post-mortems for AI system failures with a focus on systemic improvements.",
+      "slug": "post-mortems-for-ai-incidents"
+    },
+    {
+      "id": "fr001",
+      "track": "frontier",
+      "title": "GPT-4o and Omni Models",
+      "summary": "Natively multimodal models that process and generate text, audio, and images in a unified architecture.",
+      "slug": "gpt-4o-and-omni-models"
+    },
+    {
+      "id": "fr002",
+      "track": "frontier",
+      "title": "Claude's Extended Thinking",
+      "summary": "Anthropic's approach to giving Claude dedicated reasoning time before responding to improve accuracy.",
+      "slug": "claudes-extended-thinking"
+    },
+    {
+      "id": "fr003",
+      "track": "frontier",
+      "title": "OpenAI o1 and Reasoning Models",
+      "summary": "Models trained to reason extensively before answering, with major gains on math and logical tasks.",
+      "slug": "openai-o1-and-reasoning-models"
+    },
+    {
+      "id": "fr004",
+      "track": "frontier",
+      "title": "Gemini 1.5 and Long Context",
+      "summary": "Google's model with 1M+ token context, enabling analysis of entire codebases, films, or book collections.",
+      "slug": "gemini-15-and-long-context"
+    },
+    {
+      "id": "fr005",
+      "track": "frontier",
+      "title": "Mixture of Experts at Frontier Scale",
+      "summary": "How GPT-4, Mixtral, and other frontier models use MoE to achieve high capability with manageable compute.",
+      "slug": "mixture-of-experts-at-frontier-scale"
+    },
+    {
+      "id": "fr006",
+      "track": "frontier",
+      "title": "Multimodal Understanding vs Generation",
+      "summary": "The distinction between models that understand multiple modalities and those that generate across them.",
+      "slug": "multimodal-understanding-vs-generation"
+    },
+    {
+      "id": "fr007",
+      "track": "frontier",
+      "title": "AI Agents in the Wild",
+      "summary": "Real deployments of autonomous AI agents \u2014 from coding assistants to customer service \u2014 and their failure modes.",
+      "slug": "ai-agents-in-the-wild"
+    },
+    {
+      "id": "fr008",
+      "track": "frontier",
+      "title": "Computer Use and GUI Agents",
+      "summary": "Models that can see a screen and control a computer, enabling automation of any desktop task.",
+      "slug": "computer-use-and-gui-agents"
+    },
+    {
+      "id": "fr009",
+      "track": "frontier",
+      "title": "Text-to-Video: Sora and Beyond",
+      "summary": "OpenAI Sora and competing models that generate temporally consistent, high-fidelity video from text.",
+      "slug": "text-to-video-sora-and-beyond"
+    },
+    {
+      "id": "fr010",
+      "track": "frontier",
+      "title": "AlphaFold and Scientific AI",
+      "summary": "DeepMind's breakthrough in protein structure prediction and what it means for AI-driven scientific discovery.",
+      "slug": "alphafold-and-scientific-ai"
+    },
+    {
+      "id": "fr011",
+      "track": "frontier",
+      "title": "LLM-based Theorem Proving",
+      "summary": "AI systems like AlphaProof that can formally verify and discover mathematical proofs.",
+      "slug": "llm-based-theorem-proving"
+    },
+    {
+      "id": "fr012",
+      "track": "frontier",
+      "title": "Reinforcement Learning for Reasoning",
+      "summary": "Using RL reward signals \u2014 process and outcome \u2014 to train models with improved step-by-step reasoning.",
+      "slug": "reinforcement-learning-for-reasoning"
+    },
+    {
+      "id": "fr013",
+      "track": "frontier",
+      "title": "Self-improvement and Recursive AI",
+      "summary": "Architectures where AI systems generate training data or improve their own weights \u2014 and the risks involved.",
+      "slug": "self-improvement-and-recursive-ai"
+    },
+    {
+      "id": "fr014",
+      "track": "frontier",
+      "title": "World Models",
+      "summary": "AI systems that build internal simulations of physical or social environments to enable planning and prediction.",
+      "slug": "world-models"
+    },
+    {
+      "id": "fr015",
+      "track": "frontier",
+      "title": "Sparse Autoencoders and Interpretability",
+      "summary": "Using sparse autoencoders to decompose LLM activations into human-interpretable features.",
+      "slug": "sparse-autoencoders-and-interpretability"
+    },
+    {
+      "id": "fr016",
+      "track": "frontier",
+      "title": "Mechanistic Interpretability",
+      "summary": "Reverse-engineering the internal computations of neural networks to understand what they are actually doing.",
+      "slug": "mechanistic-interpretability"
+    },
+    {
+      "id": "fr017",
+      "track": "frontier",
+      "title": "Superposition in Neural Networks",
+      "summary": "The phenomenon where models represent more features than they have neurons by overlapping representations.",
+      "slug": "superposition-in-neural-networks"
+    },
+    {
+      "id": "fr018",
+      "track": "frontier",
+      "title": "Constitutional AI and RLAIF",
+      "summary": "Training models using AI feedback rather than human feedback, scaling alignment with AI-generated critiques.",
+      "slug": "constitutional-ai-and-rlaif"
+    },
+    {
+      "id": "fr019",
+      "track": "frontier",
+      "title": "Frontier Model Safety Evaluations",
+      "summary": "How labs like Anthropic, OpenAI, and Google evaluate models for dangerous capabilities before release.",
+      "slug": "frontier-model-safety-evaluations"
+    },
+    {
+      "id": "fr020",
+      "track": "frontier",
+      "title": "AI Diplomacy and Strategy Games",
+      "summary": "AI systems that master complex negotiation and strategy games requiring long-horizon planning and deception.",
+      "slug": "ai-diplomacy-and-strategy-games"
+    },
+    {
+      "id": "fr021",
+      "track": "frontier",
+      "title": "Scaling Hypothesis Debate",
+      "summary": "The ongoing debate about whether continued scaling of data and compute will lead to AGI or hit fundamental limits.",
+      "slug": "scaling-hypothesis-debate"
+    },
+    {
+      "id": "fr022",
+      "track": "frontier",
+      "title": "Test-Time Compute Scaling",
+      "summary": "Spending more compute at inference time \u2014 through search, sampling, and reasoning \u2014 rather than just training.",
+      "slug": "test-time-compute-scaling"
+    },
+    {
+      "id": "fr023",
+      "track": "frontier",
+      "title": "Synthetic Data Generation",
+      "summary": "Using AI to generate training data, enabling models to learn from far more examples than exist in the real world.",
+      "slug": "synthetic-data-generation"
+    },
+    {
+      "id": "fr024",
+      "track": "frontier",
+      "title": "Long-horizon Task Completion",
+      "summary": "The challenge of getting AI agents to reliably complete tasks requiring dozens or hundreds of sequential steps.",
+      "slug": "long-horizon-task-completion"
+    },
+    {
+      "id": "fr025",
+      "track": "frontier",
+      "title": "Memory Architectures for Agents",
+      "summary": "Episodic, semantic, and procedural memory designs for AI agents that need to learn and retain over time.",
+      "slug": "memory-architectures-for-agents"
+    },
+    {
+      "id": "fr026",
+      "track": "frontier",
+      "title": "Foundation Models for Robotics",
+      "summary": "Adapting LLMs and vision models for robot control \u2014 from manipulation to navigation \u2014 in real environments.",
+      "slug": "foundation-models-for-robotics"
+    },
+    {
+      "id": "fr027",
+      "track": "frontier",
+      "title": "AI-generated Code at Scale",
+      "summary": "Frontier models like Claude Code and Devin that can write, test, and deploy entire software systems autonomously.",
+      "slug": "ai-generated-code-at-scale"
+    },
+    {
+      "id": "fr028",
+      "track": "frontier",
+      "title": "Neurosymbolic AI",
+      "summary": "Combining neural networks with symbolic reasoning systems to get the benefits of both approaches.",
+      "slug": "neurosymbolic-ai"
+    },
+    {
+      "id": "fr029",
+      "track": "frontier",
+      "title": "Latent Space Geometry",
+      "summary": "The structure and properties of high-dimensional embedding spaces that determine model capabilities.",
+      "slug": "latent-space-geometry"
+    },
+    {
+      "id": "fr030",
+      "track": "frontier",
+      "title": "AI-to-AI Communication",
+      "summary": "Emerging protocols and architectures for AI agents to coordinate and communicate with each other directly.",
+      "slug": "ai-to-ai-communication"
+    },
+    {
+      "id": "fr031",
+      "track": "frontier",
+      "title": "Diffusion Models for Text",
+      "summary": "Applying diffusion model architectures to text generation as an alternative to autoregressive approaches.",
+      "slug": "diffusion-models-for-text"
+    },
+    {
+      "id": "fr032",
+      "track": "frontier",
+      "title": "State Space Models \u2014 Mamba",
+      "summary": "Mamba and S4 models as efficient alternatives to transformers for long-sequence modeling.",
+      "slug": "state-space-models-mamba"
+    },
+    {
+      "id": "fr033",
+      "track": "frontier",
+      "title": "Flash Attention",
+      "summary": "A memory-efficient attention algorithm that enables training much longer sequences without running out of GPU memory.",
+      "slug": "flash-attention"
+    },
+    {
+      "id": "fr034",
+      "track": "frontier",
+      "title": "Frontier AI Governance",
+      "summary": "International efforts to regulate frontier AI development, from the EU AI Act to the Seoul AI Safety Summit.",
+      "slug": "frontier-ai-governance"
+    },
+    {
+      "id": "fr035",
+      "track": "frontier",
+      "title": "AI in Drug Discovery",
+      "summary": "How AI systems are accelerating pharmaceutical research from target identification to clinical trial design.",
+      "slug": "ai-in-drug-discovery"
+    },
+    {
+      "id": "fr036",
+      "track": "frontier",
+      "title": "Autonomous Research Agents",
+      "summary": "AI systems that can design experiments, run simulations, and iterate on scientific hypotheses independently.",
+      "slug": "autonomous-research-agents"
+    },
+    {
+      "id": "fr037",
+      "track": "frontier",
+      "title": "Emergent Reasoning in Small Models",
+      "summary": "How distillation and reasoning training are bringing o1-class reasoning capabilities to smaller, cheaper models.",
+      "slug": "emergent-reasoning-in-small-models"
+    },
+    {
+      "id": "fr038",
+      "track": "frontier",
+      "title": "Video Understanding at Scale",
+      "summary": "Models that can process and reason over long-form video for summarization, search, and question answering.",
+      "slug": "video-understanding-at-scale"
+    },
+    {
+      "id": "fr039",
+      "track": "frontier",
+      "title": "AI Companions and Long-term Memory",
+      "summary": "Architectures for AI systems that maintain persistent memory across thousands of interactions with a user.",
+      "slug": "ai-companions-and-long-term-memory"
+    },
+    {
+      "id": "fr040",
+      "track": "frontier",
+      "title": "Debate as an Alignment Technique",
+      "summary": "Training AI to be honest by having two models argue opposing positions, with humans judging the winner.",
+      "slug": "debate-as-an-alignment-technique"
+    },
+    {
+      "id": "fr041",
+      "track": "frontier",
+      "title": "Activation Steering",
+      "summary": "Directly modifying model activations at inference time to steer behavior without changing weights.",
+      "slug": "activation-steering"
+    },
+    {
+      "id": "fr042",
+      "track": "frontier",
+      "title": "LLM Planning and Tree Search",
+      "summary": "Using tree-of-thought and Monte Carlo tree search with LLMs to solve multi-step planning problems.",
+      "slug": "llm-planning-and-tree-search"
+    },
+    {
+      "id": "fr043",
+      "track": "frontier",
+      "title": "Cross-modal Grounding",
+      "summary": "Connecting visual and linguistic representations so models develop shared meaning across modalities.",
+      "slug": "cross-modal-grounding"
+    },
+    {
+      "id": "fr044",
+      "track": "frontier",
+      "title": "Frontier Model Evaluations \u2014 ARC-AGI",
+      "summary": "The ARC-AGI benchmark and why it has remained one of the hardest tests for general AI reasoning.",
+      "slug": "frontier-model-evaluations-arc-agi"
+    },
+    {
+      "id": "fr045",
+      "track": "frontier",
+      "title": "AI and Chip Design",
+      "summary": "How AI is accelerating the design of the next generation of chips, creating a feedback loop for AI progress.",
+      "slug": "ai-and-chip-design"
+    },
+    {
+      "id": "fr046",
+      "track": "frontier",
+      "title": "In-context Reinforcement Learning",
+      "summary": "Models that can perform RL-style adaptation purely from examples in their context window.",
+      "slug": "in-context-reinforcement-learning"
+    },
+    {
+      "id": "fr047",
+      "track": "frontier",
+      "title": "Towards AGI \u2014 Definitions and Milestones",
+      "summary": "How researchers define AGI, what milestones matter, and the disagreements about how close we are.",
+      "slug": "towards-agi-definitions-and-milestones"
+    },
+    {
+      "id": "fr048",
+      "track": "frontier",
+      "title": "Model Merging",
+      "summary": "Combining weights from multiple fine-tuned models to produce a single model with multiple capabilities.",
+      "slug": "model-merging"
+    },
+    {
+      "id": "fr049",
+      "track": "frontier",
+      "title": "Continual Learning",
+      "summary": "Training models to learn new information without forgetting previously learned knowledge \u2014 avoiding catastrophic forgetting.",
+      "slug": "continual-learning"
+    },
+    {
+      "id": "fr050",
+      "track": "frontier",
+      "title": "AI Safety via Debate",
+      "summary": "Paul Christiano's proposal to use AI-generated debate as a scalable method for human oversight of capable AI.",
+      "slug": "ai-safety-via-debate"
+    },
+    {
+      "id": "i001",
+      "track": "industry",
+      "title": "AI in Software Development",
+      "summary": "How AI coding tools are changing developer productivity, code review, and the skills that matter.",
+      "slug": "ai-in-software-development"
+    },
+    {
+      "id": "i002",
+      "track": "industry",
+      "title": "AI in Customer Support",
+      "summary": "Deploying LLMs for tier-1 support deflection, agent assist, and automated ticket resolution.",
+      "slug": "ai-in-customer-support"
+    },
+    {
+      "id": "i003",
+      "track": "industry",
+      "title": "AI in Healthcare \u2014 Clinical Decision Support",
+      "summary": "LLMs and diagnostic AI helping clinicians with differential diagnosis, summarization, and protocol adherence.",
+      "slug": "ai-in-healthcare-clinical-decision-support"
+    },
+    {
+      "id": "i004",
+      "track": "industry",
+      "title": "AI in Legal \u2014 Contract Analysis",
+      "summary": "Using LLMs to review, redline, and extract obligations from contracts at scale.",
+      "slug": "ai-in-legal-contract-analysis"
+    },
+    {
+      "id": "i005",
+      "track": "industry",
+      "title": "AI in Finance \u2014 Fraud Detection",
+      "summary": "ML models for real-time transaction anomaly detection and adaptive fraud pattern recognition.",
+      "slug": "ai-in-finance-fraud-detection"
+    },
+    {
+      "id": "i006",
+      "track": "industry",
+      "title": "AI in HR \u2014 Resume Screening",
+      "summary": "Automating candidate screening with LLMs and the bias, compliance, and fairness issues this raises.",
+      "slug": "ai-in-hr-resume-screening"
+    },
+    {
+      "id": "i007",
+      "track": "industry",
+      "title": "AI in Marketing \u2014 Content Generation",
+      "summary": "Using LLMs for ad copy, email campaigns, and SEO content \u2014 and the brand voice control challenges.",
+      "slug": "ai-in-marketing-content-generation"
+    },
+    {
+      "id": "i008",
+      "track": "industry",
+      "title": "AI in Education \u2014 Personalized Tutoring",
+      "summary": "AI tutors that adapt explanations to individual students and provide instant, detailed feedback.",
+      "slug": "ai-in-education-personalized-tutoring"
+    },
+    {
+      "id": "i009",
+      "track": "industry",
+      "title": "AI in Manufacturing \u2014 Predictive Maintenance",
+      "summary": "ML models that predict equipment failure from sensor data, reducing unplanned downtime.",
+      "slug": "ai-in-manufacturing-predictive-maintenance"
+    },
+    {
+      "id": "i010",
+      "track": "industry",
+      "title": "AI in Retail \u2014 Recommendation Engines",
+      "summary": "Collaborative filtering and LLM-powered recommendation systems that drive e-commerce revenue.",
+      "slug": "ai-in-retail-recommendation-engines"
+    },
+    {
+      "id": "i011",
+      "track": "industry",
+      "title": "AI in Supply Chain",
+      "summary": "Demand forecasting, inventory optimization, and disruption prediction using ML in supply chain management.",
+      "slug": "ai-in-supply-chain"
+    },
+    {
+      "id": "i012",
+      "track": "industry",
+      "title": "AI in Cybersecurity",
+      "summary": "Using AI for threat detection, vulnerability scanning, and automated incident response.",
+      "slug": "ai-in-cybersecurity"
+    },
+    {
+      "id": "i013",
+      "track": "industry",
+      "title": "AI in Insurance \u2014 Underwriting",
+      "summary": "ML models for risk scoring, claims processing automation, and personalized pricing.",
+      "slug": "ai-in-insurance-underwriting"
+    },
+    {
+      "id": "i014",
+      "track": "industry",
+      "title": "AI in Real Estate",
+      "summary": "Automated valuation models, property search, and document processing in real estate transactions.",
+      "slug": "ai-in-real-estate"
+    },
+    {
+      "id": "i015",
+      "track": "industry",
+      "title": "AI in Media \u2014 Content Moderation",
+      "summary": "Automated detection of policy-violating content at scale across text, image, and video.",
+      "slug": "ai-in-media-content-moderation"
+    },
+    {
+      "id": "i016",
+      "track": "industry",
+      "title": "AI in Logistics \u2014 Route Optimization",
+      "summary": "ML-driven routing algorithms that reduce delivery cost and time for last-mile logistics.",
+      "slug": "ai-in-logistics-route-optimization"
+    },
+    {
+      "id": "i017",
+      "track": "industry",
+      "title": "AI in Agriculture",
+      "summary": "Crop yield prediction, precision irrigation, and disease detection using satellite imagery and ML.",
+      "slug": "ai-in-agriculture"
+    },
+    {
+      "id": "i018",
+      "track": "industry",
+      "title": "AI in Energy \u2014 Grid Optimization",
+      "summary": "ML for demand forecasting, renewable integration, and smart grid management.",
+      "slug": "ai-in-energy-grid-optimization"
+    },
+    {
+      "id": "i019",
+      "track": "industry",
+      "title": "AI in Autonomous Vehicles",
+      "summary": "The perception, planning, and decision-making stack that enables self-driving cars.",
+      "slug": "ai-in-autonomous-vehicles"
+    },
+    {
+      "id": "i020",
+      "track": "industry",
+      "title": "AI in Financial Trading",
+      "summary": "Algorithmic trading, sentiment analysis, and LLM-based market research in quantitative finance.",
+      "slug": "ai-in-financial-trading"
+    },
+    {
+      "id": "i021",
+      "track": "industry",
+      "title": "AI in Government and Public Sector",
+      "summary": "AI applications in public services: benefits processing, document automation, and policy analysis.",
+      "slug": "ai-in-government-and-public-sector"
+    },
+    {
+      "id": "i022",
+      "track": "industry",
+      "title": "AI in Journalism",
+      "summary": "Automated report generation, fact-checking tools, and AI-assisted investigative research.",
+      "slug": "ai-in-journalism"
+    },
+    {
+      "id": "i023",
+      "track": "industry",
+      "title": "AI in Gaming",
+      "summary": "Procedural content generation, NPC behavior, and AI game masters that adapt to player choices.",
+      "slug": "ai-in-gaming"
+    },
+    {
+      "id": "i024",
+      "track": "industry",
+      "title": "AI in Architecture and Design",
+      "summary": "Generative design tools that explore solution spaces for buildings, products, and urban layouts.",
+      "slug": "ai-in-architecture-and-design"
+    },
+    {
+      "id": "i025",
+      "track": "industry",
+      "title": "AI in Pharma \u2014 Clinical Trials",
+      "summary": "AI for patient recruitment, trial design optimization, and adverse event detection in clinical research.",
+      "slug": "ai-in-pharma-clinical-trials"
+    },
+    {
+      "id": "i026",
+      "track": "industry",
+      "title": "AI for Accessibility",
+      "summary": "Tools that use AI to improve accessibility: real-time captions, image descriptions, and communication aids.",
+      "slug": "ai-for-accessibility"
+    },
+    {
+      "id": "i027",
+      "track": "industry",
+      "title": "AI in Translation and Localization",
+      "summary": "Neural machine translation and LLMs transforming the localization industry and the role of human translators.",
+      "slug": "ai-in-translation-and-localization"
+    },
+    {
+      "id": "i028",
+      "track": "industry",
+      "title": "AI in Accounting and Audit",
+      "summary": "Automated transaction classification, anomaly detection, and AI-assisted audit sampling.",
+      "slug": "ai-in-accounting-and-audit"
+    },
+    {
+      "id": "i029",
+      "track": "industry",
+      "title": "AI in Talent Development",
+      "summary": "Personalized learning paths, skill gap analysis, and AI coaching tools for workforce development.",
+      "slug": "ai-in-talent-development"
+    },
+    {
+      "id": "i030",
+      "track": "industry",
+      "title": "AI Regulation \u2014 EU AI Act",
+      "summary": "The EU AI Act's risk-based framework, prohibited uses, and compliance obligations for AI systems.",
+      "slug": "ai-regulation-eu-ai-act"
+    },
+    {
+      "id": "i031",
+      "track": "industry",
+      "title": "AI Ethics in Practice",
+      "summary": "Moving from ethical principles to operational processes: bias audits, impact assessments, and red teaming.",
+      "slug": "ai-ethics-in-practice"
+    },
+    {
+      "id": "i032",
+      "track": "industry",
+      "title": "AI and the Future of Work",
+      "summary": "Evidence on how AI is changing job tasks, skill demands, and labor market outcomes across industries.",
+      "slug": "ai-and-the-future-of-work"
+    },
+    {
+      "id": "i033",
+      "track": "industry",
+      "title": "Build vs Buy AI Decisions",
+      "summary": "Framework for deciding when to use off-the-shelf AI APIs versus building custom models for a use case.",
+      "slug": "build-vs-buy-ai-decisions"
+    },
+    {
+      "id": "i034",
+      "track": "industry",
+      "title": "AI ROI Measurement",
+      "summary": "How to measure the business value of AI investments through attribution, baselines, and controlled experiments.",
+      "slug": "ai-roi-measurement"
+    },
+    {
+      "id": "i035",
+      "track": "industry",
+      "title": "IT Operations and AIOps",
+      "summary": "Using ML for log analysis, anomaly detection, and automated remediation in IT operations.",
+      "slug": "it-operations-and-aiops"
+    },
+    {
+      "id": "i036",
+      "track": "industry",
+      "title": "AI for ITSM \u2014 ServiceNow and Beyond",
+      "summary": "AI-powered ticket routing, knowledge management, and self-service in IT service management platforms.",
+      "slug": "ai-for-itsm-servicenow-and-beyond"
+    },
+    {
+      "id": "i037",
+      "track": "industry",
+      "title": "Enterprise AI Governance",
+      "summary": "Policies, controls, and oversight structures for managing AI risk in large organizations.",
+      "slug": "enterprise-ai-governance"
+    },
+    {
+      "id": "i038",
+      "track": "industry",
+      "title": "AI Procurement and Vendor Evaluation",
+      "summary": "How to evaluate AI vendors: capability, reliability, security, pricing, and contractual protections.",
+      "slug": "ai-procurement-and-vendor-evaluation"
+    },
+    {
+      "id": "i039",
+      "track": "industry",
+      "title": "Shadow AI in the Enterprise",
+      "summary": "The risk of employees using unauthorized AI tools with company data \u2014 and how to respond.",
+      "slug": "shadow-ai-in-the-enterprise"
+    },
+    {
+      "id": "i040",
+      "track": "industry",
+      "title": "AI Change Management",
+      "summary": "Managing the human side of AI adoption: resistance, retraining, and building a culture of AI literacy.",
+      "slug": "ai-change-management"
+    },
+    {
+      "id": "i041",
+      "track": "industry",
+      "title": "AI in Sales \u2014 Lead Scoring",
+      "summary": "ML models that rank leads by conversion probability to help sales teams prioritize their time.",
+      "slug": "ai-in-sales-lead-scoring"
+    },
+    {
+      "id": "i042",
+      "track": "industry",
+      "title": "AI for Business Intelligence",
+      "summary": "Natural language interfaces to data, automated insight generation, and AI-powered dashboards.",
+      "slug": "ai-for-business-intelligence"
+    },
+    {
+      "id": "i043",
+      "track": "industry",
+      "title": "AI in Mental Health",
+      "summary": "AI-powered therapy support tools, crisis detection, and the ethical boundaries of AI in mental healthcare.",
+      "slug": "ai-in-mental-health"
+    },
+    {
+      "id": "i044",
+      "track": "industry",
+      "title": "AI in Sports Analytics",
+      "summary": "Performance prediction, injury prevention, and tactical analysis using computer vision and ML in sports.",
+      "slug": "ai-in-sports-analytics"
+    },
+    {
+      "id": "i045",
+      "track": "industry",
+      "title": "AI Copyright and IP Issues",
+      "summary": "Unresolved legal questions around AI training data, generated content ownership, and licensing.",
+      "slug": "ai-copyright-and-ip-issues"
+    },
+    {
+      "id": "i046",
+      "track": "industry",
+      "title": "AI and Climate Change",
+      "summary": "AI applications for climate modeling, emissions reduction, and the energy cost of training large models.",
+      "slug": "ai-and-climate-change"
+    },
+    {
+      "id": "i047",
+      "track": "industry",
+      "title": "Conversational AI for Enterprise",
+      "summary": "Deploying enterprise chatbots with RAG over internal knowledge bases, integrated with ticketing and CRM.",
+      "slug": "conversational-ai-for-enterprise"
+    },
+    {
+      "id": "i048",
+      "track": "industry",
+      "title": "AI in Product Management",
+      "summary": "Using AI for user research synthesis, feature prioritization, and product analytics at scale.",
+      "slug": "ai-in-product-management"
+    },
+    {
+      "id": "i049",
+      "track": "industry",
+      "title": "AI Strategy for IT Managers",
+      "summary": "How IT leaders can build an AI roadmap: prioritizing use cases, managing risk, and enabling adoption.",
+      "slug": "ai-strategy-for-it-managers"
+    },
+    {
+      "id": "i050",
+      "track": "industry",
+      "title": "Measuring AI Maturity",
+      "summary": "Frameworks for assessing an organization's AI maturity across strategy, data, talent, and governance.",
+      "slug": "measuring-ai-maturity"
+    }
   ]
 }
