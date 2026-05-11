@@ -10,5 +10,9 @@
   "rlhf-reinforcement-learning-from-human-feedback": {
     "date": "2026-05-08",
     "path": "concepts/2026-05-08.html"
+  },
+  "frontier-model-safety-evaluations": {
+    "date": "2026-05-11",
+    "path": "concepts/2026-05-11.html"
   }
 }
