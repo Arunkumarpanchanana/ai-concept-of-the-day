@@ -18,5 +18,9 @@
   "ai-in-financial-trading": {
     "date": "2026-05-15",
     "path": "concepts/2026-05-15.html"
+  },
+  "llm-apis-openai-anthropic-google": {
+    "date": "2026-05-18",
+    "path": "concepts/2026-05-18.html"
   }
 }
