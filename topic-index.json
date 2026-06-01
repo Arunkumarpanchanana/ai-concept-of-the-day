@@ -26,5 +26,9 @@
   "what-is-a-large-language-model": {
     "date": "2026-05-26",
     "path": "concepts/2026-05-26.html"
+  },
+  "semantic-search-vs-keyword-search": {
+    "date": "2026-06-01",
+    "path": "concepts/2026-06-01.html"
   }
 }
