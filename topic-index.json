@@ -34,5 +34,9 @@
   "data-extraction-from-unstructured-text": {
     "date": "2026-06-19",
     "path": "concepts/2026-06-19.html"
+  },
+  "context-window-overflow-handling": {
+    "date": "2026-06-22",
+    "path": "concepts/2026-06-22.html"
   }
 }
