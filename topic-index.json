@@ -38,5 +38,9 @@
   "context-window-overflow-handling": {
     "date": "2026-06-22",
     "path": "concepts/2026-06-22.html"
+  },
+  "structured-output-with-json-mode": {
+    "date": "2026-06-24",
+    "path": "concepts/2026-06-24.html"
   }
 }
